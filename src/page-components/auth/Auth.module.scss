@@ -1,5 +1,18 @@
 @import "@/assets/styles/index.scss";
 
 .container {
+	padding: $ui-step * 5;
 	@extend %auth-container;
+}
+
+.wrapper {
+	@extend %auth-form;
+}
+
+.title {
+	@include ui-space(bottom, 5);
+}
+
+.logo {
+	@include ui-space(bottom, 7);
 }

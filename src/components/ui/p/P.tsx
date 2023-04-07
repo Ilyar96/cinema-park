@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import cn from 'classnames';
 
 import { PProps } from './P.type';
 
 import styles from './P.module.scss';
 
-export const P = ({ size = 'm', children, className, ...props }: PProps): JSX.Element => {
+export const P: FC<PProps> = ({ size = 'm', children, className, ...props }) => {
 	return (
 		<p
 			className={cn(className, 'p',

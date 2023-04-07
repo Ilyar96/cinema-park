@@ -7,20 +7,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 	(
 		{ errorMessage, className, type = "text", ...props }, ref
 	) => {
-		const [value, setValue] = useState('');
-
-		const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-			setValue(e.target.value);
-		};
 
 		return (
 			<div className={cn(styles.wrapper, className)}>
 				<input
 					className={styles.input}
-					value={value}
-					onChange={onChange}
-					{...props}
+					type={type}
 					ref={ref}
+					{...props}
 				/>
 				{errorMessage && <span className={styles.error}>{errorMessage}</span>}
 			</div>

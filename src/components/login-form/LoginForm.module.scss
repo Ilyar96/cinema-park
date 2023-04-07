@@ -1,8 +1,6 @@
 @import "@/assets/styles/index.scss";
 
 .root {
-	@extend %auth-form;
-
 	> * + * {
 		@include ui-space(top, 5);
 	}

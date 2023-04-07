@@ -11,7 +11,7 @@ const Register = () => {
 				<title>{setTitle("Регистрация")}</title>
 				<meta name="description" content={`Регистрация на сайте ${siteName}`} />
 			</Head>
-			<AuthPage>
+			<AuthPage title="Регистрация">
 				<RegisterForm />
 			</AuthPage>
 		</>
