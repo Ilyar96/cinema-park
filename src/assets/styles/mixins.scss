@@ -1,0 +1,19 @@
+@import "@/assets/styles/variables.scss";
+
+// Spacing
+$ui-step: 0.25rem;
+
+@mixin ui-space($direction, $size) {
+	@if ($direction == top) {
+		margin-top: $ui-step * $size;
+	}
+	@if ($direction == bottom) {
+		margin-bottom: $ui-step * $size;
+	}
+	@if ($direction == left) {
+		margin-inline-start: $ui-step * $size;
+	}
+	@if ($direction == right) {
+		margin-inline-end: $ui-step * $size;
+	}
+}

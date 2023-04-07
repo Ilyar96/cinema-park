@@ -1,0 +1,31 @@
+// Colors
+$primary-color: #79c142;
+$primary-color-hover: #6ab630;
+$primary-color-active: #5db31b;
+$gray-color: #ebebeb;
+$error-color: #dc1a1a;
+$bg-color: #fff;
+$text-color: #000;
+$text-gray: #444;
+$text-white: #fff;
+
+// Border
+$border-rds-sm: 0.3125rem;
+$border-rds-lg: 0.625rem;
+
+// Shadow
+$shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+// Fonts
+$font-family: "Open Sans", sans-serif;
+
+// Transitions
+$btn-transition: 0.3s ease;
+
+// Z-index
+$ui-index-1: 1; // Для наползающих элементов
+$ui-index-2: 2; // Для наползающих элементов
+$ui-index-3: 3; // Для масок
+$ui-index-4: 4; // Для сайдбаров
+$ui-index-5: 5; // Для модалок
+$ui-index-6: 6; // Для элементов, перекрывающих все

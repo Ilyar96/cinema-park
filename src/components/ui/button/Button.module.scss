@@ -1,0 +1,46 @@
+@import "@/assets/styles/index.scss";
+
+.wrapper {
+	display: flex;
+}
+
+.center {
+	justify-content: center;
+}
+
+.end {
+	justify-content: flex-end;
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: $ui-step * 3 $ui-step * 5;
+
+	background: none;
+	border: none;
+	border-radius: $border-rds-sm;
+	cursor: pointer;
+
+	transition: background-color $btn-transition, color $btn-transition;
+}
+
+.primary {
+	background-color: $primary-color;
+	color: $text-white;
+
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: $primary-color-hover;
+		}
+
+		&:active {
+			background-color: $primary-color-active;
+		}
+	}
+}
+
+.fullWidth {
+	width: 100%;
+}

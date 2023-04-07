@@ -1,0 +1,46 @@
+// Auth wrapper
+%auth-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+%auth-form {
+	width: 100%;
+	max-width: 300px;
+	padding: $ui-step * 8 $ui-step * 6;
+
+	border-radius: $border-rds-lg;
+	box-shadow: $shadow;
+}
+
+// Input, Textarea
+%input-wrapper {
+	position: relative;
+}
+
+%input {
+	width: 100%;
+	max-width: 100%;
+	padding: $ui-step * 3 $ui-step * 4;
+	box-sizing: border-box;
+
+	font-size: 0.875rem;
+
+	color: $text-color;
+	background: $bg-color;
+	border-radius: $border-rds-sm;
+	border: 2px solid $gray-color;
+}
+
+%error-message {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(100% + $ui-step * 0.5);
+
+	font-size: 0.8125rem;
+
+	color: $error-color;
+}

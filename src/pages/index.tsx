@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import { Test } from "@/components/Test";
 import Link from 'next/link';
+import { withLayout } from "@/layout/Layout";
 
 
-export default function Home() {
+const Home = () => {
 	return (
 		<>
 			<Head>
@@ -14,7 +15,9 @@ export default function Home() {
 			</Head>
 			<Link href="/">Главная</Link>
 			<Link href="/test">Test</Link>
-			<Test />
+			<h1>Home</h1>
 		</>
 	);
-}
+};
+
+export default withLayout(Home);

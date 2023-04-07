@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap");
+
+@import "@/assets/styles/variables.scss";
+
+* :focus {
+	outline-color: $primary-color-active;
+}
+
+body {
+	font-family: $font-family;
+	font-size: 0.9375rem;
+
+	background-color: $bg-color;
+	color: $text-color;
+}
+
+a {
+	color: $primary-color;
+	text-decoration: none;
+
+	transition: color $btn-transition;
+
+	@media (any-hover: hover) {
+		&:hover {
+			color: $primary-color-hover;
+			text-decoration: underline;
+		}
+	}
+
+	&:active {
+		color: $primary-color-active;
+	}
+}

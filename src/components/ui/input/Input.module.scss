@@ -1,0 +1,15 @@
+@import "@/assets/styles/index.scss";
+
+.wrapper {
+	@extend %input-wrapper;
+
+	width: 100%;
+}
+
+.input {
+	@extend %input;
+}
+
+.error {
+	@extend %error-message;
+}
