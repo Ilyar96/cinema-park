@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import {
 	User,
 	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
 	updateProfile,
 } from "firebase/auth";
 import { auth, db, storage } from "@/api/firebase";
@@ -20,6 +21,7 @@ import { useActions } from "./useActions";
 import { IUser } from "@/@types/user";
 import { RegisterData } from "@/components/register-form/schema";
 import { AppRoutes } from "@/constants/routes";
+import { LoginData } from "@/components/login-form/schema";
 
 export const useAuth = () => {
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -98,5 +100,31 @@ export const useAuth = () => {
 		}
 	}, []);
 
-	return { registerHandler, uploadProgress, isSubmitting };
+	const loginHandler = useCallback(async ({ email, password }: LoginData) => {
+		try {
+			setIsSubmitting(true);
+
+			const { user } = await signInWithEmailAndPassword(auth, email, password);
+			const res = await getDoc(doc(db, USERS_COLLECTION_PATH, user.uid));
+			const userData = res.data();
+
+			if (userData) {
+				login(userData as IUser);
+			} else {
+				throw new Error("Такого пользователя не существует");
+			}
+
+			setIsSubmitting(false);
+			push(AppRoutes.HOME);
+		} catch (error) {
+			console.log("error: ", error);
+			if (isFirebaseError(error)) {
+				errorHandler(error);
+			}
+
+			setIsSubmitting(false);
+		}
+	}, []);
+
+	return { registerHandler, loginHandler, uploadProgress, isSubmitting };
 };

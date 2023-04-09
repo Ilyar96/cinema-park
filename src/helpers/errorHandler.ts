@@ -1,4 +1,4 @@
-import { isFirebaseError } from "@/@types";
+import { isError, isFirebaseError } from "@/@types";
 import { notifyError } from "./";
 
 const LOGIN_ERROR_MESSAGE = "Неправильный логин или пароль";
@@ -7,11 +7,7 @@ const EXIST_EMAIL_ERROR_MESSAGE =
 const DEFAULT_ERROR_MESSAGE = "Что-то пошло не так...";
 
 export const errorHandler = (error: unknown) => {
-	console.log(1);
-
 	if (isFirebaseError(error)) {
-		console.log(2);
-
 		const errorCode = error.code;
 
 		switch (errorCode) {
@@ -22,6 +18,10 @@ export const errorHandler = (error: unknown) => {
 			case "auth/email-already-in-use":
 				return notifyError(EXIST_EMAIL_ERROR_MESSAGE);
 		}
+	}
+
+	if (isError(error)) {
+		return notifyError(error.message);
 	}
 
 	return notifyError(DEFAULT_ERROR_MESSAGE);

@@ -1,28 +1,24 @@
 import React, { useEffect } from 'react';
 import Link from "next/link";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Input, Button, P } from '../ui';
 import { AppRoutes } from "@/constants/routes";
-import { errorMessages } from "@/constants";
+import { LoginData, schema } from "./schema";
 import styles from "./LoginForm.module.scss";
+import { useAuth } from "@/hooks";
 
 export const LoginForm = () => {
-	const schema = yup.object({
-		email: yup.string().email(errorMessages.email).required(errorMessages.required),
-		password: yup.string().required(errorMessages.required)
-	}).required();
-	type FormData = yup.InferType<typeof schema>;
-
-	const { register, handleSubmit, setFocus, formState: { errors } } = useForm<FormData>({
+	const { register, handleSubmit, setFocus, formState: { errors } } = useForm<LoginData>({
 		resolver: yupResolver(schema)
 	});
 
-	const onSubmit = (data: FormData) => console.log(data);
+	const { loginHandler, isSubmitting } = useAuth();
+
+	const onSubmit = (data: LoginData) => loginHandler(data);
 
 	useEffect(() => {
-		setFocus("name");
+		setFocus("email");
 	}, []);
 
 	return (
@@ -38,7 +34,7 @@ export const LoginForm = () => {
 				{...register("password")}
 			/>
 
-			<Button fullWidth type="submit">Войти</Button>
+			<Button fullWidth type="submit" disabled={isSubmitting}>Войти</Button>
 
 			<P>
 				Еще нет учетной записи?{" "}

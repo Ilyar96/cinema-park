@@ -17,6 +17,10 @@
 		}
 	}
 
+	circle {
+		transition: all $btn-transition;
+	}
+
 	> * + * {
 		@include ui-space(left, 2);
 	}
