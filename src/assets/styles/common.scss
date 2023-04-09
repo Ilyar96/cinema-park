@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap");
 
-@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/variables";
 
 * {
 	box-sizing: border-box;
@@ -34,5 +34,11 @@ a {
 
 	&:active {
 		color: $primary-color-active;
+	}
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+	img[loading="lazy"] {
+		clip-path: inset(0.6px);
 	}
 }

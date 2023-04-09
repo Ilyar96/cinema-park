@@ -7,7 +7,7 @@ import {
 import { createWrapper } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
-import { authReducer as auth } from "./reducers/authSlice";
+import { authReducer as auth } from "./reducers/auth/authSlice";
 
 let store: AppStore;
 

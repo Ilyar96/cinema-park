@@ -1,4 +1,4 @@
-@import "@/assets/styles/index.scss";
+@import "@/assets/styles/index";
 
 .wrapper {
 	display: flex;
@@ -24,6 +24,10 @@
 	cursor: pointer;
 
 	transition: background-color $btn-transition, color $btn-transition;
+
+	&:disabled {
+		opacity: 0.5;
+	}
 }
 
 .primary {

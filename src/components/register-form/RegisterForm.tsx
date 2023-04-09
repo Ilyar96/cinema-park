@@ -1,34 +1,48 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState, useRef, KeyboardEvent } from 'react';
 import Link from "next/link";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import YupPassword from 'yup-password';
-import { Input, Button, P } from '../ui';
 import { AppRoutes } from "@/constants/routes";
-import { errorMessages } from "@/constants/errorMessages";
+import { Input, Button, P, FileInput } from '../ui';
+import { useAuth } from "@/hooks";
 import styles from "./RegisterForm.module.scss";
-
-YupPassword(yup);
+import AddAvatarSvg from '@/assets/images/add-avatar.svg';
+import { RegisterData, registerSchema } from "./schema";
+import { FileLoader } from '../file-loader/FileLoader';
+import { formatBytes, setFileName } from "@/helpers";
 
 export const RegisterForm = () => {
+	const [avatar, setAvatar] = useState<File | null>(null);
+	const avatarRef = useRef<HTMLInputElement | null>(null);
 
-	const schema = yup.object({
-		name: yup.string().required(errorMessages.required).min(errorMessages.name.length.value, errorMessages.name.length.message),
-		email: yup.string().email(errorMessages.email).required(errorMessages.required),
-		password: yup.string()
-			.min(errorMessages.password.min.value, errorMessages.password.min.message)
-			.minLowercase(errorMessages.password.minLowercase.value, errorMessages.password.minLowercase.message)
-			.minUppercase(errorMessages.password.minUppercase.value, errorMessages.password.minUppercase.message)
-			.minNumbers(errorMessages.password.minNumbers.value, errorMessages.password.minNumbers.message)
-	}).required();
-	type FormData = yup.InferType<typeof schema>;
-
-	const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-		resolver: yupResolver(schema)
+	const { register, handleSubmit, setFocus, formState: { errors } } = useForm<RegisterData>({
+		resolver: yupResolver(registerSchema),
+		mode: "onChange",
 	});
 
-	const onSubmit = (data: FormData) => console.log(data);
+	const { registerHandler, isSubmitting, uploadProgress } = useAuth();
+	const isUploading = isSubmitting && avatar;
+
+	useEffect(() => {
+		setFocus("name");
+	}, []);
+
+	// TODO add redirect
+	const onSubmit = (data: RegisterData) => registerHandler(data);
+
+	const onAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+
+		file && setAvatar(file);
+		register("avatar").onChange(e);
+	};
+
+	const onLabelKeyDown = (e: KeyboardEvent) => {
+		if (e.code === "Enter" || e.code === "Space") {
+			e.preventDefault();
+			avatarRef.current?.click();
+		}
+	};
 
 	return (
 		<form
@@ -51,7 +65,36 @@ export const RegisterForm = () => {
 				{...register("password")}
 			/>
 
-			<Button fullWidth type="submit">Зарегистрироваться</Button>
+			<FileInput
+				type="file"
+				errorMessage={errors.avatar && errors.avatar.message}
+				disabled={isSubmitting}
+				{...register("avatar")}
+				ref={(e) => {
+					register("avatar").ref(e);
+					avatarRef.current = e;
+				}}
+				onChange={(e) => onAvatarChange(e)}
+				onLabelKeyDown={onLabelKeyDown}
+			>
+				<div className={styles.label}>
+					{
+						isUploading ?
+							<FileLoader size={32} uploadingProgress={uploadProgress} /> :
+							<AddAvatarSvg width={30} height={30} />
+					}
+
+					<span>
+						{avatar ? setFileName(avatar) : "Выбрать аватарку"}
+						{"  "}
+						{avatar &&
+							<span className={styles.fileSize}>{`(${formatBytes(avatar?.size, 1)})`}</span>
+						}
+					</span>
+				</div>
+			</FileInput>
+
+			<Button fullWidth type="submit" disabled={isSubmitting}>{isUploading ? "Регистрация..." : "Зарегистрироваться"}</Button>
 
 			<P>
 				Уже зарегистрированы?{" "}

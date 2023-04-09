@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, forwardRef, useState } from "react";
+import React, { forwardRef } from "react";
 import { InputProps } from "./Input.type";
 import styles from "./Input.module.scss";
 import cn from "classnames";

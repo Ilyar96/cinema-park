@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { RegisterForm } from '../components/register-form/RegisterForm';
 import { AuthPage } from "@/page-components";
-import { siteName } from "@/constants";
+import { SITE_NAME } from "@/constants";
 import { setTitle } from "@/helpers";
 
 const Register = () => {
@@ -9,7 +9,7 @@ const Register = () => {
 		<>
 			<Head>
 				<title>{setTitle("Регистрация")}</title>
-				<meta name="description" content={`Регистрация на сайте ${siteName}`} />
+				<meta name="description" content={`Регистрация на сайте ${SITE_NAME}`} />
 			</Head>
 			<AuthPage title="Регистрация">
 				<RegisterForm />

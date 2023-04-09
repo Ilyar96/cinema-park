@@ -6,10 +6,14 @@
 	width: 100%;
 }
 
-.input {
-	@extend %input;
-}
-
 .error {
 	@extend %error-message;
+}
+
+.fileInput {
+	display: none;
+}
+
+.label {
+	cursor: pointer;
 }

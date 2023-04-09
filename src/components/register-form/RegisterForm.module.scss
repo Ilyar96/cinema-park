@@ -1,7 +1,30 @@
-@import "@/assets/styles/index.scss";
+@import "@/assets/styles/index";
 
 .root {
 	> * + * {
 		@include ui-space(top, 5);
 	}
+}
+
+.label {
+	display: flex;
+	align-items: center;
+
+	color: $primary-color;
+
+	@media (any-hover: hover) {
+		&:hover {
+		}
+	}
+
+	> * + * {
+		@include ui-space(left, 2);
+	}
+}
+
+.fileSize {
+	@include ui-space("left", 1);
+	font-size: 0.8125rem;
+
+	color: $text-gray;
 }

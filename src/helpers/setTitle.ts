@@ -1,5 +1,5 @@
-import { siteName, titleSeparator } from "@/constants";
+import { SITE_NAME, TITLE_SEPARATOR } from "@/constants";
 
 export const setTitle = (title: string) => {
-	return `${title} ${titleSeparator} ${siteName}`;
+	return `${title} ${TITLE_SEPARATOR} ${SITE_NAME}`;
 };

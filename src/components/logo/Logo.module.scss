@@ -1,7 +1,11 @@
+@import "@/assets/styles/index";
+
 .logo {
 	font-family: "Rubik Pixels", cursive;
 	font-size: 40px;
 	font-weight: 700;
+
+	color: $primary-color;
 
 	@media (any-hover: hover) {
 		&:hover {

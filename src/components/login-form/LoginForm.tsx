@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from "next/link";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Input, Button, P } from '../ui';
 import { AppRoutes } from "@/constants/routes";
-import { errorMessages } from "@/constants/errorMessages";
+import { errorMessages } from "@/constants";
 import styles from "./LoginForm.module.scss";
 
 export const LoginForm = () => {
@@ -15,11 +15,15 @@ export const LoginForm = () => {
 	}).required();
 	type FormData = yup.InferType<typeof schema>;
 
-	const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+	const { register, handleSubmit, setFocus, formState: { errors } } = useForm<FormData>({
 		resolver: yupResolver(schema)
 	});
 
 	const onSubmit = (data: FormData) => console.log(data);
+
+	useEffect(() => {
+		setFocus("name");
+	}, []);
 
 	return (
 		<form className={styles.root} onSubmit={handleSubmit(onSubmit)}>
