@@ -37,3 +37,6 @@ export const errorMessages = {
 		format: "Поддерживаемые форматы: jpg, jpeg, png",
 	},
 };
+
+// Local Storage keys
+export const PREVIOUS_PATHNAME_KEY = "previous-pathname";

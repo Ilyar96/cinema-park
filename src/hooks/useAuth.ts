@@ -32,7 +32,6 @@ export const useAuth = () => {
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const authStatus = useAppSelector(getAuthStatus);
-	const { push } = useRouter();
 
 	const { login, logout } = useActions();
 
@@ -87,14 +86,12 @@ export const useAuth = () => {
 							setDataToDb(user, data, downloadURL);
 							setIsSubmitting(false);
 							setUploadProgress(0);
-							push(AppRoutes.HOME);
 						});
 					}
 				);
 			} else {
 				setDataToDb(user, data, null);
 				setIsSubmitting(false);
-				push(AppRoutes.HOME);
 			}
 		} catch (error) {
 			if (isFirebaseError(error)) {
@@ -128,7 +125,6 @@ export const useAuth = () => {
 			}
 
 			setIsSubmitting(false);
-			push(AppRoutes.HOME);
 		} catch (error) {
 			if (isFirebaseError(error)) {
 				errorHandler(error);
