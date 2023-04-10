@@ -5,5 +5,4 @@ export interface IUser {
 	photoURL: string | null;
 	favorites: [];
 	messages: {};
-	accessToken?: string;
 }

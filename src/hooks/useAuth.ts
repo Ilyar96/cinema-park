@@ -1,10 +1,12 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import {
 	User,
 	createUserWithEmailAndPassword,
+	onAuthStateChanged,
 	signInWithEmailAndPassword,
+	signOut,
 	updateProfile,
 } from "firebase/auth";
 import { auth, db, storage } from "@/api/firebase";
@@ -22,13 +24,17 @@ import { IUser } from "@/@types/user";
 import { RegisterData } from "@/components/register-form/schema";
 import { AppRoutes } from "@/constants/routes";
 import { LoginData } from "@/components/login-form/schema";
+import { useAppSelector } from "@/store/store";
+import { getAuthStatus } from "@/store/reducers/auth/selectors";
+import { AuthStatus } from "@/store/reducers/auth/types";
 
 export const useAuth = () => {
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const authStatus = useAppSelector(getAuthStatus);
 	const { push } = useRouter();
 
-	const { login } = useActions();
+	const { login, logout } = useActions();
 
 	const next = useCallback((snapshot: UploadTaskSnapshot) => {
 		const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -100,16 +106,24 @@ export const useAuth = () => {
 		}
 	}, []);
 
+	const getUserData = useCallback(async (uid: string) => {
+		try {
+			const res = await getDoc(doc(db, USERS_COLLECTION_PATH, uid));
+			return res.data() as IUser;
+		} catch (error) {
+			errorHandler(error);
+		}
+	}, []);
+
 	const loginHandler = useCallback(async ({ email, password }: LoginData) => {
 		try {
 			setIsSubmitting(true);
 
 			const { user } = await signInWithEmailAndPassword(auth, email, password);
-			const res = await getDoc(doc(db, USERS_COLLECTION_PATH, user.uid));
-			const userData = res.data();
+			const userData = await getUserData(user.uid);
 
 			if (userData) {
-				login(userData as IUser);
+				login(userData);
 			} else {
 				throw new Error("Такого пользователя не существует");
 			}
@@ -117,7 +131,6 @@ export const useAuth = () => {
 			setIsSubmitting(false);
 			push(AppRoutes.HOME);
 		} catch (error) {
-			console.log("error: ", error);
 			if (isFirebaseError(error)) {
 				errorHandler(error);
 			}
@@ -126,5 +139,46 @@ export const useAuth = () => {
 		}
 	}, []);
 
-	return { registerHandler, loginHandler, uploadProgress, isSubmitting };
+	const logoutHandler = useCallback(() => {
+		try {
+			signOut(auth);
+			logout();
+		} catch (error) {
+			errorHandler(error);
+		}
+	}, []);
+
+	useEffect(() => {
+		if (authStatus !== AuthStatus.UNKNOWN) {
+			return;
+		}
+
+		const unsub = onAuthStateChanged(auth, async (user) => {
+			if (!user) {
+				logout();
+				return;
+			}
+
+			const userData = await getUserData(user.uid);
+
+			if (userData) {
+				login(userData);
+			} else {
+				logout();
+			}
+		});
+
+		return () => {
+			unsub();
+		};
+	}, []);
+
+	return {
+		getUserData,
+		registerHandler,
+		loginHandler,
+		uploadProgress,
+		isSubmitting,
+		logoutHandler,
+	};
 };
