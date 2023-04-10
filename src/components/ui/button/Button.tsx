@@ -5,7 +5,14 @@ import cn from "classnames";
 
 export const Button: FC<ButtonProps> = (
 	(
-		{ fullWidth, align = "start", appearance = "primary", className, children, ...props }
+		{
+			fullWidth,
+			align = "start",
+			appearance = "primary",
+			className,
+			children,
+			...props
+		}
 	) => {
 
 		return (

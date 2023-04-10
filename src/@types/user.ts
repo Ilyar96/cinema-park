@@ -4,5 +4,4 @@ export interface IUser {
 	email: string;
 	photoURL: string | null;
 	favorites: [];
-	messages: {};
 }

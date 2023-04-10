@@ -48,7 +48,6 @@ export const useAuth = () => {
 				displayName: formData.name,
 				email: formData.email,
 				favorites: [],
-				messages: {},
 				photoURL,
 			};
 
@@ -148,7 +147,7 @@ export const useAuth = () => {
 		}
 	}, []);
 
-	useEffect(() => {
+	const checkAuth = useCallback(() => {
 		if (authStatus !== AuthStatus.UNKNOWN) {
 			return;
 		}
@@ -174,6 +173,7 @@ export const useAuth = () => {
 	}, []);
 
 	return {
+		checkAuth,
 		getUserData,
 		registerHandler,
 		loginHandler,
