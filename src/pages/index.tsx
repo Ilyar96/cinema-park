@@ -1,12 +1,9 @@
-import Link from 'next/link';
-import { withLayout } from "@/layout/Layout";
+import { withLayout } from "@/hok";
 
 
 const Home = () => {
 	return (
 		<>
-			<Link href="/">Главная</Link>
-			<Link href="/test">Test</Link>
 			<h1>Home</h1>
 		</>
 	);

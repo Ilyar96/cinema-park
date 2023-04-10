@@ -21,7 +21,13 @@ export const errorHandler = (error: unknown) => {
 	}
 
 	if (isError(error)) {
-		return notifyError(error.message);
+		let msg = error.message;
+
+		if (msg === "Failed to get document because the client is offline.") {
+			msg = "Не удалось получить данные из-за проблем с сетью.";
+		}
+
+		return notifyError(msg);
 	}
 
 	return notifyError(DEFAULT_ERROR_MESSAGE);
