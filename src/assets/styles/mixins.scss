@@ -17,3 +17,21 @@ $ui-step: 0.25rem;
 		margin-inline-end: $ui-step * $size;
 	}
 }
+
+// Fade
+@mixin fade-in() {
+	opacity: 1;
+	visibility: visible;
+}
+
+@mixin fade-out() {
+	opacity: 0;
+	visibility: hidden;
+}
+
+// Flex centered
+@mixin flex-center($display: flex) {
+	display: $display;
+	justify-content: center;
+	align-items: center;
+}

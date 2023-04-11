@@ -22,7 +22,7 @@ export const Header = () => {
 
 	return (
 		<header className={styles.header}>
-			<Container fluid className={styles.container}>
+			<Container className={styles.container}>
 				<Logo className={styles.logo} />
 				{/* TODO Remove inline style */}
 				<Nav style={{ marginRight: 20 }} />

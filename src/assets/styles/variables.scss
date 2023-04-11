@@ -11,6 +11,7 @@ $text-gray: #444;
 $text-white: #fff;
 
 // Border
+$border-rds-xsm: 0.1875rem;
 $border-rds-sm: 0.3125rem;
 $border-rds-lg: 0.625rem;
 
@@ -22,6 +23,7 @@ $font-family: "Open Sans", sans-serif;
 
 // Transitions
 $btn-transition: 0.3s ease;
+$fade-transition: opacity $btn-transition, visibility $btn-transition;
 
 // Z-index
 $ui-index-1: 1; // Для наползающих элементов
@@ -32,5 +34,8 @@ $ui-index-5: 5; // Для модалок
 $ui-index-6: 6; // Для элементов, перекрывающих все
 
 // Container
-$container-width: 75rem;
+$container-width: 68.75rem;
 $container-padding: 1.25rem;
+
+//Header
+$header-height: 3.75rem;

@@ -20,12 +20,13 @@ $dropdown-padding: $ui-step * 4;
 	background: $bg-color-secondary;
 	border-radius: $border-rds-sm;
 
-	@extend %fade-in-transition;
-	@extend %hidden-styles;
+	@include fade-out();
+
+	transition: $fade-transition;
 }
 
 .open {
-	@extend %visible-styles;
+	@include fade-in();
 }
 
 .head {
