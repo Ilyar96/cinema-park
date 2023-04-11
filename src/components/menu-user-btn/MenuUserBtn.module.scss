@@ -8,7 +8,7 @@
 	background: none;
 	cursor: pointer;
 
-	transition: background-color $btn-transition;
+	transition: background-color $transition;
 
 	@media (any-hover: hover) {
 		&:hover {

@@ -53,7 +53,7 @@ $dropdown-padding: $ui-step * 4;
 .options {
 	> * {
 		padding: $ui-step * 2 $dropdown-padding;
-		transition: background-color $btn-transition;
+		transition: background-color $transition;
 
 		@media (any-hover: hover) {
 			&:hover {

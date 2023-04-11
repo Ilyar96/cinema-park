@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
 	Action,
 	configureStore,
@@ -6,15 +7,22 @@ import {
 } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { useMemo } from "react";
 import { authReducer as auth } from "./reducers/auth/authSlice";
+import { movieApi } from "@/api/movieApi";
 
 let store: AppStore;
 
+const rootReducer = {
+	auth,
+	[movieApi.reducerPath]: movieApi.reducer,
+};
+
 export const initStore = (preloadedState = {}) => {
 	return configureStore({
-		reducer: { auth },
+		reducer: rootReducer,
 		preloadedState,
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware().concat(movieApi.middleware),
 	});
 };
 

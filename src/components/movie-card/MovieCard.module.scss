@@ -88,7 +88,8 @@ $card-padding: $ui-step * 2;
 }
 
 .rates {
-	@include flex-center();
+	display: flex;
+	justify-content: space-between;
 }
 
 %rate-title {

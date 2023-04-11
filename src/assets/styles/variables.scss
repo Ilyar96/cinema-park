@@ -22,8 +22,8 @@ $shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 $font-family: "Open Sans", sans-serif;
 
 // Transitions
-$btn-transition: 0.3s ease;
-$fade-transition: opacity $btn-transition, visibility $btn-transition;
+$transition: 0.3s ease;
+$fade-transition: opacity $transition, visibility $transition;
 
 // Z-index
 $ui-index-1: 1; // Для наползающих элементов
