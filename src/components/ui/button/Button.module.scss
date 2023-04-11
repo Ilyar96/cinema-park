@@ -19,6 +19,7 @@
 	padding: $ui-step * 3 $ui-step * 5;
 
 	background: none;
+	color: inherit;
 	border: none;
 	border-radius: $border-rds-sm;
 	cursor: pointer;
@@ -47,4 +48,13 @@
 
 .fullWidth {
 	width: 100%;
+}
+
+.text,
+.text:hover,
+.text:active {
+	padding: 0;
+
+	background-color: transparent;
+	border: none;
 }

@@ -34,7 +34,7 @@ export const LoginForm = () => {
 				{...register("password")}
 			/>
 
-			<Button fullWidth type="submit" disabled={isSubmitting}>Войти</Button>
+			<Button fullWidth type="submit" disabled={isSubmitting}>{isSubmitting ? "Авторизация..." : "Войти"}</Button>
 
 			<P>
 				Еще нет учетной записи?{" "}

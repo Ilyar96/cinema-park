@@ -1,10 +1,11 @@
 import { withLayout } from "@/hok";
+import { HomePage } from "@/page-components";
 
 
 const Home = () => {
 	return (
 		<>
-			<h1>Home</h1>
+			<HomePage />
 		</>
 	);
 };

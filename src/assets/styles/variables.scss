@@ -4,7 +4,8 @@ $primary-color-hover: #6ab630;
 $primary-color-active: #5db31b;
 $gray-color: #ebebeb;
 $error-color: #dc1a1a;
-$bg-color: #fff;
+$bg-color: #f5f5f5;
+$bg-color-secondary: #fff;
 $text-color: #000;
 $text-gray: #444;
 $text-white: #fff;
@@ -29,3 +30,7 @@ $ui-index-3: 3; // Для масок
 $ui-index-4: 4; // Для сайдбаров
 $ui-index-5: 5; // Для модалок
 $ui-index-6: 6; // Для элементов, перекрывающих все
+
+// Container
+$container-width: 75rem;
+$container-padding: 1.25rem;

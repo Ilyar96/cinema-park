@@ -1,4 +1,14 @@
+@import "@/assets/styles";
+
 .header {
+	background-color: $bg-color-secondary;
+}
+
+.container {
 	display: flex;
 	align-items: center;
+}
+
+.logo {
+	margin-inline-end: auto;
 }

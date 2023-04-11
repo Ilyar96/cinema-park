@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import {
 	User,
@@ -22,7 +21,6 @@ import {
 import { useActions } from "./useActions";
 import { IUser } from "@/@types/user";
 import { RegisterData } from "@/components/register-form/schema";
-import { AppRoutes } from "@/constants/routes";
 import { LoginData } from "@/components/login-form/schema";
 import { useAppSelector } from "@/store/store";
 import { getAuthStatus } from "@/store/reducers/auth/selectors";

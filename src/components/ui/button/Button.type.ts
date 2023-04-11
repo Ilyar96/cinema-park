@@ -3,7 +3,7 @@ export interface ButtonProps
 		React.ButtonHTMLAttributes<HTMLButtonElement>,
 		HTMLButtonElement
 	> {
-	appearance?: "primary" | "outlined" | "secondary";
+	appearance?: "primary" | "outlined" | "secondary" | "text";
 	align?: "start" | "center" | "end";
 	fullWidth?: boolean;
 }

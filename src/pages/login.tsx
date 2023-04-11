@@ -5,7 +5,6 @@ import { SITE_NAME } from "@/constants";
 import { setTitle } from "@/helpers";
 
 const Login = () => {
-
 	return (
 		<>
 			<Head>

@@ -1,0 +1,11 @@
+@import "@/assets/styles/index";
+
+.container {
+	max-width: $container-width;
+	padding: 0 $container-padding;
+	margin: 0 auto;
+}
+
+.fluid {
+	max-width: 100%;
+}

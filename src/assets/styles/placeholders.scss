@@ -45,3 +45,18 @@
 
 	color: $error-color;
 }
+
+// Fade in
+%fade-in-transition {
+	transition: opacity $btn-transition, visibility $btn-transition;
+}
+
+%hidden-styles {
+	opacity: 0;
+	visibility: hidden;
+}
+
+%visible-styles {
+	opacity: 1;
+	visibility: visible;
+}

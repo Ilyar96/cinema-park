@@ -1,11 +1,10 @@
 import Head from "next/head";
-import { RegisterForm } from '../components/register-form/RegisterForm';
+import { RegisterForm } from '../components';
 import { AuthPage } from "@/page-components";
 import { SITE_NAME } from "@/constants";
 import { setTitle } from "@/helpers";
 
 const Register = () => {
-
 	return (
 		<>
 			<Head>

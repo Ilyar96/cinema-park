@@ -22,7 +22,8 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"src/components/Test.module.scss"
+		"src/components/Test.module.scss",
+		"src/components/ui/container/Container.module.scss"
 	],
 	"exclude": ["node_modules"]
 }

@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ["api.kinopoisk.dev"],
+		domains: [
+			"api.kinopoisk.dev",
+			"firebasestorage.googleapis.com",
+			"st.kp.yandex.net",
+		],
 	},
 	reactStrictMode: true,
 	swcMinify: true,

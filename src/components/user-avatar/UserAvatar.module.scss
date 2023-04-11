@@ -1,0 +1,36 @@
+@import "@/assets/styles";
+
+.image {
+	display: block;
+	object-fit: cover;
+
+	border-radius: 50%;
+}
+
+.noImage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 1.375rem;
+	font-weight: 500;
+
+	color: $text-white;
+	background-color: $primary-color;
+	border-radius: 50%;
+}
+
+.sm {
+	width: 1.875rem;
+	height: 1.875rem;
+}
+
+.md {
+	width: 3.125rem;
+	height: 3.125rem;
+}
+
+.lg {
+	width: 4.375rem;
+	height: 4.375rem;
+}
