@@ -1,6 +1,6 @@
-import { Movie } from "./@types/movie";
+import { Film } from "./@types/film";
 
-export const movieExample: Movie = {
+export const movieExample: Film = {
 	fees: {
 		world: {
 			value: 286801374,

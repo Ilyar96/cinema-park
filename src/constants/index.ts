@@ -40,3 +40,7 @@ export const errorMessages = {
 
 // Local Storage keys
 export const PREVIOUS_PATHNAME_KEY = "previous-pathname";
+
+export const enum ApiRoute {
+	MOVIE = "movie",
+}

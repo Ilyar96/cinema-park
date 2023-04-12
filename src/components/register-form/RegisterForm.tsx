@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks";
 import styles from "./RegisterForm.module.scss";
 import AddAvatarSvg from '@/assets/images/add-avatar.svg';
 import { RegisterData, registerSchema } from "./schema";
-import { FileLoader } from '../file-loader/FileLoader';
+import { FillingCircle } from '../filling-circle/FillingCircle';
 import { formatBytes, setFileName } from "@/helpers";
 
 export const RegisterForm = () => {
@@ -80,7 +80,7 @@ export const RegisterForm = () => {
 				<div className={styles.label}>
 					{
 						isUploading ?
-							<FileLoader size={32} uploadingProgress={uploadProgress} /> :
+							<FillingCircle size={32} uploadingProgress={uploadProgress} /> :
 							<AddAvatarSvg width={30} height={30} />
 					}
 

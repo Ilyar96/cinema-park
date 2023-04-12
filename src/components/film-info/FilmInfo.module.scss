@@ -1,0 +1,17 @@
+@import "@/assets/styles";
+
+.wrapper {
+	display: flex;
+	@include ui-space("top", 10);
+}
+
+$previewWidth: 12.5rem;
+
+.preview {
+	width: $previewWidth;
+	flex: 0 0 $previewWidth;
+}
+
+.description {
+	flex: 1 1;
+}

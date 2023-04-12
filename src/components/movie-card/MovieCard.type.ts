@@ -1,7 +1,7 @@
-import { Movie } from "@/@types/movie";
+import { Film } from "@/@types/film";
 
 export interface MovieItemProps {
-	movie: Movie;
+	movie: Film;
 	className?: string;
 	as?: "li" | "div";
 }

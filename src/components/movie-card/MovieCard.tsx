@@ -14,7 +14,7 @@ export const MovieCard: FC<MovieItemProps> = ({ movie, as: Component = "li", cla
 
 	return (
 		<Component className={styles.item}>
-			<Link href={AppRoutes.MOVIE} className={cn(styles.card, className)} >
+			<Link href={AppRoutes.FILMS + id} className={cn(styles.card, className)} >
 				<Image
 					className={styles.preview}
 					src={previewUrl}

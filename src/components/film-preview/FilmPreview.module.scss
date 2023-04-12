@@ -1,0 +1,52 @@
+@import "@/assets/styles";
+
+.preview {
+	@include ui-space("right", 5);
+	overflow: hidden;
+
+	border-radius: $border-rds-sm;
+	box-shadow: $shadow;
+}
+
+.rates {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: $ui-step * 2;
+
+	background-color: rgba($color: #000000, $alpha: 0.8);
+}
+
+.kp,
+.imdb {
+	display: flex;
+	align-items: center;
+
+	:global {
+		text {
+			fill: #fff;
+		}
+	}
+}
+
+.kp {
+	color: #f60;
+
+	&::after {
+		content: "KP";
+		@include ui-space("left", 2);
+
+		font-weight: 500;
+	}
+}
+
+.imdb {
+	color: #fc0;
+
+	&::before {
+		content: "IMDB";
+		@include ui-space("right", 2);
+
+		font-weight: 500;
+	}
+}

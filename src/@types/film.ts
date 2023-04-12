@@ -1,4 +1,4 @@
-export interface Movie {
+export interface Film {
 	fees: Fees;
 	status: null;
 	externalId: ExternalID;

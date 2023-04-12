@@ -1,4 +1,4 @@
-import { getMovies } from "@/api/movieApi";
+import { getFilms } from "@/api/filmApi";
 import { withLayout } from "@/hok";
 import { HomePage } from "@/page-components";
 import { initStore } from "@/store/store";
@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	const store = initStore();
 	// const state = store.getState();
 
-	await store.dispatch(getMovies.initiate());
+	await store.dispatch(getFilms.initiate());
 
 	return { props: { initialReduxState: store.getState() } };
 };

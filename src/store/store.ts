@@ -8,7 +8,7 @@ import {
 import { createWrapper } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authReducer as auth } from "./reducers/auth/authSlice";
-import { movieApi } from "@/api/movieApi";
+import { movieApi } from "@/api/filmApi";
 
 let store: AppStore;
 
