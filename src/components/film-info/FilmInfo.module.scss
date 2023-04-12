@@ -10,6 +10,7 @@ $previewWidth: 12.5rem;
 .preview {
 	width: $previewWidth;
 	flex: 0 0 $previewWidth;
+	height: 100%;
 }
 
 .description {

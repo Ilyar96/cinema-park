@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { FilmDescriptionProps } from './FilmDescription.type';
 import { P, Htag } from "../ui";
 import { FilmDetailItem } from "../";
@@ -14,7 +14,10 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 	const actorDetailsLayout = actorList.length > 0 &&
 		<FilmDetailItem title="Актеры"		>
 			{actorList.slice(0, 10).map(
-				(actor, i) => (<>{setCommaToListItem(i)}<span>{actor.name}</span></>)
+				(actor, i) => (<Fragment key={actor.id}>
+					{setCommaToListItem(i)}
+					<span>{actor.name}</span>
+				</Fragment>)
 			)}
 		</FilmDetailItem>;
 
@@ -23,7 +26,10 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 			title={declinationOfNum(directorList.length, ["Режисер", "Режисеры", "Режисеры"])}
 		>
 			{directorList.map(
-				(director, i) => (<>{setCommaToListItem(i)}<span>{director.name}</span></>)
+				(director, i) => (<Fragment key={director.id}>
+					{setCommaToListItem(i)}
+					<span>{director.name}</span>
+				</Fragment>)
 			)}
 		</FilmDetailItem>;
 
@@ -32,12 +38,17 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 			title={declinationOfNum(directorList.length, ["Жанр", "Жанры", "Жанры"])}
 		>
 			{genres.map(
-				(genre, i) => (<>{setCommaToListItem(i)}<span>{genre.name}</span></>)
+				(genre, i) => (
+					<Fragment key={genre.name}>{
+						setCommaToListItem(i)}
+						<span>{genre.name}</span>
+					</Fragment>
+				)
 			)}
 		</FilmDetailItem>;
 
 	return (
-		<div>
+		<div className={className}>
 			<Htag className={styles.title} tag="h1">{name}</Htag>
 			<Htag className={styles.subtitle} tag="h2">
 				{alternativeName}{" "}

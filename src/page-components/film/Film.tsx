@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from "next/router";
 import { useGetFilmsByIdQuery } from "@/api/filmApi";
-import { FilmInfo } from '../../components';
+import { FilmInfo, KinoBDPlayer } from '../../components';
 
 export const FilmPage = () => {
 	const { query, push } = useRouter();
@@ -15,6 +15,7 @@ export const FilmPage = () => {
 	return (
 		<div>
 			<FilmInfo film={film} />
+			<KinoBDPlayer id={String(query.id)} />
 		</div>
 	);
 };

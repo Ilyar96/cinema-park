@@ -12,3 +12,4 @@ export * from "./film-info/FilmInfo";
 export * from "./film-preview/FilmPreview";
 export * from "./film-description/FilmDescription";
 export * from "./film-detail-item/FilmDetailItem";
+export * from "./kinoBDPlayer/kinoBDPlayer";
