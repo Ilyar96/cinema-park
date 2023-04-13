@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useGetFilmsByIdQuery } from "@/api/filmApi";
 import { Breadcrumbs, ErrorBlock, FilmInfo, FilmList, KinoBDPlayer, SimilarFilms } from '../../components';
 import Head from "next/head";
-import { convertFilmType } from "@/helpers";
+import { capitalize, convertFilmType } from "@/helpers";
 import { Container, Htag } from "@/components/ui";
 import { AppRoutes } from "@/constants/routes";
 import { Film } from "@/@types/film";
@@ -34,7 +34,7 @@ export const FilmPage = () => {
 			<Head>
 				<meta name="description" content={film.description} />
 				<title>
-					{title} ({year}) смотреть онлайн бесплатно в хорошем HD 1080 / 720 качестве
+					{capitalize(title)} ({year}) смотреть онлайн бесплатно в хорошем HD 1080 / 720 качестве
 				</title>
 				<meta property="og:title" content={`${name} (${year})`} />
 				<meta property="og:description" content={description} />
@@ -42,7 +42,7 @@ export const FilmPage = () => {
 			</Head>
 			<Breadcrumbs entities={[...breadcrumbsLinks, { title: name }]} />
 			<FilmInfo film={film} />
-			<SimilarFilms films={similarFilmList} title="Похожие фильмы" />
+			<SimilarFilms films={similarFilmList} title={`Похожие ${convertFilmType(film.type, true)}`} />
 			{/* <KinoBDPlayer film={film} /> */}
 		</>
 	);

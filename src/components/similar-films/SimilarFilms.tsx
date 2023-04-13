@@ -42,7 +42,7 @@ export const SimilarFilms: FC<SimilarFilmsProps> = ({ films, title, className })
 					}}
 				>
 					{films.map((film) => (
-						<SwiperSlide>
+						<SwiperSlide key={film.id}>
 							<FilmCard film={film} key={film.id} />
 						</SwiperSlide>
 					))}

@@ -1,16 +1,14 @@
-import { Genres } from "@/store/reducers/filter/types";
-
-export const convertFilmType = (type: Genres) => {
+export const convertFilmType = (type: string, isPlural = false) => {
 	switch (type) {
 		case "tv-series":
-			return "Сериал";
+			return isPlural ? "сериалы" : "сериал";
 		case "animated-series":
-			return "Мультсериал";
+			return isPlural ? "мультсериалы" : "мультсериал";
 		case "anime":
-			return "Аниме";
+			return "аниме";
 		case "cartoon":
-			return "Мультфильм";
+			return isPlural ? "мультфильмы" : "мультфильм";
 		default:
-			return "Фильм";
+			return isPlural ? "фильмы" : "фильм";
 	}
 };

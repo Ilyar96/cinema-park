@@ -8,3 +8,4 @@ export * from "./declinationOfNum";
 export * from "./setCommaToListItem";
 export * from "./convertFilmType";
 export * from "./setSearchParams";
+export * from "./capitalize";

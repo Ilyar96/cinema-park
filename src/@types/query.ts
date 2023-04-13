@@ -1,3 +1,4 @@
+import { Film } from "./film";
 export type Genres =
 	| "movie"
 	| "tv-series"
@@ -6,13 +7,19 @@ export type Genres =
 	| "animated-series"
 	| "tv-show";
 
+export type SortField = keyof Film;
+
 export interface Filter {
-	"names.name": string;
-	type: Genres | "";
-	year: string;
-	"genres.name": string;
-	"countries.name": string;
-	"persons.id": string;
+	"names.name"?: string;
+	type?: Genres | "";
+	year?: string;
+	"genres.name"?: string;
+	"countries.name"?: string;
+	"persons.id"?: string;
+	sortField?: SortField | "";
+	sortType?: 1 | -1;
+	page?: number;
+	limit?: number;
 }
 
 export type Query = Filter;

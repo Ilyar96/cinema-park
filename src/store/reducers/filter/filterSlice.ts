@@ -5,10 +5,14 @@ import { Query } from "@/@types/query";
 const initialState: FilterState = {
 	"names.name": "",
 	type: "",
-	year: "2021",
+	year: "",
 	"genres.name": "",
 	"countries.name": "",
 	"persons.id": "",
+	sortField: "",
+	sortType: 1,
+	page: 1,
+	limit: 24,
 };
 
 const filterSlice = createSlice({
@@ -18,8 +22,11 @@ const filterSlice = createSlice({
 		changeFilter: (state, action: PayloadAction<Query>) => {
 			state = { ...state, ...action.payload };
 		},
+		changePage: (state, action: PayloadAction<number>) => {
+			state.page = action.payload;
+		},
 	},
 });
 
-export const { changeFilter } = filterSlice.actions;
+export const { changeFilter, changePage } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
