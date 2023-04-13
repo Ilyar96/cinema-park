@@ -8,12 +8,14 @@ import {
 import { createWrapper } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authReducer as auth } from "./reducers/auth/authSlice";
+import { filterReducer as filter } from "./reducers/filter/filterSlice";
 import { movieApi } from "@/api/filmApi";
 
 let store: AppStore;
 
 const rootReducer = {
 	auth,
+	filter,
 	[movieApi.reducerPath]: movieApi.reducer,
 };
 

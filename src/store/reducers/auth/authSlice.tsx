@@ -1,5 +1,5 @@
-import { IUser } from "@/@types/user";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IUser } from "@/@types/user";
 import { AuthState, AuthStatus } from "./types";
 
 const initialState: AuthState = {

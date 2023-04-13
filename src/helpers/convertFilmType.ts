@@ -1,4 +1,6 @@
-export const convertFilmType = (type: string | undefined) => {
+import { Genres } from "@/store/reducers/filter/types";
+
+export const convertFilmType = (type: Genres) => {
 	switch (type) {
 		case "tv-series":
 			return "Сериал";
@@ -6,7 +8,7 @@ export const convertFilmType = (type: string | undefined) => {
 			return "Мультсериал";
 		case "anime":
 			return "Аниме";
-		case "carton":
+		case "cartoon":
 			return "Мультфильм";
 		default:
 			return "Фильм";

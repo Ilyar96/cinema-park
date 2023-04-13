@@ -15,8 +15,9 @@ const Home = () => {
 
 export const getStaticProps: GetStaticProps = async () => {
 	const store = initStore();
+	const { filter } = store.getState();
 
-	await store.dispatch(getFilms.initiate());
+	await store.dispatch(getFilms.initiate(filter));
 
 	return { props: { initialReduxState: store.getState() } };
 };
