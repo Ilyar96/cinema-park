@@ -9,6 +9,8 @@ $card-padding: $ui-step * 2;
 	width: 168px;
 	height: 244px;
 
+	background-color: $gray-color;
+
 	&:hover {
 		text-decoration: none;
 	}

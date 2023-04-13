@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import cn from "classnames";
 import Link from "next/link";
 import Image from "next/image";
-import { MovieItemProps } from "./MovieCard.type";
+import { FilmCardProps } from "./FilmCard.type";
 import { AppRoutes } from "@/constants/routes";
-import styles from "./MovieCard.module.scss";
+import styles from "./FilmCard.module.scss";
 import PlaySvg from '@/assets/images/play.svg';
 
-export const MovieCard: FC<MovieItemProps> = ({ movie, as: Component = "li", className }) => {
+export const FilmCard: FC<FilmCardProps> = ({ movie, as: Component = "li", className }) => {
 	const { id, year, rating, name, poster } = movie;
 	const { kp, imdb } = rating;
 	const { previewUrl } = poster;

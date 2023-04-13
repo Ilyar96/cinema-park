@@ -8,9 +8,11 @@ import { Container } from "../ui";
 export const FilmInfo: FC<FilmInfoProps> = ({ film, className }) => {
 
 	return (
-		<Container className={cn(styles.wrapper, className)}>
-			<FilmPreview className={styles.preview} film={film} />
-			<FilmDescription className={styles.description} film={film} />
-		</Container>
+		<div className={cn(styles.wrapper, className)}>
+			<Container className={styles.container}>
+				<FilmPreview className={styles.preview} film={film} />
+				<FilmDescription className={styles.description} film={film} />
+			</Container>
+		</div>
 	);
 };

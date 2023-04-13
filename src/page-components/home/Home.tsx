@@ -1,11 +1,11 @@
 import React from 'react';
-import { MovieList } from '../../components';
+import { FilmList } from '../../components';
 
 export const HomePage = () => {
 
 	return (
 		<>
-			<MovieList />
+			<FilmList />
 		</>
 	);
 };

@@ -1,0 +1,6 @@
+@import "@/assets/styles";
+
+.wrapper {
+	@include flex-center;
+	flex: 1 1;
+}

@@ -6,3 +6,4 @@ export * from "./setFileName";
 export * from "./formatBytes";
 export * from "./declinationOfNum";
 export * from "./setCommaToListItem";
+export * from "./convertFilmType";

@@ -15,7 +15,6 @@ const Home = () => {
 
 export const getStaticProps: GetStaticProps = async () => {
 	const store = initStore();
-	// const state = store.getState();
 
 	await store.dispatch(getFilms.initiate());
 

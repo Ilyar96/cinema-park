@@ -9,7 +9,7 @@ const Login = () => {
 		<>
 			<Head>
 				<title>{setTitle("Добро пожаловать")}</title>
-				<meta name="description" content={`Регистрация на сайте ${SITE_NAME}`} />
+				<meta property="title" content={`Регистрация на сайте ${SITE_NAME}`} />
 			</Head>
 			<AuthPage title="Авторизация">
 				<LoginForm />

@@ -1,8 +1,10 @@
 @import "@/assets/styles";
 
 .wrapper {
+	padding: $ui-step * 8 0;
+}
+.container {
 	display: flex;
-	@include ui-space("top", 10);
 }
 
 $previewWidth: 12.5rem;

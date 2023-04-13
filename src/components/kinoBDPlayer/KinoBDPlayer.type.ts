@@ -1,3 +1,5 @@
+import { Film } from "@/@types/film";
+
 export interface KinoBDPlayerProps {
-	id: string;
+	film: Film;
 }
