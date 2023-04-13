@@ -2,12 +2,21 @@
 
 $card-padding: $ui-step * 2;
 
-.card {
+.item {
 	position: relative;
 
+	width: 100%;
+	height: 0;
+	padding-bottom: 147%;
+}
+
+.card {
+	position: absolute;
+	inset: 0;
+
 	display: block;
-	width: 168px;
-	height: 244px;
+	width: 100%;
+	height: 100%;
 
 	background-color: $gray-color;
 

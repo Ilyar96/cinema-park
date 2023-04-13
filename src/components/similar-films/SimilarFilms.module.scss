@@ -1,0 +1,17 @@
+@import "@/assets/styles";
+
+.container {
+	> * + * {
+		@include ui-space("top", 5);
+	}
+}
+
+.similarFilms {
+	@include ui-space("top", 10);
+
+	:global {
+		.swiper {
+			padding-bottom: $ui-step * 7;
+		}
+	}
+}

@@ -7,9 +7,8 @@ import { AppRoutes } from "@/constants/routes";
 import styles from "./FilmCard.module.scss";
 import PlaySvg from '@/assets/images/play.svg';
 
-export const FilmCard: FC<FilmCardProps> = ({ movie, as: Component = "li", className }) => {
-	const { id, year, rating, name, poster } = movie;
-	const { kp, imdb } = rating;
+export const FilmCard: FC<FilmCardProps> = ({ film, as: Component = "li", className }) => {
+	const { id, year, rating, name, poster } = film;
 	const { previewUrl } = poster;
 
 	return (
@@ -24,14 +23,14 @@ export const FilmCard: FC<FilmCardProps> = ({ movie, as: Component = "li", class
 				/>
 
 				<div className={styles.content}>
-					<span className={styles.year}>{year}</span>
+					{year && <span className={styles.year}>{year}</span>}
 					<span className={styles.title}>{name}</span>
-					{(kp || imdb) && <span className={styles.rates}>
-						{kp && <span className={styles.kp}>
-							<span className={styles.kpValue}>{kp}</span>
+					{rating && (rating.kp || rating.imdb) && <span className={styles.rates}>
+						{rating.kp && <span className={styles.kp}>
+							<span className={styles.kpValue}>{rating.kp}</span>
 						</span>}
-						{imdb && <span className={styles.imdb}>
-							<span className={styles.imdbValue}>{imdb}</span>
+						{rating.imdb && <span className={styles.imdb}>
+							<span className={styles.imdbValue}>{rating.imdb}</span>
 						</span>}
 					</span>}
 				</div>

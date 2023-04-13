@@ -5,6 +5,7 @@ const nextConfig = {
 			"api.kinopoisk.dev",
 			"firebasestorage.googleapis.com",
 			"st.kp.yandex.net",
+			"avatars.mds.yandex.net",
 		],
 	},
 	reactStrictMode: true,

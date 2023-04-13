@@ -7,14 +7,14 @@ import { AppRoutes } from "@/constants/routes";
 import { BreadcrumbsItem } from "./breadcrums-item/BreadcrumbsItem";
 
 export const Breadcrumbs: FC<BreadcrumbsProps> = ({ entities, separator = "»" }) => {
-	console.log(1);
+
 	return (
-		<Container >
+		<Container className={styles.container}>
 			<div className={styles.wrapper}>
 				<Link href={AppRoutes.HOME}>Главная</Link>
 
 				{entities.map(({ title, href }) => (
-					<Fragment key={href}>
+					<Fragment key={title}>
 						<span>{" "} {separator} {" "}</span>
 						<BreadcrumbsItem title={title} href={href} />
 					</Fragment>

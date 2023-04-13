@@ -4,5 +4,4 @@
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	gap: $ui-step * 3;
-	@include ui-space("top", 10);
 }

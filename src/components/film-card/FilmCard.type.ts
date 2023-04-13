@@ -1,7 +1,7 @@
 import { Film } from "@/@types/film";
 
 export interface FilmCardProps {
-	movie: Film;
+	film: Film;
 	className?: string;
 	as?: "li" | "div";
 }

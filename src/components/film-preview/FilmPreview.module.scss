@@ -1,7 +1,6 @@
 @import "@/assets/styles";
 
 .preview {
-	@include ui-space("right", 5);
 	overflow: hidden;
 
 	border-radius: $border-rds-sm;

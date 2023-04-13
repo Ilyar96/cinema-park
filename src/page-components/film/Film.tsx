@@ -1,15 +1,17 @@
 import React from 'react';
 import { useRouter } from "next/router";
 import { useGetFilmsByIdQuery } from "@/api/filmApi";
-import { Breadcrumbs, ErrorBlock, FilmInfo, KinoBDPlayer } from '../../components';
+import { Breadcrumbs, ErrorBlock, FilmInfo, FilmList, KinoBDPlayer, SimilarFilms } from '../../components';
 import Head from "next/head";
 import { convertFilmType } from "@/helpers";
-import { Htag } from "@/components/ui";
+import { Container, Htag } from "@/components/ui";
 import { AppRoutes } from "@/constants/routes";
+import { Film } from "@/@types/film";
+import styles from "./Film.module.scss";
 
 
 export const FilmPage = () => {
-	const { query, push } = useRouter();
+	const { query } = useRouter();
 	const { data: film, isError } = useGetFilmsByIdQuery(String(query.id));
 	const breadcrumbsLinks = [{ href: AppRoutes.FILMS, title: "Фильмы" }];
 
@@ -23,7 +25,8 @@ export const FilmPage = () => {
 		</>;
 	}
 
-	const { name, year, description, poster, type } = film;
+	const { name, year, description, poster, type, similarMovies } = film;
+	const similarFilmList = (similarMovies as Array<Film>);
 	const title = convertFilmType(type);
 
 	return (
@@ -39,7 +42,8 @@ export const FilmPage = () => {
 			</Head>
 			<Breadcrumbs entities={[...breadcrumbsLinks, { title: name }]} />
 			<FilmInfo film={film} />
-			<KinoBDPlayer film={film} />
+			<SimilarFilms films={similarFilmList} title="Похожие фильмы" />
+			{/* <KinoBDPlayer film={film} /> */}
 		</>
 	);
 };

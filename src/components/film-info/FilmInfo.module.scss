@@ -1,10 +1,12 @@
 @import "@/assets/styles";
 
 .wrapper {
-	padding: $ui-step * 8 0;
+	@include ui-space("top", 8);
 }
 .container {
-	display: flex;
+	@media (min-width: 575.98px) {
+		display: flex;
+	}
 }
 
 $previewWidth: 12.5rem;
@@ -13,8 +15,18 @@ $previewWidth: 12.5rem;
 	width: $previewWidth;
 	flex: 0 0 $previewWidth;
 	height: 100%;
+	@include ui-space("right", 5);
+
+	@media (max-width: 575.98px) {
+		margin-inline-start: auto;
+		margin-inline-end: auto;
+	}
 }
 
 .description {
 	flex: 1 1;
+
+	@media (max-width: 575.98px) {
+		@include ui-space("top", 5);
+	}
 }

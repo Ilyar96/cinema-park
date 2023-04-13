@@ -7,9 +7,19 @@ import { declinationOfNum, setCommaToListItem } from "@/helpers";
 
 export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) => {
 	const { name, description, alternativeName, year, countries, genres, persons, videos, ageRating } = film;
-	const countryList = countries.map(({ name }) => name);
 	const actorList = persons.filter((person) => person.enProfession === "actor");
 	const directorList = persons.filter((person) => person.enProfession === "director");
+
+	// TODO Отрефакторить
+	const countryListLayout = countries.length > 0 &&
+		<FilmDetailItem title={declinationOfNum(countries.length, ["Страна", "Страны", "Страны"])}		>
+			{countries.slice(0, 10).map(
+				(country, i) => (<Fragment key={country.name}>
+					{setCommaToListItem(i)}
+					<span>{country.name}</span>
+				</Fragment>)
+			)}
+		</FilmDetailItem>;
 
 	const actorDetailsLayout = actorList.length > 0 &&
 		<FilmDetailItem title="Актеры"		>
@@ -58,11 +68,7 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 
 			<div className={styles.details}>
 				{year && <FilmDetailItem title="Год выхода" children={year} />}
-				{countryList &&
-					<FilmDetailItem
-						title={declinationOfNum(countryList.length, ["Страна", "Страны", "Страны"])}
-						children={countryList}
-					/>}
+				{countryListLayout}
 				{actorDetailsLayout}
 				{directorDetailsLayout}
 				{genreDetailsLayout}

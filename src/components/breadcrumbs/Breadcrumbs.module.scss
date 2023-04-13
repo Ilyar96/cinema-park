@@ -5,6 +5,13 @@
 	padding-bottom: $ui-step * 3;
 
 	font-size: 0.8125rem;
+	@media (min-width: 1100.98px) {
+		border-bottom: 1px solid $gray-color;
+	}
+}
 
-	border-bottom: 1px solid $gray-color;
+.container {
+	@media (max-width: 1100.98px) {
+		border-bottom: 1px solid $gray-color;
+	}
 }
