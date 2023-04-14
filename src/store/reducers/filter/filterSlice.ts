@@ -8,7 +8,7 @@ const initialState: FilterState = {
 	year: "",
 	"genres.name": "",
 	"countries.name": "",
-	"persons.id": "",
+	"persons.name": "",
 	sortField: "",
 	sortType: 1,
 	page: 1,

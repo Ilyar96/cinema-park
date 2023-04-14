@@ -15,7 +15,7 @@ export interface Filter {
 	year?: string;
 	"genres.name"?: string;
 	"countries.name"?: string;
-	"persons.id"?: string;
+	"persons.name"?: string;
 	sortField?: SortField | "";
 	sortType?: 1 | -1;
 	page?: number;

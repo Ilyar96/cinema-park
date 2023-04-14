@@ -6,3 +6,4 @@ export * from "./htag/Htag";
 export * from "./container/Container";
 export * from "./logo/Logo";
 export * from "./pagination/Pagination";
+export * from "./range-slider/RangeSlider";

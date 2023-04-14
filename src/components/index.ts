@@ -15,3 +15,4 @@ export * from "./kinoBDPlayer/KinoBDPlayer";
 export * from "./error-block/ErrorBlock";
 export * from "./breadcrumbs/Breadcrumbs";
 export * from "./similar-films/SimilarFilms";
+export * from "./filters/Filters";
