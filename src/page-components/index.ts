@@ -1,3 +1,3 @@
 export * from "./auth/Auth";
-export * from "./home/Home";
+export * from "./films/Films";
 export * from "./film/Film";

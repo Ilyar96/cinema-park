@@ -1,9 +1,9 @@
 import React from 'react';
 import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "usehooks-ts";
-import { Logo, Nav, MenuUserBtn, MenuUserDetails } from '../../components';
+import { Nav, MenuUserBtn, MenuUserDetails } from '../../components';
 import { AppRoutes } from "@/constants/routes";
-import { Button, Container } from "@/components/ui";
+import { Button, Container, Logo } from "@/components/ui";
 import { PREVIOUS_PATHNAME_KEY } from "@/constants";
 import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";

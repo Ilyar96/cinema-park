@@ -1,16 +1,15 @@
 import { FC, useEffect } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import { useAuth } from "@/hooks";
-import { Logo } from "@/components";
-import { Htag } from "@/components/ui";
+import { Logo, Htag } from "@/components/ui";
 import { AuthPageProps } from "./Auth.type";
-import styles from "./Auth.module.scss";
 import { useAppSelector } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { PREVIOUS_PATHNAME_KEY } from "@/constants";
 import { AppRoutes } from "@/constants/routes";
 import { getAuthStatus } from "@/store/reducers/auth/selectors";
 import { AuthStatus } from "@/store/reducers/auth/types";
+import styles from "./Auth.module.scss";
 
 export const AuthPage: FC<AuthPageProps> = ({ title, children }) => {
 	const [previousPath] = useLocalStorage(PREVIOUS_PATHNAME_KEY, AppRoutes.HOME);

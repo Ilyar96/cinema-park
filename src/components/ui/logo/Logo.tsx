@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Link from "next/link";
 import cn from "classnames";
 import { useRouter } from 'next/router';
-import { SITE_NAME } from '../../constants';
+import { SITE_NAME } from '../../../constants';
 import { AppRoutes } from "@/constants/routes";
 import { LogoProps } from "./Logo.type";
 import styles from "./Logo.module.scss";

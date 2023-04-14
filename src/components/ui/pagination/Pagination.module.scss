@@ -1,0 +1,52 @@
+@import "@/assets/styles";
+
+.wrapper {
+	max-width: 600px;
+	margin-inline-start: auto;
+	margin-inline-end: auto;
+}
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	padding-inline-start: 0;
+	@include ui-space("top", 5);
+
+	list-style: none;
+
+	li + li {
+		.pageLink {
+			@include ui-space("left", 1);
+		}
+	}
+}
+
+a.pageLink,
+.pageLink {
+	display: block;
+	padding: 0.3125rem 0.625rem;
+
+	color: $primary-color;
+	border: 1px solid $gray-color;
+	border-radius: $border-rds-sm;
+	text-decoration: none;
+	user-select: none;
+}
+
+a.pageLink:hover {
+	background-color: $gray-color;
+}
+
+.active {
+	.pageLink,
+	.pageLink:hover {
+		color: $text-white;
+		background-color: $primary-color;
+
+		cursor: default;
+	}
+}
+
+.disabledItem {
+	opacity: 0.5;
+}

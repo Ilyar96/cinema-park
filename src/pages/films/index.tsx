@@ -8,19 +8,18 @@ import { GetStaticProps } from "next";
 const Home = () => {
 	return (
 		<>
-			Home
-			{/* <FilmsPage /> */}
+			<FilmsPage />
 		</>
 	);
 };
 
-// export const getStaticProps: GetStaticProps = async () => {
-// 	const store = initStore();
-// 	const { filter } = store.getState();
+export const getStaticProps: GetStaticProps = async () => {
+	const store = initStore();
+	const { filter } = store.getState();
 
-// 	await store.dispatch(getFilms.initiate(filter));
+	await store.dispatch(getFilms.initiate(filter));
 
-// 	return { props: { initialReduxState: store.getState() } };
-// };
+	return { props: { initialReduxState: store.getState() } };
+};
 
 export default withLayout(Home);
