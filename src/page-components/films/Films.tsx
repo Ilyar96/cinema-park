@@ -9,13 +9,13 @@ import styles from "./Films.module.scss";
 
 export const FilmsPage = () => {
 	const filters = useAppSelector(getFilters);
-	const { data, isFetching } = useGetFilmsQuery({ ...filters, type: "movie" });
+	const { data, isFetching, isError } = useGetFilmsQuery(filters);
 
 	return (
 		<>
 			<Container>
 				<Filters />
-				<FilmList className={styles.films} films={data?.docs} />
+				<FilmList className={styles.films} isError={isError} isFetching={isFetching} films={data?.docs} />
 				{data && <Pagination data={data} />}
 			</Container>
 		</>

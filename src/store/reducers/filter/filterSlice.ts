@@ -5,7 +5,8 @@ import { Query } from "@/@types/query";
 const initialState: FilterState = {
 	"names.name": "",
 	type: "",
-	year: "",
+	year: `1900-${new Date().getFullYear()}`,
+	"rating.kp": "0-10",
 	"genres.name": "",
 	"countries.name": "",
 	"persons.name": "",
@@ -20,7 +21,7 @@ const filterSlice = createSlice({
 	initialState,
 	reducers: {
 		changeFilter: (state, action: PayloadAction<Query>) => {
-			state = { ...state, ...action.payload };
+			return { ...state, ...action.payload };
 		},
 		changePage: (state, action: PayloadAction<number>) => {
 			state.page = action.payload;

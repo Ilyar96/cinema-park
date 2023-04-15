@@ -26,7 +26,7 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 			{actorList.slice(0, 10).map(
 				(actor, i) => (<Fragment key={actor.id}>
 					{setCommaToListItem(i)}
-					<span>{actor.name}</span>
+					<span>{actor.name ? actor.name : actor.enName}</span>
 				</Fragment>)
 			)}
 		</FilmDetailItem>;
@@ -38,7 +38,7 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 			{directorList.map(
 				(director, i) => (<Fragment key={director.id}>
 					{setCommaToListItem(i)}
-					<span>{director.name}</span>
+					<span>{director.name ? director.name : director.enName}</span>
 				</Fragment>)
 			)}
 		</FilmDetailItem>;

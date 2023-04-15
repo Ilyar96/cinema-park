@@ -42,7 +42,7 @@ export const FilmPage = () => {
 			</Head>
 			<Breadcrumbs entities={[...breadcrumbsLinks, { title: name }]} />
 			<FilmInfo film={film} />
-			<SimilarFilms films={similarFilmList} title={`Похожие ${convertFilmType(film.type, true)}`} />
+			{similarFilmList.length > 0 && <SimilarFilms films={similarFilmList} title={`Похожие ${convertFilmType(film.type, true)}`} />}
 			{/* <KinoBDPlayer film={film} /> */}
 		</>
 	);

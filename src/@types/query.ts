@@ -9,15 +9,22 @@ export type Genres =
 
 export type SortField = keyof Film;
 
+export enum SortType {
+	"ASC" = 1,
+	"DESC" = -1,
+}
+
 export interface Filter {
 	"names.name"?: string;
 	type?: Genres | "";
 	year?: string;
+	"rating.kp"?: string;
+	"rating.imdb"?: string;
 	"genres.name"?: string;
 	"countries.name"?: string;
 	"persons.name"?: string;
-	sortField?: SortField | "";
-	sortType?: 1 | -1;
+	sortField?: string;
+	sortType?: SortType;
 	page?: number;
 	limit?: number;
 }

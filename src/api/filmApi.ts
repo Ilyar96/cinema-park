@@ -4,6 +4,7 @@ import { FilmResponse } from "@/@types/filmResponse";
 import { ApiRoute } from "@/constants";
 import { FilterState } from "@/store/reducers/filter/types";
 import { setSearchParams } from "@/helpers";
+import { HYDRATE } from "next-redux-wrapper";
 
 const baseQueryOptions = {
 	baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
@@ -15,6 +16,11 @@ const baseQueryOptions = {
 export const movieApi = createApi({
 	reducerPath: "filmApi",
 	baseQuery: fetchBaseQuery(baseQueryOptions),
+	extractRehydrationInfo(action, { reducerPath }) {
+		if (action.type === HYDRATE) {
+			return action.payload[reducerPath];
+		}
+	},
 	endpoints: (builder) => ({
 		getFilms: builder.query<FilmResponse, FilterState | void>({
 			query: (filters) => `${ApiRoute.MOVIE}${setSearchParams(filters)}`,

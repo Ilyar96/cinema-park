@@ -6,7 +6,7 @@ import { initStore } from "@/store/store";
 import { GetStaticProps } from "next";
 
 
-const Home = () => {
+const Films = () => {
 	return (
 		<>
 			<FilmsPage />
@@ -16,12 +16,11 @@ const Home = () => {
 
 export const getStaticProps: GetStaticProps = async () => {
 	const store = initStore();
-	const { filter } = store.getState();
+	// const { filter } = store.getState();
 
-	await store.dispatch(changeFilter({ ...filter, type: "movie" }));
-	await store.dispatch(getFilms.initiate({ ...filter, type: "movie" }));
+	await store.dispatch(getFilms.initiate());
 
 	return { props: { initialReduxState: store.getState() } };
 };
 
-export default withLayout(Home);
+export default withLayout(Films);

@@ -1,4 +1,4 @@
-import { Film, SimilarMovie } from "@/@types/film";
+import { Film } from "@/@types/film";
 
 export interface FilmListProps
 	extends React.DetailedHTMLProps<
@@ -6,4 +6,7 @@ export interface FilmListProps
 		HTMLUListElement
 	> {
 	films: Film[] | undefined;
+	isError?: boolean;
+	isFetching?: boolean;
+	isLoading?: boolean;
 }

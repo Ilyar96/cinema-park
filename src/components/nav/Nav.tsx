@@ -9,6 +9,7 @@ export const Nav: FC<NavProps> = (props) => {
 		<nav {...props}>
 			<ul className={styles.wrapper}>
 				<li><Link href={AppRoutes.HOME}>Главная</Link></li>
+				<li><Link href={AppRoutes.FILMS}>Фильмы</Link></li>
 			</ul>
 		</nav>
 	);
