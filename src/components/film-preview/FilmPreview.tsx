@@ -11,8 +11,15 @@ export const FilmPreview: FC<FilmPreviewProps> = ({ className, film }) => {
 
 	return (
 		<div className={cn(styles.preview, className)}>
-			//TODO Добавить пустую превьюшку
-			<Image src={poster ? poster.url : ""} alt={name} width={200} height={282} />
+			{poster?.previewUrl ?
+				<Image
+					src={poster ? poster.url : ""}
+					className={styles.poster}
+					alt={name}
+					width={200}
+					height={282}
+				/> :
+				<div className={styles.emptyPoster} />}
 
 			<div className={styles.rates}>
 				<div className={styles.kp}>

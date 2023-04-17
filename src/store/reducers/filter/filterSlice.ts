@@ -5,8 +5,9 @@ import { Query } from "@/@types/query";
 const initialState: FilterState = {
 	"names.name": "",
 	type: "",
-	year: `1900-${new Date().getFullYear()}`,
-	"rating.kp": "0-10",
+	year: `2020-${new Date().getFullYear()}`,
+	"rating.kp": "7-10",
+	"rating.imdb": "7-10",
 	"genres.name": "",
 	"countries.name": "",
 	"persons.name": "",

@@ -12,26 +12,19 @@ export const Select: React.FC<ISelectProps> = ({
 	isMulti = false,
 	MultiValueRemove,
 	options,
-	styles,
-	value,
-	onBlur,
-	onChange,
-	onFocus,
+	...props
 }) => {
 	return (
 		<ReactSelect
 			className={cn(scssStyles.select, className)}
+			classNamePrefix="react-select"
 			components={{
 				DropdownIndicator: DropdownIndicator,
 				MultiValueRemove: MultiValueRemove,
 			}}
 			isMulti={isMulti}
 			options={options}
-			styles={styles}
-			value={value}
-			onBlur={onBlur}
-			onChange={onChange}
-			onFocus={onFocus}
+			{...props}
 		/>
 	);
 };

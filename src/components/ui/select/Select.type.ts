@@ -39,4 +39,6 @@ export interface ISelectProps {
 		action: ActionMeta<ISelectOption>
 	) => void;
 	onFocus?: FocusEventHandler<HTMLInputElement>;
+	name?: string;
+	placeholder?: string;
 }

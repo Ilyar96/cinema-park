@@ -1,10 +1,25 @@
 @import "@/assets/styles";
 
+$preview-width: 12.5rem;
+$preview-height: 17.625rem;
+
 .preview {
 	overflow: hidden;
 
 	border-radius: $border-rds-sm;
 	box-shadow: $shadow;
+}
+
+.poster {
+	width: $preview-width;
+	height: $preview-height;
+}
+
+.emptyPoster {
+	width: 12.5rem;
+	height: 17.625rem;
+
+	background: url("../../assets/images/empty-poster.png") center no-repeat;
 }
 
 .rates {

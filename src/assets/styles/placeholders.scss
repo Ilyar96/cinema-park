@@ -20,9 +20,12 @@
 }
 
 %input {
+	display: flex;
+	align-items: center;
 	width: 100%;
+	height: 2.75rem;
 	max-width: 100%;
-	padding: $ui-step * 3 $ui-step * 4;
+	padding: 0 $ui-step * 4;
 	box-sizing: border-box;
 
 	font-size: 0.875rem;
@@ -31,6 +34,14 @@
 	background: $bg-color;
 	border-radius: $border-rds-sm;
 	border: 2px solid $gray-color;
+
+	&:hover {
+		border-color: $primary-color-hover;
+	}
+
+	&:focus {
+		border-color: $primary-color-active;
+	}
 }
 
 %error-message {

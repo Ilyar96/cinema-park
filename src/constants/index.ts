@@ -1,5 +1,7 @@
 import { ISelectOption } from "@/components/ui/select/Select.type";
 import { formatBytes } from "../helpers/formatBytes";
+import { AppRoutes } from "./routes";
+
 // Meta
 export const SITE_NAME = "Cinema Park";
 export const TITLE_SEPARATOR = "|";
@@ -42,12 +44,23 @@ export const errorMessages = {
 // Local Storage keys
 export const PREVIOUS_PATHNAME_KEY = "previous-pathname";
 
+// Api routes
 export const enum ApiRoute {
 	MOVIE = "movie",
 }
 
+// Breadcrumb links
+export const breadcrumbLinks = {
+	films: { href: AppRoutes.FILMS, title: "Фильмы" },
+};
+
+// Select options
 // TODO получить с сервера
 export const genreOptions: ISelectOption[] = [
+	{
+		value: "",
+		label: "Не выбрано",
+	},
 	{
 		value: "аниме",
 		label: "аниме",
@@ -179,6 +192,10 @@ export const genreOptions: ISelectOption[] = [
 ];
 
 export const countryOptions: ISelectOption[] = [
+	{
+		value: "",
+		label: "Не выбрано",
+	},
 	{
 		value: "Австралия",
 		label: "Австралия",
@@ -1142,4 +1159,6 @@ export const sortOptions: ISelectOption[] = [
 	{ value: "-rating.kp", label: "рейтингу KP (по возрастанию)" },
 	{ value: "rating.imdb", label: "рейтингу IMDB (по убыванию)" },
 	{ value: "-rating.imdb", label: "рейтингу IMDB (по возрастанию)" },
+	{ value: "year", label: "по дате (сначала новинки)" },
+	{ value: "-year", label: "по дате (сначала более старые)" },
 ];

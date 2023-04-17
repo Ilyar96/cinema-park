@@ -11,7 +11,8 @@ export const RangeSlider: FC<RangeSliderProps> = ({
 	max,
 	values,
 	fractionDigits = 0,
-	setValues
+	setValues,
+	title
 }) => {
 
 	return (
@@ -51,7 +52,8 @@ export const RangeSlider: FC<RangeSliderProps> = ({
 					/>
 				)}
 			/>
-			<output>
+			<output className={styles.output}>
+				{title ? title + ": " : ""}
 				{values.map((value, i) => {
 					return `${i !== 0 ? " - " : ""}${value.toFixed(fractionDigits)}`;
 				})}

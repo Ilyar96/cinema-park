@@ -45,7 +45,7 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 
 	const genreDetailsLayout = genres.length > 0 &&
 		<FilmDetailItem
-			title={declinationOfNum(directorList.length, ["Жанр", "Жанры", "Жанры"])}
+			title={declinationOfNum(genres.length, ["Жанр", "Жанры", "Жанры"])}
 		>
 			{genres.map(
 				(genre, i) => (
@@ -60,10 +60,10 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 	return (
 		<div className={className}>
 			<Htag className={styles.title} tag="h1">{name}</Htag>
-			<Htag className={styles.subtitle} tag="h2">
+			{alternativeName && <Htag className={styles.subtitle} tag="h2">
 				{alternativeName}{" "}
 				<span>({ageRating}+)</span>
-			</Htag>
+			</Htag>}
 			<P>{description}</P>
 
 			<div className={styles.details}>

@@ -1,6 +1,55 @@
 @import "@/assets/styles";
 
+$col-width: calc(50% - 0.75rem);
+
+.filterBtn {
+	@include ui-space("top", 8);
+}
+
 .wrapper {
 	position: relative;
 	z-index: $ui-index-4;
+
+	overflow: hidden;
+	max-height: 0;
+	padding: 0 $ui-step * 4;
+
+	background: $bg-color-secondary;
+	border-radius: $border-rds-sm;
+
+	transition: all $transition;
+
+	> * + * {
+		@include ui-space("top", 2);
+	}
+}
+
+.opened {
+	max-height: 302px;
+	padding: $ui-step * 4;
+	@include ui-space("top", 5);
+	overflow: visible;
+}
+
+.row {
+	@media (min-width: 767.98px) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.75rem;
+		justify-content: space-between;
+	}
+
+	@media (max-width: 767.98px) {
+		> * + * {
+			@include ui-space("top", 2);
+		}
+	}
+}
+
+.withSelect {
+	position: relative;
+	z-index: $ui-index-2;
+}
+
+.col {
 }

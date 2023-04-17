@@ -1,9 +1,12 @@
 @import "@/assets/styles";
 
+$thumb-width: 1.5rem;
+
 .wrapper {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	padding: 0 $thumb-width / 2;
 }
 
 .rangeSlider {
@@ -21,12 +24,16 @@
 }
 
 .thumb {
-	height: 1.875rem;
-	width: 1.875rem;
+	height: $thumb-width;
+	width: $thumb-width;
 	border-radius: 50%;
 	background-color: $primary-color;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	box-shadow: 0px 0.125rem 0.375rem $gray-color;
+}
+
+.output {
+	font-size: 0.875rem;
 }

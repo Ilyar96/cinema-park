@@ -2,4 +2,44 @@
 
 .select {
 	width: 100%;
+
+	:global {
+		.react-select__control {
+			@extend %input;
+			box-shadow: none;
+
+			&:hover {
+				border-color: $primary-color-hover;
+			}
+
+			&--is-focused {
+				border-color: $primary-color-active;
+			}
+		}
+
+		.react-select__value-container,
+		.react-select__input-container,
+		.react-select__placeholder {
+			padding: 0;
+			margin: 0;
+		}
+
+		.react-select__input-container {
+			margin: 0;
+		}
+		.react-select__option {
+			cursor: pointer;
+
+			&--is-focused,
+			&--is-selected,
+			&:focus {
+				background: rgba($color: $primary-color-hover, $alpha: 0.3);
+				color: $text-color;
+			}
+
+			&:active {
+				background: rgba($color: $primary-color-active, $alpha: 0.35);
+			}
+		}
+	}
 }

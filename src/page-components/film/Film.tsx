@@ -5,6 +5,7 @@ import { Breadcrumbs, ErrorBlock, FilmInfo, FilmList, KinoBDPlayer, SimilarFilms
 import Head from "next/head";
 import { capitalize, convertFilmType } from "@/helpers";
 import { Container, Htag } from "@/components/ui";
+import { breadcrumbLinks } from "@/constants";
 import { AppRoutes } from "@/constants/routes";
 import { Film } from "@/@types/film";
 import styles from "./Film.module.scss";
@@ -13,19 +14,18 @@ import styles from "./Film.module.scss";
 export const FilmPage = () => {
 	const { query } = useRouter();
 	const { data: film, isError } = useGetFilmsByIdQuery(String(query.id));
-	const breadcrumbsLinks = [{ href: AppRoutes.FILMS, title: "Фильмы" }];
 
 	//TODO error
 	if (isError || !film) {
 		return <>
-			<Breadcrumbs entities={breadcrumbsLinks} />
+			<Breadcrumbs entities={[breadcrumbLinks.films]} />
 			<ErrorBlock>
 				<Htag tag="h1" center>Ошибка загрузки фильма. Попробуйте перезагрузить страницу.</Htag>
 			</ErrorBlock>
 		</>;
 	}
 
-	const { name, year, description, poster, type, similarMovies } = film;
+	const { name, year, description, poster, type, similarMovies, alternativeName } = film;
 	const similarFilmList = (similarMovies as Array<Film>);
 	const title = convertFilmType(type);
 
@@ -40,9 +40,9 @@ export const FilmPage = () => {
 				<meta property="og:description" content={description} />
 				<meta property="og:image" content={poster?.url} />
 			</Head>
-			<Breadcrumbs entities={[...breadcrumbsLinks, { title: name }]} />
+			<Breadcrumbs entities={[breadcrumbLinks.films, { title: name ? name : alternativeName }]} />
 			<FilmInfo film={film} />
-			{similarFilmList.length > 0 && <SimilarFilms films={similarFilmList} title={`Похожие ${convertFilmType(film.type, true)}`} />}
+			{similarFilmList.length > 0 && <SimilarFilms films={similarFilmList} title={"Смотрите также"} />}
 			{/* <KinoBDPlayer film={film} /> */}
 		</>
 	);

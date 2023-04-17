@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { SingleValue, MultiValue } from "react-select";
+import cn from "classnames";
 import { Button, Input, RangeSlider, Select } from "../ui";
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useActions } from "@/hooks";
@@ -18,10 +19,11 @@ const ratingMax = 10;
 
 export const Filters = () => {
 	const filters = useAppSelector(getFilters);
-	const { data, isFetching } = useGetFilmsQuery(filters);
-	const [sort, setSort] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(sortOptions[0]);
-	const [genre, setGenre] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(genreOptions[0]);
-	const [country, setCountry] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(countryOptions[0]);
+	const { isFetching } = useGetFilmsQuery(filters);
+	const [isOpen, setIsOpen] = useState(false);
+	const [sort, setSort] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(null);
+	const [genre, setGenre] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(null);
+	const [country, setCountry] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(null);
 	const [person, setPerson] = useState('');
 	const [title, setTitle] = useState('');
 	const [kp, setKp] = useState([ratingMin, ratingMax]);
@@ -69,6 +71,10 @@ export const Filters = () => {
 		}));
 	};
 
+	const filterToggleHandler = () => {
+		setIsOpen(prev => !prev);
+	};
+
 	const sortChangeHandler = (selectedOption: SingleValue<ISelectOption> | MultiValue<ISelectOption>) => {
 		setSort(selectedOption);
 	};
@@ -82,45 +88,106 @@ export const Filters = () => {
 	};
 
 	return (
-		<div className={styles.wrapper}>
-			<Input name="person" value={person} onChange={(e) => onChange(e, setPerson)} placeholder="Поиск по актеру, режисеру" />
-			<Input name="title" value={title} onChange={(e) => onChange(e, setTitle)} placeholder="Поиск по точному названию фильма" />
+		<>
+			<Button className={styles.filterBtn} onClick={filterToggleHandler}>
+				{isOpen ? "Скрыть параметры" : "Показать параметры"}
+			</Button>
+			<div className={cn(styles.wrapper, { [styles.opened]: isOpen })}>
 
-			<RangeSlider min={ratingMin} max={ratingMax} values={kp} setValues={setKp} />
-			<RangeSlider min={ratingMin} max={ratingMax} values={imdb} setValues={setImdb} />
-			<RangeSlider min={yearMin} max={yearMax} values={year} setValues={setYear} />
+				<div className={styles.row}>
+					<div className={styles.col}>
+						<Input
+							name="person"
+							value={person}
+							onChange={(e) => onChange(e, setPerson)}
+							placeholder="Поиск по актеру, режисеру"
+						/>
+					</div>
+					<div className={styles.col}>
+						<Input
+							name="title"
+							value={title}
+							onChange={(e) => onChange(e, setTitle)}
+							placeholder="Поиск по точному названию фильма"
+						/>
+					</div>
+				</div>
 
-			<Select
-				options={sortOptions}
-				value={sort}
-				onChange={sortChangeHandler}
-				styles={{
-					control: (baseStyles, state) => {
-						console.log("state: ", state);
-						console.log("baseStyles: ", baseStyles);
-						return ({
-							...baseStyles,
-							"&:hover": {
-								borderColor: "#6ab630"
-							},
-							backgroundColor: "inherit",
-							borderColor: state.isFocused ? '#5db31b' : '#79c142',
-						});
-					},
-				}}
-			/>
-			<Select
-				options={genreOptions}
-				value={genre}
-				onChange={genreChangeHandler}
-			/>
-			<Select
-				options={countryOptions}
-				value={country}
-				onChange={countryChangeHandler}
-			/>
+				<div className={cn(styles.row, styles.withSelect)}>
+					<div className={styles.col}>
+						<Select
+							options={genreOptions}
+							value={genre}
+							placeholder="Выбрать жанр:"
+							onChange={genreChangeHandler}
+						/>
+					</div>
+					<div className={styles.col}>
+						<Select
+							options={countryOptions}
+							value={country}
+							placeholder="Выбрать страну:"
+							onChange={countryChangeHandler}
+						/>
+					</div>
+				</div>
 
-			<Button onClick={onClick} disabled={isFetching}>Поиск</Button>
-		</div>
+				<div className={styles.row}>
+					<div className={styles.col}>
+						<RangeSlider
+							min={ratingMin}
+							max={ratingMax}
+							values={kp}
+							setValues={setKp}
+							title="KP"
+						/>
+					</div>
+					<div className={styles.col}>
+						<RangeSlider
+							min={ratingMin}
+							max={ratingMax}
+							values={imdb}
+							setValues={setImdb}
+							title="IMDB"
+						/>
+					</div>
+				</div>
+
+				<div className={styles.row}>
+					<div className={styles.col}>
+						<RangeSlider
+							min={yearMin}
+							max={yearMax}
+							values={year}
+							setValues={setYear}
+							title="Годы"
+						/>
+					</div>
+					<div className={styles.col}>
+						<Select
+							options={sortOptions}
+							value={sort}
+							onChange={sortChangeHandler}
+							placeholder="Сортировка по:"
+							styles={{
+								control: (baseStyles, state) => {
+									return ({
+										...baseStyles,
+										"&:hover": {
+											borderColor: "#6ab630"
+										},
+										backgroundColor: "inherit",
+										borderColor: state.isFocused ? '#5db31b' : '#79c142',
+									});
+								},
+							}}
+						/>
+					</div>
+
+				</div>
+
+				<Button onClick={onClick} disabled={isFetching}>Поиск</Button>
+			</div>
+		</>
 	);
 };
