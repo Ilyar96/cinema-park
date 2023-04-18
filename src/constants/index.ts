@@ -8,6 +8,7 @@ export const TITLE_SEPARATOR = "|";
 
 //Firebase
 export const USERS_COLLECTION_PATH = "users";
+export const COMMENTS_COLLECTION_PATH = "comments";
 
 //Register Form image
 export const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -20,6 +21,9 @@ export const errorMessages = {
 	required: REQUIRED_MESSAGE,
 	name: {
 		length: { value: 2, message: "Минимальная длина пароля 2 символов" },
+	},
+	comment: {
+		length: { value: 20, message: "Минимальное количество символов 20" },
 	},
 	email: "Введите валидный email",
 	password: {
@@ -54,8 +58,10 @@ export const breadcrumbLinks = {
 	films: { href: AppRoutes.FILMS, title: "Фильмы" },
 };
 
+//Comments
+export const COMMENTS_PER_PAGE = 10;
+
 // Select options
-// TODO получить с сервера
 export const genreOptions: ISelectOption[] = [
 	{
 		value: "",

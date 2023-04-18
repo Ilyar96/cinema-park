@@ -11,6 +11,7 @@ const breadcrumbsLinks = [{ href: AppRoutes.FILMS, title: "Фильмы" }];
 
 export const FilmsPage = () => {
 	const filters = useAppSelector(getFilters);
+	console.log("filters(Films): ", filters);
 	const { data, isFetching, isError } = useGetFilmsQuery(filters);
 
 	return (

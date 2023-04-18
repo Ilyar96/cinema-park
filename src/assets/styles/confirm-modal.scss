@@ -1,0 +1,50 @@
+@import "@/assets/styles";
+
+#react-confirm-alert .react-confirm-alert-overlay {
+	background-color: rgba($color: #000000, $alpha: 0.7);
+}
+
+#react-confirm-alert .react-confirm-alert-body {
+	font-family: $font-family;
+	width: 25rem;
+	padding: $ui-step * 7;
+	text-align: start;
+	background: $bg-color-secondary;
+	border-radius: $border-rds-sm;
+	box-shadow: 0 1.25rem 4.6875rem rgba(0, 0, 0, 0.13);
+	color: $text-color;
+
+	h1 {
+		font-size: 1.375rem;
+	}
+}
+
+#react-confirm-alert .react-confirm-alert-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: $ui-step * 3 $ui-step * 5;
+
+	background-color: $primary-color;
+	color: $text-white;
+	border: none;
+	border-radius: $border-rds-sm;
+	cursor: pointer;
+
+	transition: background-color $transition, color $transition;
+
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: $primary-color-hover;
+		}
+
+		&:active {
+			background-color: $primary-color-active;
+		}
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}

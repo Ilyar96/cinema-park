@@ -1,4 +1,5 @@
 export * from "./input/Input";
+export * from "./textarea/Textarea";
 export * from "./fileInput/FileInput";
 export * from "./button/Button";
 export * from "./p/P";
@@ -8,3 +9,4 @@ export * from "./logo/Logo";
 export * from "./pagination/Pagination";
 export * from "./range-slider/RangeSlider";
 export * from "./select/Select";
+export * from "./user-avatar/UserAvatar";

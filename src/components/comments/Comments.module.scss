@@ -1,0 +1,21 @@
+@import "@/assets/styles";
+
+.formTitle {
+	@include ui-space("top", 10);
+}
+
+.commentForm {
+	@include ui-space("top", 5);
+}
+
+.commentList {
+	@include ui-space("top", 10);
+}
+
+.commentsTitle {
+	@include ui-space("bottom", 6);
+}
+
+.moreBtn {
+	@include ui-space("top", 6);
+}

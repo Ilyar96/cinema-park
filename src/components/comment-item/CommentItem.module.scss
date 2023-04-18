@@ -1,0 +1,59 @@
+@import "@/assets/styles";
+
+.item {
+	@include ui-space("top", 5);
+	padding-bottom: $ui-step * 3;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid $gray-color;
+	}
+}
+
+.head {
+	display: flex;
+	align-items: center;
+
+	> * + * {
+		@include ui-space("left", 2);
+	}
+}
+
+.name {
+	font-weight: 500;
+}
+
+.message {
+	@include ui-space("top", 2);
+
+	word-wrap: break-all;
+}
+
+.date {
+	margin-inline-start: auto;
+
+	font-size: 0.75rem;
+
+	color: $text-gray;
+}
+
+.buttons {
+	display: flex;
+	align-items: center;
+
+	> * + * {
+		@include ui-space("left", 2);
+	}
+}
+
+.btn {
+	@include ui-space("top", 1);
+	padding: $ui-step 0;
+
+	font-size: 0.75rem;
+
+	color: $text-gray;
+}
+
+.form {
+	@include ui-space("top", 2);
+}

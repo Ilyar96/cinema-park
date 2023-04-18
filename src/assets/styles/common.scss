@@ -26,6 +26,10 @@ body {
 	color: $text-color;
 }
 
+.react-confirm-alert-body-element #__next {
+	padding-inline-end: var(--scrollbar-width, 17px);
+}
+
 a {
 	color: $primary-color;
 	text-decoration: none;
@@ -63,3 +67,5 @@ li {
 img {
 	display: block;
 }
+
+@import "./confirm-modal";

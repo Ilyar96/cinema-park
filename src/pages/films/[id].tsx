@@ -11,12 +11,12 @@ const Film = () => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps =
-	async ({ query }) => {
-		const store = initStore();
-		await store.dispatch(getFilmsById.initiate(String(query.id)));
+// export const getServerSideProps: GetServerSideProps =
+// 	async ({ query }) => {
+// 		const store = initStore();
+// 		await store.dispatch(getFilmsById.initiate(String(query.id)));
 
-		return { props: { initialReduxState: store.getState() } };
-	};
+// 		return { props: { initialReduxState: store.getState() } };
+// 	};
 
 export default withLayout(Film);

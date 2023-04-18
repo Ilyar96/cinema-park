@@ -14,12 +14,14 @@ const Films = () => {
 	);
 };
 
-export const getStaticProps = wrapper.getStaticProps(store => async () => {
-	const { filter } = store.getState();
+// export const getStaticProps: GetStaticProps =
+// 	async () => {
+// 		const store = initStore();
+// 		const { filter } = store.getState();
 
-	await store.dispatch(getFilms.initiate(filter));
+// 		await store.dispatch(getFilms.initiate(filter));
 
-	return { props: { initialReduxState: store.getState() } };
-});
+// 		return { props: { initialReduxState: store.getState() } };
+// 	};
 
 export default withLayout(Films);

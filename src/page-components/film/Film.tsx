@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from "next/router";
 import { useGetFilmsByIdQuery } from "@/api/filmApi";
-import { Breadcrumbs, ErrorBlock, FilmInfo, FilmList, KinoBDPlayer, SimilarFilms } from '../../components';
+import { Breadcrumbs, Comments, ErrorBlock, FilmInfo, FilmList, KinoBDPlayer, SimilarFilms } from '../../components';
 import Head from "next/head";
 import { capitalize, convertFilmType } from "@/helpers";
 import { Container, Htag } from "@/components/ui";
@@ -9,11 +9,18 @@ import { breadcrumbLinks } from "@/constants";
 import { AppRoutes } from "@/constants/routes";
 import { Film } from "@/@types/film";
 import styles from "./Film.module.scss";
+import { useAppSelector } from "@/store/store";
+import { getFilters } from "@/store/reducers/filter/selectors";
 
 
 export const FilmPage = () => {
 	const { query } = useRouter();
-	const { data: film, isError } = useGetFilmsByIdQuery(String(query.id));
+	const { data: film, isError, isFetching } = useGetFilmsByIdQuery(String(query.id));
+
+	//TODO Доделать
+	if (isFetching) {
+		return <Htag tag="h1" center>Загрузка...</Htag>;
+	}
 
 	//TODO error
 	if (isError || !film) {
@@ -43,6 +50,7 @@ export const FilmPage = () => {
 			<Breadcrumbs entities={[breadcrumbLinks.films, { title: name ? name : alternativeName }]} />
 			<FilmInfo film={film} />
 			{similarFilmList.length > 0 && <SimilarFilms films={similarFilmList} title={"Смотрите также"} />}
+			<Comments />
 			{/* <KinoBDPlayer film={film} /> */}
 		</>
 	);

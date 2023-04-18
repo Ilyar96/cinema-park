@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import cn from "classnames";
-import { UserAvatar } from "../";
 import { UserBtnProps } from "./MenuUserBtn.type";
 import styles from "./MenuUserBtn.module.scss";
+import { UserAvatar } from "../ui";
 
 export const MenuUserBtn: FC<UserBtnProps> = ({ user, className, ...props }) => {
 	return (

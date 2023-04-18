@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "usehooks-ts";
-import { Nav, MenuUserBtn, MenuUserDetails } from '../../components';
+import { Nav, MenuUserDetails } from '../../components';
 import { AppRoutes } from "@/constants/routes";
 import { Button, Container, Logo } from "@/components/ui";
 import { PREVIOUS_PATHNAME_KEY } from "@/constants";

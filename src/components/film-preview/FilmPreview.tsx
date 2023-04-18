@@ -6,7 +6,7 @@ import { FilmPreviewProps } from "./FilmPreview.type";
 import styles from "./FilmPreview.module.scss";
 
 export const FilmPreview: FC<FilmPreviewProps> = ({ className, film }) => {
-	const { rating, poster, name } = film;
+	const { rating, poster, name, alternativeName } = film;
 	const { kp, imdb } = rating;
 
 	return (
@@ -15,7 +15,7 @@ export const FilmPreview: FC<FilmPreviewProps> = ({ className, film }) => {
 				<Image
 					src={poster ? poster.url : ""}
 					className={styles.poster}
-					alt={name}
+					alt={name ? name : alternativeName}
 					width={200}
 					height={282}
 				/> :

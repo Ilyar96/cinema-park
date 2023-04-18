@@ -1,0 +1,20 @@
+@import "@/assets/styles";
+
+.wrapper {
+	@extend %input-wrapper;
+
+	width: 100%;
+}
+
+.textarea {
+	@extend %input;
+	padding-top: $ui-step * 3;
+	padding-bottom: $ui-step * 3;
+	height: 5rem;
+
+	resize: none;
+}
+
+.error {
+	@extend %error-message;
+}

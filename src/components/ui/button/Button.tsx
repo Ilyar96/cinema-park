@@ -11,9 +11,18 @@ export const Button: FC<ButtonProps> = (
 			appearance = "primary",
 			className,
 			children,
+			withoutWrapper,
 			...props
 		}
 	) => {
+
+		if (withoutWrapper) {
+			return <button className={cn(
+				styles.button,
+				styles[appearance],
+				{ [styles.fullWidth]: fullWidth }
+			)} {...props}>{children}</button>;
+		}
 
 		return (
 			<div className={cn(

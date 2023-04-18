@@ -3,10 +3,9 @@ import cn from "classnames";
 import { useOnClickOutside } from 'usehooks-ts';
 import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";
-import { UserAvatar } from '../user-avatar/UserAvatar';
 import { useAuth } from "@/hooks";
 import { MenuUserBtn } from "../";
-import { Button } from "../ui";
+import { Button, UserAvatar } from "../ui";
 import styles from "./MenuUserDetails.module.scss";
 
 export const MenuUserDetails = () => {
