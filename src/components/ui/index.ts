@@ -10,3 +10,4 @@ export * from "./pagination/Pagination";
 export * from "./range-slider/RangeSlider";
 export * from "./select/Select";
 export * from "./user-avatar/UserAvatar";
+export * from "./spinner/Spinner";

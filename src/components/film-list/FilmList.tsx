@@ -3,15 +3,13 @@ import cn from "classnames";
 import { FilmListProps } from "./FilmList.type";
 import { FilmCard } from '../film-card/FilmCard';
 import { ErrorBlock } from "../";
-import { Htag } from "../ui";
+import { Htag, Spinner } from "../ui";
 import styles from "./FilmList.module.scss";
 
 
 export const FilmList: FC<FilmListProps> = ({ films, isError, isLoading, isFetching, className, ...props }) => {
 	if (isFetching || isLoading) {
-		return <ErrorBlock>
-			<Htag tag="h1" center>Загрузка...</Htag>
-		</ErrorBlock>;
+		return <Spinner />;
 	};
 
 	if (isError) {

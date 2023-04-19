@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useLocalStorage } from "usehooks-ts";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/api/firebase";
-import { Button, Container, Htag, P } from "../ui";
+import { Button, Container, Htag, P, Spinner } from "../ui";
 import { CommentForm, CommentItem } from "../";
 import { COMMENTS_COLLECTION_PATH, COMMENTS_PER_PAGE, PREVIOUS_PATHNAME_KEY } from "@/constants";
 import { errorHandler } from "@/helpers";
@@ -80,7 +80,6 @@ export const Comments = () => {
 		<CommentItem key={comment.id} comment={comment} />
 	));
 
-	// TODO доделать загрузку
 	return (
 		<Container className={styles.wrapper}>
 			{user ?
@@ -94,7 +93,7 @@ export const Comments = () => {
 				</>)
 			}
 			{isLoading ?
-				<h2>Загрузка...</h2>
+				<Spinner />
 				: <div className={styles.commentList}>
 					<Htag className={styles.commentsTitle} tag="h2">
 						Комментарии ({commentList.length}):

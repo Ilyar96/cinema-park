@@ -1,14 +1,38 @@
 import React, { FC, Fragment } from 'react';
 import { FilmDescriptionProps } from './FilmDescription.type';
-import { P, Htag } from "../ui";
+import { P, Htag, Button } from "../ui";
 import { FilmDetailItem } from "../";
+import { declinationOfNum, notifyWarning, setCommaToListItem } from "@/helpers";
+import { useAppSelector } from "@/store/store";
+import { getFavoriteFilms, getUser } from "@/store/reducers/auth/selectors";
+import { useActions } from "@/hooks";
+import { FavoriteFilmsService } from "@/services/favoriteFilmsService";
+import HeartSolidSvg from "@/assets/images/heart-solid.svg";
+import HeartOutlinedSvg from "@/assets/images/heart-regular.svg";
 import styles from "./FilmDescription.module.scss";
-import { declinationOfNum, setCommaToListItem } from "@/helpers";
 
 export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) => {
+	const user = useAppSelector(getUser);
+	const favoriteFilms = useAppSelector(getFavoriteFilms);
 	const { name, description, alternativeName, year, countries, genres, persons, videos, ageRating } = film;
 	const actorList = persons.filter((person) => person.enProfession === "actor");
 	const directorList = persons.filter((person) => person.enProfession === "director");
+	const isFavorite = favoriteFilms?.find((id) => id === film.id);
+	const { addFavoriteFilm, removeFavoriteFilm } = useActions();
+
+	const ToggleFavoriteFilmHandler = async () => {
+		if (!user) {
+			return notifyWarning("Для добавления в избранное необходимо авторизоваться");
+		}
+
+		if (isFavorite) {
+			await FavoriteFilmsService.remove(user?.uid, film.id);
+			removeFavoriteFilm(film.id);
+		} else {
+			await FavoriteFilmsService.add(user?.uid, film.id);
+			addFavoriteFilm(film.id);
+		}
+	};
 
 	// TODO Отрефакторить
 	const countryListLayout = countries.length > 0 &&
@@ -59,11 +83,22 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 
 	return (
 		<div className={className}>
-			<Htag className={styles.title} tag="h1">{name}</Htag>
-			{alternativeName && <Htag className={styles.subtitle} tag="h2">
-				{alternativeName}{" "}
-				<span>({ageRating}+)</span>
-			</Htag>}
+			<div className={styles.head}>
+				<Htag className={styles.title} tag="h1">{name}</Htag>
+				{alternativeName && <Htag className={styles.subtitle} tag="h2">
+					{alternativeName}{" "}
+					<span>({ageRating}+)</span>
+				</Htag>}
+
+				<Button
+					className={styles.favoriteBtn}
+					title={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
+					onClick={ToggleFavoriteFilmHandler}
+					withoutWrapper
+				>
+					{isFavorite ? <HeartSolidSvg /> : <HeartOutlinedSvg />}
+				</Button>
+			</div>
 			<P>{description}</P>
 
 			<div className={styles.details}>

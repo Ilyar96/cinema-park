@@ -1,6 +1,8 @@
 @import "@/assets/styles";
 
 .header {
+	position: relative;
+	z-index: $ui-index-5;
 	background-color: $bg-color-secondary;
 }
 

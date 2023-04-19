@@ -30,7 +30,6 @@
 	left: 0;
 	z-index: $ui-index-2;
 
-	width: 18.75rem;
 	height: 100vh;
 	overflow-y: auto;
 
@@ -39,6 +38,14 @@
 	transform: translate3d(-18.75rem, 0, 0);
 
 	transition: transform $transition;
+
+	@media (min-width: 359.98px) {
+		width: 18.75rem;
+	}
+
+	@media (max-width: 359.98px) {
+		width: 15.625rem;
+	}
 
 	.open & {
 		transition: transform $transition;

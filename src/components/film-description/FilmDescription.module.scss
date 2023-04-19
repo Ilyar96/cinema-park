@@ -15,3 +15,23 @@
 		@include ui-space("top", 2);
 	}
 }
+
+.head {
+	position: relative;
+	padding-right: 3.375rem;
+}
+
+$heartWidth: 1.25rem;
+
+.favoriteBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	padding: $ui-step * 3;
+	svg {
+		width: $heartWidth;
+		height: $heartWidth;
+		flex: 0 0 $heartWidth;
+	}
+}

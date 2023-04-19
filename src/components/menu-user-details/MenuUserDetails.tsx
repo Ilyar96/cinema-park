@@ -26,12 +26,10 @@ export const MenuUserDetails = () => {
 		return null;
 	}
 
-	// TODO баг с кликом
-
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.wrapper} ref={dropdownRef}>
 			<MenuUserBtn user={user} onClick={handleOpen} />
-			<UserDetailsCard isOpen={isOpen} ref={dropdownRef} isDropdown />
+			<UserDetailsCard isOpen={isOpen} isDropdown />
 		</div >
 	);
 };

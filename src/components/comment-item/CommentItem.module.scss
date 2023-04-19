@@ -25,7 +25,7 @@
 .message {
 	@include ui-space("top", 2);
 
-	word-wrap: break-all;
+	word-wrap: break-word;
 }
 
 .date {
