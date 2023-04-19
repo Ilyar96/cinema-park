@@ -1,0 +1,25 @@
+@import "@/assets/styles";
+
+.footer {
+	@include ui-space("top", 20);
+	padding: $ui-step * 5 0;
+
+	background-color: $bg-color-dark;
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+
+	@media (min-width: 499.98px) {
+		justify-content: space-between;
+	}
+	@media (max-width: 499.98px) {
+		flex-direction: column;
+
+		> * + * {
+			display: inline-block;
+			@include ui-space("top", 2);
+		}
+	}
+}
