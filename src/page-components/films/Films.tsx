@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Breadcrumbs, FilmList, Filters } from '../../components';
 import { useGetFilmsQuery } from "@/api/filmApi";
 import { Container, Pagination } from "@/components/ui";
 import { useAppSelector } from "@/store/store";
 import { getFilters } from "@/store/reducers/filter/selectors";
 import styles from "./Films.module.scss";
-import { AppRoutes } from "@/constants/routes";
+import { FilmsPageProps } from "./Films.type";
 
-const breadcrumbsLinks = [{ href: AppRoutes.FILMS, title: "Фильмы" }];
-
-export const FilmsPage = () => {
+export const FilmsPage: FC<FilmsPageProps> = ({ breadcrumbLinks }) => {
 	const filters = useAppSelector(getFilters);
-	console.log("filters(Films): ", filters);
-	const { data, isFetching, isError } = useGetFilmsQuery(filters);
+	const { data, isFetching, isError } = useGetFilmsQuery({ ...filters });
 
 	return (
 		<>
-			<Breadcrumbs entities={breadcrumbsLinks} />
+			{breadcrumbLinks && <Breadcrumbs entities={breadcrumbLinks} />}
 
 			<Container>
 				<Filters />

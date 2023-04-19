@@ -25,10 +25,14 @@ $col-width: calc(50% - 0.75rem);
 }
 
 .opened {
-	max-height: 302px;
+	max-height: 32.5rem;
 	padding: $ui-step * 4;
 	@include ui-space("top", 5);
 	overflow: visible;
+
+	@media (min-width: 767.98px) {
+		max-height: 18.875rem;
+	}
 }
 
 .row {

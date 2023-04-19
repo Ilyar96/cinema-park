@@ -2,10 +2,14 @@
 
 .logo {
 	font-family: "Rubik Pixels", cursive;
-	font-size: 40px;
+	font-size: 1.875rem;
 	font-weight: 700;
 
 	color: $primary-color;
+
+	@media (min-width: 767.98px) {
+		font-size: 2.5rem;
+	}
 
 	@media (any-hover: hover) {
 		&:hover {

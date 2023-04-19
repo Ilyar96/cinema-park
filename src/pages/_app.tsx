@@ -8,14 +8,21 @@ import '@/assets/styles/variables.scss';
 import '@/assets/styles/common.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react";
-import { getScrollbarWidth, setCssVariable } from "@/helpers";
+import { getScrollbarWidth, setCssVariable, throttle } from "@/helpers";
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const store = useStore(pageProps.initialReduxState);
 
 	useEffect(() => {
-		const scrollbarWidth = getScrollbarWidth();
-		setCssVariable("--scrollbar-width", scrollbarWidth + "px");
+		const handleResize = throttle(() => {
+			const scrollbarWidth = getScrollbarWidth();
+			setCssVariable("--scrollbar-width", scrollbarWidth + "px");
+		}, 500);
+
+		handleResize();
+		window.addEventListener("resize", handleResize);
+
+		return () => window.removeEventListener("resize", handleResize);
 	});
 
 	return <>

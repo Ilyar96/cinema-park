@@ -24,10 +24,31 @@ body {
 
 	background-color: $bg-color;
 	color: $text-color;
+
+	&.lock {
+		overflow: hidden;
+		padding-inline-end: var(--scrollbar-width, 17px);
+	}
 }
 
 .react-confirm-alert-body-element #__next {
 	padding-inline-end: var(--scrollbar-width, 17px);
+}
+
+#modals-root {
+	position: relative;
+	z-index: $ui-index-5;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+	clip: rect(0 0 0 0);
 }
 
 a {

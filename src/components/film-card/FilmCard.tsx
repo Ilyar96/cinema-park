@@ -26,10 +26,10 @@ export const FilmCard: FC<FilmCardProps> = ({ film, as: Component = "li", classN
 					<span className={styles.title}>{name ? name : alternativeName}</span>
 					{rating && (Boolean(rating.kp) || Boolean(rating.imdb)) && <span className={styles.rates}>
 						{Boolean(rating.kp) && <span className={styles.kp}>
-							<span className={styles.kpValue}>{rating.kp}</span>
+							<span className={styles.kpValue}>{rating.kp.toFixed(1)}</span>
 						</span>}
 						{Boolean(rating.imdb) && <span className={styles.imdb}>
-							<span className={styles.imdbValue}>{rating.imdb}</span>
+							<span className={styles.imdbValue}>{rating.imdb.toFixed(1)}</span>
 						</span>}
 					</span>}
 				</div>

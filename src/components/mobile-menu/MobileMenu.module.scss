@@ -1,0 +1,82 @@
+@import "@/assets/styles";
+
+.wrapper {
+	@media (min-width: 767.98px) {
+		display: none;
+	}
+}
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	z-index: $ui-index-1;
+
+	display: block;
+	width: 100%;
+	height: 100vh;
+	overflow: auto;
+
+	background-color: $overlay-color;
+	@include fade-out();
+
+	.open & {
+		@include fade-in();
+	}
+}
+
+.menuWrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: $ui-index-2;
+
+	width: 18.75rem;
+	height: 100vh;
+	overflow-y: auto;
+
+	background-color: $bg-color-secondary;
+
+	transform: translate3d(-18.75rem, 0, 0);
+
+	transition: transform $transition;
+
+	.open & {
+		transition: transform $transition;
+		transform: translateZ(0);
+	}
+}
+
+.close {
+	position: absolute;
+	top: 0.35rem;
+	right: 1.35rem;
+
+	padding: $ui-step * 2 $ui-step * 3;
+
+	font-size: 1.65rem;
+	line-height: 1;
+
+	color: $text-white;
+}
+
+.linksList {
+	padding: $ui-step * 2 $ui-step * 4;
+
+	li {
+		padding: $ui-step 0;
+	}
+}
+
+.userCard {
+	background: $bg-color;
+	padding-bottom: $ui-step * 2;
+}
+
+.menuBtn {
+	padding: $ui-step * 2;
+}
+
+.menuIcon {
+	width: 1.625rem;
+	height: 1.625rem;
+}

@@ -54,7 +54,6 @@ export const CommentService = {
 				...comment,
 				text,
 			};
-			console.log("commentData: ", commentData);
 
 			await updateDoc(commentRef, {
 				[comment.id]: commentData,
@@ -65,7 +64,6 @@ export const CommentService = {
 	},
 
 	async removeById(filmId: string, commentId: string) {
-		console.log("commentId: ", commentId);
 		try {
 			const commentRef = doc(db, COMMENTS_COLLECTION_PATH, filmId);
 			const res = await getDoc(commentRef);
@@ -76,7 +74,6 @@ export const CommentService = {
 				});
 			}
 		} catch (error) {
-			console.log("error: ", error);
 			errorHandler(error);
 		}
 	},

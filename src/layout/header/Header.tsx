@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePathname, useRouter } from "next/navigation";
 import { useLocalStorage } from "usehooks-ts";
-import { Nav, MenuUserDetails } from '../../components';
+import { Nav, MenuUserDetails, MobileMenu } from '../../components';
 import { AppRoutes } from "@/constants/routes";
 import { Button, Container, Logo } from "@/components/ui";
 import { PREVIOUS_PATHNAME_KEY } from "@/constants";
@@ -24,9 +24,8 @@ export const Header = () => {
 		<header className={styles.header}>
 			<Container className={styles.container}>
 				<Logo className={styles.logo} />
-				{/* TODO Remove inline style */}
-				<Nav style={{ marginRight: 20 }} />
-				{/* <Button onClick={logoutHandler}>Выйти</Button> */}
+				<MobileMenu className={styles.mobileMenu} />
+				<Nav className={styles.desktopMenu} />
 				{user ?
 					<MenuUserDetails /> :
 					<Button onClick={onClick}>Войти</Button>}

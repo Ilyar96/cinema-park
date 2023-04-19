@@ -13,3 +13,14 @@
 .logo {
 	margin-inline-end: auto;
 }
+
+.mobileMenu {
+	@media (min-width: 767.98px) {
+		display: none;
+	}
+}
+.desktopMenu {
+	@media (max-width: 767.98px) {
+		display: none;
+	}
+}

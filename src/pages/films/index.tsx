@@ -1,15 +1,18 @@
 import { getFilms } from "@/api/filmApi";
+import { AppRoutes } from "@/constants/routes";
 import { withLayout } from "@/hok";
 import { FilmsPage } from "@/page-components";
 import { changeFilter } from "@/store/actions";
 import { initStore, wrapper } from "@/store/store";
 import { GetStaticProps } from "next";
 
+const breadcrumbLinks = [{ href: AppRoutes.FILMS, title: "Фильмы" }];
+
 
 const Films = () => {
 	return (
 		<>
-			<FilmsPage />
+			<FilmsPage breadcrumbLinks={breadcrumbLinks} />
 		</>
 	);
 };

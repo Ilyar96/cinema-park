@@ -10,6 +10,7 @@ $bg-color-dark: #000c;
 $text-color: #000;
 $text-gray: #5f5f5f;
 $text-white: #fff;
+$overlay-color: rgba(0, 0, 0, 0.7);
 
 // Border
 $border-rds-xsm: 0.1875rem;
@@ -23,7 +24,8 @@ $shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 $font-family: "Open Sans", sans-serif;
 
 // Transitions
-$transition: 0.3s ease;
+$transition-duration: 0.3s;
+$transition: $transition-duration ease;
 $fade-transition: opacity $transition, visibility $transition;
 
 // Z-index

@@ -11,3 +11,5 @@ export * from "./setSearchParams";
 export * from "./capitalize";
 export * from "./getScrollbarWidth";
 export * from "./setCssVariable";
+export * from "./toggleBodyLockClass";
+export * from "./throttle";

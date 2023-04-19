@@ -18,6 +18,7 @@ export const Button: FC<ButtonProps> = (
 
 		if (withoutWrapper) {
 			return <button className={cn(
+				className,
 				styles.button,
 				styles[appearance],
 				{ [styles.fullWidth]: fullWidth }

@@ -5,6 +5,7 @@ import { AppRoutes } from "@/constants/routes";
 import styles from "./Nav.module.scss";
 
 export const Nav: FC<NavProps> = (props) => {
+
 	return (
 		<nav {...props}>
 			<ul className={styles.wrapper}>
