@@ -82,34 +82,37 @@ export const Comments = () => {
 
 	return (
 		<Container className={styles.wrapper}>
-			{user ?
-				(<>
-					<Htag tag="h2" className={styles.formTitle}>Добавить комментарий</Htag>
-					<CommentForm className={styles.commentForm} />
-				</>) :
-				(<>
-					Чтобы оставить комментарий нужно {" "}
-					{<Button withoutWrapper appearance="link" onClick={onRegisterClick}>авторизоваться</Button>}
-				</>)
+			{
+				user ?
+					<>
+						<Htag tag="h2" className={styles.formTitle}>Добавить комментарий</Htag>
+						<CommentForm className={styles.commentForm} />
+					</> :
+					<div className={styles.commentInfo}>
+						Чтобы оставить комментарий нужно {" "}
+						{<Button withoutWrapper appearance="link" onClick={onRegisterClick}>авторизоваться</Button>}
+					</div>
 			}
-			{isLoading ?
-				<Spinner />
-				: <div className={styles.commentList}>
-					<Htag className={styles.commentsTitle} tag="h2">
-						Комментарии ({commentList.length}):
-					</Htag>
+			{
+				isLoading ?
+					<Spinner />
+					: <div className={styles.commentList}>
+						<Htag className={styles.commentsTitle} tag="h2">
+							Комментарии ({commentList.length}):
+						</Htag>
 
-					{commentList.length > 0 ? commentItems : <P>Будьте первым кто напишет комментарий.</P>}
+						{commentList.length > 0 ? commentItems : <P>Будьте первым кто напишет комментарий.</P>}
 
-					{page < pagesCount &&
-						<Button
-							className={styles.moreBtn}
-							fullWidth
-							onClick={loadMore}
-						>
-							Загрузить еще
-						</Button>}
-				</div>}
+						{page < pagesCount &&
+							<Button
+								className={styles.moreBtn}
+								fullWidth
+								onClick={loadMore}
+							>
+								Загрузить еще
+							</Button>}
+					</div>
+			}
 		</Container>
 	);
 };

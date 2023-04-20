@@ -3,4 +3,5 @@ export enum AppRoutes {
 	REGISTER = "/register",
 	LOGIN = "/login",
 	FILMS = "/films/",
+	FAVORITES = "/favorites/",
 }

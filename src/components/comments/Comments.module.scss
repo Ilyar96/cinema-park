@@ -1,15 +1,16 @@
 @import "@/assets/styles";
 
-.formTitle {
+.formTitle,
+.commentList {
 	@include ui-space("top", 10);
+}
+
+.commentInfo {
+	@include ui-space("top", 15);
 }
 
 .commentForm {
 	@include ui-space("top", 5);
-}
-
-.commentList {
-	@include ui-space("top", 10);
 }
 
 .commentsTitle {

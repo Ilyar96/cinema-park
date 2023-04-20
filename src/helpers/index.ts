@@ -13,3 +13,4 @@ export * from "./getScrollbarWidth";
 export * from "./setCssVariable";
 export * from "./toggleBodyLockClass";
 export * from "./throttle";
+export * from "./convertIdsToSearchParams";

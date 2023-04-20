@@ -20,6 +20,7 @@ export const Header = () => {
 		push(AppRoutes.LOGIN);
 	};
 
+	//TODO Переместить кнопку входа на мобильной версии
 	return (
 		<header className={styles.header}>
 			<Container className={styles.container}>
