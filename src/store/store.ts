@@ -19,7 +19,7 @@ const rootReducer = {
 	[movieApi.reducerPath]: movieApi.reducer,
 };
 
-export const initStore = (preloadedState = {}) => {
+export const makeStore = (preloadedState = {}) => {
 	return configureStore({
 		reducer: rootReducer,
 		preloadedState,
@@ -29,10 +29,10 @@ export const initStore = (preloadedState = {}) => {
 };
 
 export const initializeStore = (preloadedState: PreloadedState<RootState>) => {
-	let _store = store ?? initStore(preloadedState);
+	let _store = store ?? makeStore(preloadedState);
 
 	if (preloadedState && store) {
-		_store = initStore({ ...store.getState(), ...preloadedState });
+		_store = makeStore({ ...store.getState(), ...preloadedState });
 	}
 
 	if (typeof window === "undefined") return _store;
@@ -41,12 +41,7 @@ export const initializeStore = (preloadedState: PreloadedState<RootState>) => {
 	return _store;
 };
 
-export function useStore(initialState: RootState) {
-	const store = useMemo(() => initializeStore(initialState), [initialState]);
-	return store;
-}
-
-export type AppStore = ReturnType<typeof initStore>;
+export type AppStore = ReturnType<typeof makeStore>;
 export type AppDispatch = AppStore["dispatch"];
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppThunk<ReturnType = void> = ThunkAction<
@@ -59,4 +54,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export const wrapper = createWrapper<AppStore>(initStore, { debug: true });
+export const wrapper = createWrapper<AppStore>(makeStore, { debug: false });

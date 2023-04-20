@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import Head from "next/head";
 import { Provider } from "react-redux";
 import { ToastContainer } from 'react-toastify';
-import { useStore } from "@/store/store";
+import { wrapper } from "@/store/store";
 import "normalize.css";
 import '@/assets/styles/variables.scss';
 import '@/assets/styles/common.scss';
@@ -10,8 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react";
 import { getScrollbarWidth, setCssVariable, throttle } from "@/helpers";
 
-const App = ({ Component, pageProps }: AppProps) => {
-	const store = useStore(pageProps.initialReduxState);
+const App = ({ Component, ...rest }: AppProps) => {
+	const { store, props } = wrapper.useWrappedStore(rest);
 
 	useEffect(() => {
 		const handleResize = throttle(() => {
@@ -35,12 +35,12 @@ const App = ({ Component, pageProps }: AppProps) => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Component {...pageProps} />
+			<Component {...props} />
 		</Provider>
 		<ToastContainer />
 	</>;
 };
 
-export default App;
+export default wrapper.withRedux(App);
 
 

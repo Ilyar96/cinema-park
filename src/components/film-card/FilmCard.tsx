@@ -21,7 +21,7 @@ export const FilmCard: FC<FilmCardProps> = ({ film, as: Component = "li", classN
 					height={540}
 				/>}
 
-				<div className={styles.content}>
+				<span className={styles.content}>
 					{year && <span className={styles.year}>{year}</span>}
 					<span className={styles.title}>{name ? name : alternativeName}</span>
 					{rating && (Boolean(rating.kp) || Boolean(rating.imdb)) && <span className={styles.rates}>
@@ -32,11 +32,11 @@ export const FilmCard: FC<FilmCardProps> = ({ film, as: Component = "li", classN
 							<span className={styles.imdbValue}>{rating.imdb.toFixed(1)}</span>
 						</span>}
 					</span>}
-				</div>
+				</span>
 
-				<div className={styles.mask}>
-					<div className={styles.play}><PlaySvg /></div>
-				</div>
+				<span className={styles.mask}>
+					<span className={styles.play}><PlaySvg /></span>
+				</span>
 			</Link>
 		</Component>
 	);

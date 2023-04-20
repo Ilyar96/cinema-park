@@ -9,7 +9,7 @@ import styles from "./Films.module.scss";
 
 export const FilmsPage: FC<FilmsPageProps> = ({ breadcrumbLinks }) => {
 	const filters = useAppSelector(getFilters);
-	const { data, isFetching, isError } = useGetFilmsQuery({ ...filters });
+	const { data, isFetching, isError } = useGetFilmsQuery(filters);
 
 	return (
 		<>
@@ -17,7 +17,7 @@ export const FilmsPage: FC<FilmsPageProps> = ({ breadcrumbLinks }) => {
 
 			<Container className={styles.wrapper}>
 				<Filters />
-				<FilmList className={styles.films} isError={isError} isFetching={isFetching} films={data?.docs} />
+				{data && <FilmList className={styles.films} isError={isError} isFetching={isFetching} films={data?.docs} />}
 				{data && <Pagination data={data} />}
 			</Container>
 		</>

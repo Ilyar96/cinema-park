@@ -2,7 +2,7 @@ import { getFilms } from "@/api/filmApi";
 import { withLayout } from "@/hok";
 import { FilmsPage } from "@/page-components";
 import { changeFilter } from "@/store/actions";
-import { initStore, wrapper } from "@/store/store";
+import { makeStore, wrapper } from "@/store/store";
 import { GetStaticProps } from "next";
 
 

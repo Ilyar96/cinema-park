@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { FilterState } from "./types";
 import { Query } from "@/@types/query";
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState: FilterState = {
 	"names.name": "",
@@ -26,6 +27,15 @@ const filterSlice = createSlice({
 		},
 		changePage: (state, action: PayloadAction<number>) => {
 			state.page = action.payload;
+		},
+	},
+	extraReducers: {
+		[HYDRATE]: (state, action) => {
+			console.log("HYDRATE", state, action.payload);
+			return {
+				...state,
+				...action.payload.subject,
+			};
 		},
 	},
 });

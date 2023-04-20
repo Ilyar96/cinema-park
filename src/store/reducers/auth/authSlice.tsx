@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "@/@types/user";
 import { AuthState, AuthStatus } from "./types";
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState: AuthState = {
 	status: AuthStatus.UNKNOWN,
@@ -30,6 +31,15 @@ const authSlice = createSlice({
 					state.user.favorites.filter((id) => id !== action.payload);
 			}
 		}
+	},
+	extraReducers: {
+		[HYDRATE]: (state, action) => {
+			console.log('HYDRATE', state, action.payload);
+			return {
+				...state,
+				...action.payload.subject,
+			};
+		},
 	},
 });
 

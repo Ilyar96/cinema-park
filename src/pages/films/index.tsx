@@ -3,8 +3,7 @@ import { AppRoutes } from "@/constants/routes";
 import { withLayout } from "@/hok";
 import { FilmsPage } from "@/page-components";
 import { changeFilter } from "@/store/actions";
-import { initStore, wrapper } from "@/store/store";
-import { GetStaticProps } from "next";
+import { wrapper } from "@/store/store";
 
 const breadcrumbLinks = [{ href: AppRoutes.FILMS, title: "Фильмы" }];
 
@@ -17,14 +16,17 @@ const Films = () => {
 	);
 };
 
-// export const getStaticProps: GetStaticProps =
-// 	async () => {
-// 		const store = initStore();
-// 		const { filter } = store.getState();
+export const getStaticProps = wrapper.getStaticProps(store => async () => {
+	const { filter, filmApi } = store.getState();
 
-// 		await store.dispatch(getFilms.initiate(filter));
+	await store.dispatch(getFilms.initiate(filter));
 
-// 		return { props: { initialReduxState: store.getState() } };
-// 	};
+	return {
+		props: {
+			initialReduxState: store.getState()
+		}
+	};
+});
+
 
 export default withLayout(Films);

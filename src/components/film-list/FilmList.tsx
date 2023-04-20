@@ -8,7 +8,7 @@ import styles from "./FilmList.module.scss";
 
 
 export const FilmList: FC<FilmListProps> = ({ films, isError, isLoading, isFetching, className, ...props }) => {
-	if (isFetching || isLoading) {
+	if (typeof window !== "undefined" && isFetching || isLoading) {
 		return <Spinner />;
 	};
 
@@ -23,6 +23,7 @@ export const FilmList: FC<FilmListProps> = ({ films, isError, isLoading, isFetch
 			<Htag tag="h1" center>Не удалось найти фильмы по заданным параметрам</Htag>
 		</ErrorBlock>;
 	}
+
 
 	return (
 		<ul className={cn(styles.moviesList, className)} {...props}>
