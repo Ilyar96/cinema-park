@@ -41,6 +41,6 @@ const App = ({ Component, ...rest }: AppProps) => {
 	</>;
 };
 
-export default wrapper.withRedux(App);
+export default App;
 
 

@@ -19,7 +19,6 @@ export const FavoriteFilmsService = {
 			await updateDoc(userRef, {
 				favorites: arrayUnion(filmId),
 			});
-			console.log("res: добавление", res.data());
 		} catch (error) {
 			errorHandler(error);
 		}
@@ -32,7 +31,6 @@ export const FavoriteFilmsService = {
 			await updateDoc(userRef, {
 				favorites: arrayRemove(filmId),
 			});
-			console.log("res: ", res.data());
 		} catch (error) {
 			errorHandler(error);
 		}

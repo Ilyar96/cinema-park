@@ -1,16 +1,21 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { SingleValue, MultiValue } from "react-select";
 import cn from "classnames";
+import { useRouter } from "next/router";
+import queryString from 'query-string';
+
 import { Button, Input, RangeSlider, Select } from "../ui";
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppSelector } from '../../store/store';
 import { useActions } from "@/hooks";
 import { useGetFilmsQuery } from "@/api/filmApi";
 import { getFilters } from "@/store/reducers/filter/selectors";
 import { ISelectOption } from "../ui/select/Select.type";
-import styles from "./Filter.module.scss";
-import { isMultiValue } from "@/@types";
+import { isMultiValue, isString } from "@/@types";
 import { SortType } from "@/@types/query";
 import { countryOptions, genreOptions, sortOptions } from "@/constants";
+
+import styles from "./Filter.module.scss";
+import { setSearchParams as setURLSearchParams } from "@/helpers";
 
 const yearMin = 1900;
 const yearMax = new Date().getFullYear();
@@ -18,6 +23,7 @@ const ratingMin = 0;
 const ratingMax = 10;
 
 export const Filters = () => {
+	const { pathname, replace, query } = useRouter();
 	const filters = useAppSelector(getFilters);
 	const { isFetching } = useGetFilmsQuery(filters);
 	const [isOpen, setIsOpen] = useState(false);
@@ -30,13 +36,13 @@ export const Filters = () => {
 	const [imdb, setImdb] = useState([ratingMin, ratingMax]);
 	const [year, setYear] = useState([yearMin, yearMax]);
 	const { changeFilter } = useActions();
-	const dispatch = useAppDispatch();
+
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>, setValue: React.Dispatch<React.SetStateAction<string>>) => {
 		setValue(e.target.value);
 	};
 
-	const onClick = () => {
+	const onClick = async () => {
 		let sortField = "rating.kp";
 		let sortType = SortType.DESC;
 		let genreName = "";
@@ -58,7 +64,7 @@ export const Filters = () => {
 			}
 		}
 
-		dispatch(changeFilter({
+		const filter = {
 			"countries.name": countryName,
 			"genres.name": genreName,
 			"persons.name": person,
@@ -68,7 +74,11 @@ export const Filters = () => {
 			"rating.imdb": `${imdb[0]}-${imdb[1]}`,
 			sortField,
 			sortType
-		}));
+		};
+
+		changeFilter(filter);
+
+		replace(pathname + setURLSearchParams(filter), undefined, { shallow: true });
 	};
 
 	const filterToggleHandler = () => {
@@ -86,6 +96,65 @@ export const Filters = () => {
 	const countryChangeHandler = (selectedOption: SingleValue<ISelectOption> | MultiValue<ISelectOption>) => {
 		setCountry(selectedOption);
 	};
+
+	const setInitialValueToSelect = (
+		options: ISelectOption[],
+		fn: React.Dispatch<React.SetStateAction<SingleValue<ISelectOption> | MultiValue<ISelectOption>>>,
+		searchParam: string | string[] | undefined,
+	) => {
+		if (!searchParam || !isString(searchParam)) {
+			return;
+		}
+
+		const searchedOption = options.find((option) => option.value.toLowerCase() === searchParam.toLowerCase());
+
+		searchedOption ? fn(searchedOption) : fn(null);
+	};
+
+	const setInitialValueToRangeSlider = (
+		searchParam: string | string[] | undefined,
+		fn: React.Dispatch<React.SetStateAction<number[]>>
+	) => {
+		if (!searchParam || !isString(searchParam)) {
+			return;
+		}
+
+		const res = searchParam.split("-").map((item) => Number(item));
+		fn(res);
+	};
+
+	useEffect(() => {
+		const country = query["countries.name"];
+		const genre = query["genres.name"];
+		const person = query["persons.name"];
+		const kp = query["rating.kp"];
+		const imdb = query["rating.imdb"];
+		const title = query["names.name"];
+		const { sortField, sortType, year } = query;
+
+		setInitialValueToSelect(countryOptions, setCountry, country);
+		setInitialValueToSelect(genreOptions, setGenre, genre);
+
+		setInitialValueToRangeSlider(kp, setKp);
+		setInitialValueToRangeSlider(imdb, setImdb);
+		setInitialValueToRangeSlider(year, setYear);
+
+		if (isString(sortType) && sortType === "1") {
+			setInitialValueToSelect(sortOptions, setSort, "-" + sortField);
+		}
+
+		if (isString(sortType) && sortType === "-1") {
+			setInitialValueToSelect(sortOptions, setSort, sortField);
+		}
+
+		if (person && isString(person)) {
+			setPerson(person);
+		}
+
+		if (title && isString(title)) {
+			setTitle(title);
+		}
+	}, []);
 
 	return (
 		<>
@@ -120,6 +189,7 @@ export const Filters = () => {
 							value={genre}
 							placeholder="Выбрать жанр:"
 							onChange={genreChangeHandler}
+							instanceId="genre"
 						/>
 					</div>
 					<div className={styles.col}>
@@ -127,6 +197,7 @@ export const Filters = () => {
 							options={countryOptions}
 							value={country}
 							placeholder="Выбрать страну:"
+							instanceId="country"
 							onChange={countryChangeHandler}
 						/>
 					</div>
@@ -168,19 +239,8 @@ export const Filters = () => {
 							options={sortOptions}
 							value={sort}
 							onChange={sortChangeHandler}
+							instanceId="sort"
 							placeholder="Сортировка по:"
-							styles={{
-								control: (baseStyles, state) => {
-									return ({
-										...baseStyles,
-										"&:hover": {
-											borderColor: "#6ab630"
-										},
-										backgroundColor: "inherit",
-										borderColor: state.isFocused ? '#5db31b' : '#79c142',
-									});
-								},
-							}}
 						/>
 					</div>
 

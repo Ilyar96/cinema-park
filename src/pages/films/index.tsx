@@ -17,15 +17,11 @@ const Films = () => {
 };
 
 export const getStaticProps = wrapper.getStaticProps(store => async () => {
-	const { filter, filmApi } = store.getState();
+	const { filter } = store.getState();
 
 	await store.dispatch(getFilms.initiate(filter));
 
-	return {
-		props: {
-			initialReduxState: store.getState()
-		}
-	};
+	return { props: {} };
 });
 
 

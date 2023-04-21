@@ -3,8 +3,8 @@ import {
 	default as ReactSelect,
 } from "react-select";
 import cn from "classnames";
-import scssStyles from "./Select.module.scss";
 import { ISelectProps } from "./Select.type";
+import scssStyles from "./Select.module.scss";
 
 export const Select: React.FC<ISelectProps> = ({
 	className,

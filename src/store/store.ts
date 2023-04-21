@@ -28,19 +28,6 @@ export const makeStore = (preloadedState = {}) => {
 	});
 };
 
-export const initializeStore = (preloadedState: PreloadedState<RootState>) => {
-	let _store = store ?? makeStore(preloadedState);
-
-	if (preloadedState && store) {
-		_store = makeStore({ ...store.getState(), ...preloadedState });
-	}
-
-	if (typeof window === "undefined") return _store;
-	if (!store) store = _store;
-
-	return _store;
-};
-
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppDispatch = AppStore["dispatch"];
 export type RootState = ReturnType<AppStore["getState"]>;
@@ -54,4 +41,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export const wrapper = createWrapper<AppStore>(makeStore, { debug: false });
+export const wrapper = createWrapper<AppStore>(makeStore);

@@ -19,7 +19,7 @@ $card-padding: $ui-step * 2;
 	height: 100%;
 
 	background: url("../../assets/images/empty-poster.png") center no-repeat;
-	background-color: $gray-color;
+	background-color: $bg-color-dark;
 
 	&:hover {
 		text-decoration: none;

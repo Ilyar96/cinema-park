@@ -34,6 +34,7 @@ export interface ISelectProps {
 	styles?: StylesConfig<ISelectOption, isMultiType, GroupBase<ISelectOption>>;
 	value: SingleValue<ISelectOption> | MultiValue<ISelectOption>;
 	onBlur?: FocusEventHandler<HTMLInputElement>;
+	instanceId: string | number | undefined;
 	onChange?: (
 		value: OnChangeValue<ISelectOption, isMultiType>,
 		action: ActionMeta<ISelectOption>
