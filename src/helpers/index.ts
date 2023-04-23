@@ -7,7 +7,7 @@ export * from "./formatBytes";
 export * from "./declinationOfNum";
 export * from "./setCommaToListItem";
 export * from "./convertFilmType";
-export * from "./setSearchParams";
+export * from "./setUrlParams";
 export * from "./capitalize";
 export * from "./getScrollbarWidth";
 export * from "./setCssVariable";

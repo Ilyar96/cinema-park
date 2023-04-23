@@ -1,4 +1,6 @@
 import { useCallback, useState } from "react";
+import { setCookie, destroyCookie } from "nookies";
+
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import {
 	User,
@@ -26,7 +28,6 @@ import { useAppSelector } from "@/store/store";
 import { getAuthStatus } from "@/store/reducers/auth/selectors";
 import { AuthStatus } from "@/store/reducers/auth/types";
 import { authService } from "@/services/authService";
-import { setCookie } from "nookies";
 
 export const useAuth = () => {
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -73,6 +74,10 @@ export const useAuth = () => {
 			const user = userCredential.user;
 
 			await updateProfile(user, { displayName, photoURL: null });
+			setCookie(null, COOKIE_USER_ID_KEY, user.uid, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: "/",
+			});
 
 			if (image) {
 				const storageRef = ref(storage, displayName);
@@ -135,6 +140,7 @@ export const useAuth = () => {
 		try {
 			signOut(auth);
 			logout();
+			destroyCookie(null, COOKIE_USER_ID_KEY);
 		} catch (error) {
 			errorHandler(error);
 		}
@@ -146,8 +152,6 @@ export const useAuth = () => {
 		}
 
 		//TODO Доделать авторизацию
-		// authService.check()
-
 		const unsub = onAuthStateChanged(auth, async (user) => {
 			if (!user) {
 				logout();

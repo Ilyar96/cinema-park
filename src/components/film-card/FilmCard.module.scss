@@ -156,3 +156,8 @@ $card-padding: $ui-step * 2;
 		height: 30px;
 	}
 }
+
+.skeletonWrapper {
+	background: $bg-color-secondary;
+	outline: 1px solid $gray-color;
+}

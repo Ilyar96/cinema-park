@@ -9,4 +9,5 @@ export interface FilmListProps
 	isError?: boolean;
 	isFetching?: boolean;
 	isLoading?: boolean;
+	limit?: number;
 }

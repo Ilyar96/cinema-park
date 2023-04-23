@@ -7,6 +7,7 @@ export * from "./menu-user-details/MenuUserDetails";
 export * from "./user-details-card/UserDetailsCard";
 export * from "./film-list/FilmList";
 export * from "./film-card/FilmCard";
+export * from "./film-card/FilmCardSkeleton";
 export * from "./film-info/FilmInfo";
 export * from "./film-preview/FilmPreview";
 export * from "./film-description/FilmDescription";

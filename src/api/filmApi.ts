@@ -3,7 +3,7 @@ import { Film } from "@/@types/film";
 import { FilmResponse } from "@/@types/filmResponse";
 import { ApiRoute } from "@/constants";
 import { FilterState } from "@/store/reducers/filter/types";
-import { convertIdsToSearchParams, setSearchParams } from "@/helpers";
+import { convertIdsToSearchParams, setUrlParams } from "@/helpers";
 import { HYDRATE } from "next-redux-wrapper";
 
 const baseQueryOptions = {
@@ -23,7 +23,8 @@ export const movieApi = createApi({
 	},
 	endpoints: (builder) => ({
 		getFilms: builder.query<FilmResponse, FilterState | void>({
-			query: (filters) => `${ApiRoute.MOVIE}${setSearchParams(filters)}`,
+			query: (filters) =>
+				`${ApiRoute.MOVIE}${setUrlParams(filters as Record<string, string>)}`,
 		}),
 		getFilmsById: builder.query<Film, number | string>({
 			query: (id) => `${ApiRoute.MOVIE}/${id}`,

@@ -1,7 +1,7 @@
 import { AppRoutes } from "@/constants/routes";
 
 export interface BreadcrumbsItem {
-	href?: AppRoutes;
+	href?: AppRoutes | string;
 	title: string;
 }
 

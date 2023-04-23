@@ -15,11 +15,12 @@ $preview-height: 17.625rem;
 	height: $preview-height;
 }
 
-.emptyPoster {
-	width: 12.5rem;
-	height: 17.625rem;
+.posterWrapper {
+	width: $preview-width;
+	height: $preview-height;
 
 	background: url("../../assets/images/empty-poster.png") center no-repeat;
+	background-color: $bg-color-dark;
 }
 
 .rates {

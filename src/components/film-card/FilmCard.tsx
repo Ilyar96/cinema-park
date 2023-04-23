@@ -6,13 +6,22 @@ import { FilmCardProps } from "./FilmCard.type";
 import { AppRoutes } from "@/constants/routes";
 import styles from "./FilmCard.module.scss";
 import PlaySvg from '@/assets/images/play.svg';
+import { useRouter } from "next/router";
+import { stringifyUrlParams } from "@/helpers/stringifyUrlParams";
 
 export const FilmCard: FC<FilmCardProps> = ({ film, as: Component = "li", className }) => {
+	const { query, asPath } = useRouter();
 	const { id, year, rating, name, poster, alternativeName } = film;
 
 	return (
 		<Component className={styles.item}>
-			<Link href={AppRoutes.FILMS + id} className={cn(styles.card, className)} >
+			<Link
+				href={{
+					pathname: AppRoutes.FILMS + id,
+					query: { returnUrl: asPath }
+				}}
+				className={cn(styles.card, className)}
+			>
 				{poster?.previewUrl && <Image
 					className={styles.preview}
 					src={poster.previewUrl}

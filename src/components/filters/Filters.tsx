@@ -13,9 +13,9 @@ import { ISelectOption } from "../ui/select/Select.type";
 import { isMultiValue, isString } from "@/@types";
 import { SortType } from "@/@types/query";
 import { countryOptions, genreOptions, sortOptions } from "@/constants";
+import { setUrlParams } from "@/helpers";
 
 import styles from "./Filter.module.scss";
-import { setSearchParams as setURLSearchParams } from "@/helpers";
 
 const yearMin = 1900;
 const yearMax = new Date().getFullYear();
@@ -64,7 +64,7 @@ export const Filters = () => {
 			}
 		}
 
-		const filter = {
+		const filter: Record<string, string> = {
 			"countries.name": countryName,
 			"genres.name": genreName,
 			"persons.name": person,
@@ -78,7 +78,7 @@ export const Filters = () => {
 
 		changeFilter(filter);
 
-		replace(pathname + setURLSearchParams(filter), undefined, { shallow: true });
+		replace(pathname + setUrlParams(filter), undefined, { shallow: true });
 	};
 
 	const filterToggleHandler = () => {

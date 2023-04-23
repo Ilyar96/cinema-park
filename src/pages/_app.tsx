@@ -1,14 +1,16 @@
+import { useEffect } from "react";
 import type { AppProps } from 'next/app';
 import Head from "next/head";
 import { Provider } from "react-redux";
 import { ToastContainer } from 'react-toastify';
+
+import { getScrollbarWidth, setCssVariable, throttle } from "@/helpers";
 import { wrapper } from "@/store/store";
+
 import "normalize.css";
 import '@/assets/styles/variables.scss';
 import '@/assets/styles/common.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from "react";
-import { getScrollbarWidth, setCssVariable, throttle } from "@/helpers";
 
 const App = ({ Component, ...rest }: AppProps) => {
 	const { store, props } = wrapper.useWrappedStore(rest);
@@ -23,7 +25,7 @@ const App = ({ Component, ...rest }: AppProps) => {
 		window.addEventListener("resize", handleResize);
 
 		return () => window.removeEventListener("resize", handleResize);
-	});
+	}, []);
 
 	return <>
 		<Provider store={store} >
