@@ -6,6 +6,7 @@ import { getUser } from "@/store/reducers/auth/selectors";
 import { useAppSelector } from "@/store/store";
 import { UserDetailsCardProps } from "./UserDetailsCard.type";
 import styles from "./UserDetailsCard.module.scss";
+import { AppRoutes } from "@/constants/routes";
 
 export const UserDetailsCard = forwardRef<HTMLDivElement, UserDetailsCardProps>(({ isOpen, className, isDropdown }, ref) => {
 	const { logoutHandler } = useAuth();
@@ -33,6 +34,9 @@ export const UserDetailsCard = forwardRef<HTMLDivElement, UserDetailsCardProps>(
 			</div>
 
 			<div className={styles.options}>
+				<Button appearance="text" href={AppRoutes.FAVORITES}>
+					Избранное
+				</Button>
 				<Button appearance="text" onClick={logoutHandler}>
 					Выйти из аккаунта
 				</Button>

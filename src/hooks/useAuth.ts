@@ -11,7 +11,7 @@ import {
 import { auth, db, storage } from "@/api/firebase";
 import { isFirebaseError } from "@/@types";
 import { errorHandler } from "@/helpers";
-import { USERS_COLLECTION_PATH } from "@/constants";
+import { COOKIE_USER_ID_KEY, USERS_COLLECTION_PATH } from "@/constants";
 import {
 	UploadTaskSnapshot,
 	getDownloadURL,
@@ -25,11 +25,14 @@ import { LoginData } from "@/components/login-form/schema";
 import { useAppSelector } from "@/store/store";
 import { getAuthStatus } from "@/store/reducers/auth/selectors";
 import { AuthStatus } from "@/store/reducers/auth/types";
+import { authService } from "@/services/authService";
+import { setCookie } from "nookies";
 
 export const useAuth = () => {
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const authStatus = useAppSelector(getAuthStatus);
+	//TODO Переделать под сервис
 
 	const { login, logout } = useActions();
 
@@ -100,21 +103,17 @@ export const useAuth = () => {
 		}
 	}, []);
 
-	const getUserData = useCallback(async (uid: string) => {
-		try {
-			const res = await getDoc(doc(db, USERS_COLLECTION_PATH, uid));
-			return res.data() as IUser;
-		} catch (error) {
-			errorHandler(error);
-		}
-	}, []);
-
 	const loginHandler = useCallback(async ({ email, password }: LoginData) => {
 		try {
 			setIsSubmitting(true);
 
 			const { user } = await signInWithEmailAndPassword(auth, email, password);
-			const userData = await getUserData(user.uid);
+			const userData = await authService.getUser(user.uid);
+
+			setCookie(null, COOKIE_USER_ID_KEY, user.uid, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: "/",
+			});
 
 			if (userData) {
 				login(userData);
@@ -146,13 +145,16 @@ export const useAuth = () => {
 			return;
 		}
 
+		//TODO Доделать авторизацию
+		// authService.check()
+
 		const unsub = onAuthStateChanged(auth, async (user) => {
 			if (!user) {
 				logout();
 				return;
 			}
 
-			const userData = await getUserData(user.uid);
+			const userData = await authService.getUser(user.uid);
 
 			if (userData) {
 				login(userData);
@@ -168,7 +170,6 @@ export const useAuth = () => {
 
 	return {
 		checkAuth,
-		getUserData,
 		registerHandler,
 		loginHandler,
 		uploadProgress,

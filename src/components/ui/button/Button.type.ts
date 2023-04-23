@@ -5,6 +5,8 @@ export interface ButtonProps
 	> {
 	appearance?: "primary" | "outlined" | "secondary" | "text" | "link";
 	align?: "start" | "center" | "end";
+	href?: string;
+	returnUrl?: string;
 	fullWidth?: boolean;
 	withoutWrapper?: boolean;
 }

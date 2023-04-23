@@ -9,11 +9,14 @@ import { MobileMenuProps } from "./MobileMenu.type";
 import { toggleBodyLockClass } from "@/helpers";
 import MenuSvg from '@/assets/images/menu.svg';
 import styles from "./MobileMenu.module.scss";
+import { useAppSelector } from "@/store/store";
+import { getUser } from "@/store/reducers/auth/selectors";
 
 export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const firstLinkRef = useRef<HTMLAnchorElement>(null);
+	const user = useAppSelector(getUser);
 
 	const menuCloseHandler = () => {
 		setIsOpen(false);
@@ -41,7 +44,9 @@ export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
 			<Portal>
 				<div className={cn(styles.wrapper, { [styles.open]: isOpen })}>
 					<div className={styles.menuWrapper} ref={menuRef}>
-						<UserDetailsCard className={styles.userCard} isOpen={true} />
+						{user ?
+							<UserDetailsCard className={styles.userCard} isOpen={true} /> :
+							<Button className={styles.login} href={AppRoutes.LOGIN}>Войти</Button>}
 						<nav>
 							<ul className={styles.linksList}>
 								<li><Link href={AppRoutes.HOME} ref={firstLinkRef} onClick={menuCloseHandler}>Главная</Link></li>

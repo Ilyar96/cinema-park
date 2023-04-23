@@ -1,31 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/router";
-import { useLocalStorage } from "usehooks-ts";
 import { doc, onSnapshot } from "firebase/firestore";
+
 import { db } from "@/api/firebase";
 import { Button, Container, Htag, P, Spinner } from "../ui";
 import { CommentForm, CommentItem } from "../";
-import { COMMENTS_COLLECTION_PATH, COMMENTS_PER_PAGE, PREVIOUS_PATHNAME_KEY } from "@/constants";
+import { COMMENTS_COLLECTION_PATH, COMMENTS_PER_PAGE } from "@/constants";
 import { errorHandler } from "@/helpers";
 import { IComment } from "@/@types/comment";
 import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";
 import { AppRoutes } from "@/constants/routes";
+
 import styles from "./Comments.module.scss";
 
 export const Comments = () => {
-	const { query, push } = useRouter();
+	const { query } = useRouter();
 	const [commentList, setCommentList] = useState<IComment[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [page, setPage] = useState<number>(1);
 	const user = useAppSelector(getUser);
 	const pagesCount = Math.ceil(commentList.length / COMMENTS_PER_PAGE);
-	const [_, setPreviousPath] = useLocalStorage(PREVIOUS_PATHNAME_KEY, AppRoutes.FILMS + query.id);
-
-	const onRegisterClick = () => {
-		setPreviousPath(AppRoutes.FILMS + query.id);
-		push(AppRoutes.LOGIN);
-	};
 
 	const getComments = () => {
 		if (typeof query.id !== "string") {
@@ -90,7 +85,14 @@ export const Comments = () => {
 					</> :
 					<div className={styles.commentInfo}>
 						Чтобы оставить комментарий нужно {" "}
-						{<Button withoutWrapper appearance="link" onClick={onRegisterClick}>авторизоваться</Button>}
+						{<Button
+							withoutWrapper
+							appearance="link"
+							href={AppRoutes.LOGIN}
+							returnUrl={AppRoutes.FILMS + query.id}
+						>
+							авторизоваться
+						</Button>}
 					</div>
 			}
 			{

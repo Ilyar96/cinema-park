@@ -2,6 +2,7 @@ import { getFilms } from "@/api/filmApi";
 import { AppRoutes } from "@/constants/routes";
 import { withLayout } from "@/hok";
 import { FilmsPage } from "@/page-components";
+import { authService } from "@/services/authService";
 import { changeFilter } from "@/store/actions";
 import { wrapper } from "@/store/store";
 
@@ -16,12 +17,13 @@ const Films = () => {
 	);
 };
 
-export const getStaticProps = wrapper.getStaticProps(store => async () => {
-	const { filter } = store.getState();
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
+	const query = ctx.query;
+	await authService.serverSideAuthCheck(store, ctx);
+	await store.dispatch(changeFilter(query));
+	await store.dispatch(getFilms.initiate(store.getState().filter));
 
-	await store.dispatch(getFilms.initiate(filter));
-
-	return { props: {} };
+	return { props: { initialReduxState: store.getState() } };
 });
 
 

@@ -1,7 +1,10 @@
-import React, { FC } from "react";
-import { ButtonProps } from "./Button.type";
-import styles from "./Button.module.scss";
+import React, { FC, MouseEvent } from "react";
+import { useRouter } from "next/router";
 import cn from "classnames";
+
+import { ButtonProps } from "./Button.type";
+
+import styles from "./Button.module.scss";
 
 export const Button: FC<ButtonProps> = (
 	(
@@ -12,9 +15,24 @@ export const Button: FC<ButtonProps> = (
 			className,
 			children,
 			withoutWrapper,
+			href,
+			onClick,
+			returnUrl = "",
 			...props
 		}
 	) => {
+		const { push, pathname } = useRouter();
+
+		const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+			onClick && onClick(e);
+
+			if (href) {
+				push({
+					pathname: href,
+					query: { returnUrl: returnUrl ? returnUrl : pathname }
+				});
+			}
+		};
 
 		if (withoutWrapper) {
 			return <button className={cn(
@@ -22,7 +40,12 @@ export const Button: FC<ButtonProps> = (
 				styles.button,
 				styles[appearance],
 				{ [styles.fullWidth]: fullWidth }
-			)} {...props}>{children}</button>;
+			)}
+				onClick={clickHandler}
+				{...props}
+			>
+				{children}
+			</button>;
 		}
 
 		return (
@@ -35,7 +58,12 @@ export const Button: FC<ButtonProps> = (
 					styles.button,
 					styles[appearance],
 					{ [styles.fullWidth]: fullWidth }
-				)} {...props}>{children}</button>
+				)}
+					onClick={clickHandler}
+					{...props}
+				>
+					{children}
+				</button>
 			</div>
 		);
 	});

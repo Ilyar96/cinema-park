@@ -45,9 +45,6 @@ export const errorMessages = {
 	},
 };
 
-// Local Storage keys
-export const PREVIOUS_PATHNAME_KEY = "previous-pathname";
-
 // Api routes
 export const enum ApiRoute {
 	MOVIE = "movie",
@@ -60,6 +57,9 @@ export const breadcrumbLinks = {
 
 //Comments
 export const COMMENTS_PER_PAGE = 10;
+
+//Cookie keys
+export const COOKIE_USER_ID_KEY = "user_id";
 
 // Select options
 export const genreOptions: ISelectOption[] = [

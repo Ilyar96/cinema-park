@@ -1,13 +1,11 @@
 import { getFilms } from "@/api/filmApi";
 import { withLayout } from "@/hok";
 import { FilmsPage } from "@/page-components";
-import { changeFilter, changePage } from "@/store/actions";
-import { makeStore, wrapper } from "@/store/store";
-import { GetStaticProps } from "next";
+import { authService } from "@/services/authService";
+import { wrapper } from "@/store/store";
 
 
 const Home = () => {
-
 	return (
 		<>
 			<FilmsPage />
@@ -15,8 +13,8 @@ const Home = () => {
 	);
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
-	// await store.dispatch(changeFilter({ "genres.name": "аниме" }));
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
+	await authService.serverSideAuthCheck(store, ctx);
 	await store.dispatch(getFilms.initiate(store.getState().filter));
 
 	return { props: { initialReduxState: store.getState() } };

@@ -2,8 +2,10 @@ import React from 'react';
 import { GetServerSideProps } from "next";
 import { FilmPage } from '../../page-components/film/Film';
 import { withLayout } from "@/hok";
-import { makeStore } from "@/store/store";
+import { makeStore, wrapper } from "@/store/store";
 import { getFilmsById } from "@/api/filmApi";
+import { authService } from "@/services/authService";
+import { isString } from "@/@types";
 
 const Film = () => {
 	return (
@@ -11,12 +13,16 @@ const Film = () => {
 	);
 };
 
-// export const getServerSideProps: GetServerSideProps =
-// 	async ({ query }) => {
-// 		const store = initStore();
-// 		await store.dispatch(getFilmsById.initiate(String(query.id)));
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
+	await authService.serverSideAuthCheck(store, ctx);
+	const id = ctx.query?.id;
 
-// 		return { props: { initialReduxState: store.getState() } };
-// 	};
+	if (id && isString(id)) {
+		await store.dispatch(getFilmsById.initiate(id));
+	}
+
+	return { props: { initialReduxState: store.getState() } };
+});
+
 
 export default withLayout(Film);

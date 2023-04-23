@@ -1,19 +1,19 @@
 import { FC, useEffect } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useRouter } from "next/router";
+
 import { useAuth } from "@/hooks";
 import { Logo, Htag } from "@/components/ui";
 import { AuthPageProps } from "./Auth.type";
 import { useAppSelector } from "@/store/store";
-import { useRouter } from "next/navigation";
-import { PREVIOUS_PATHNAME_KEY } from "@/constants";
-import { AppRoutes } from "@/constants/routes";
 import { getAuthStatus } from "@/store/reducers/auth/selectors";
 import { AuthStatus } from "@/store/reducers/auth/types";
+
 import styles from "./Auth.module.scss";
+import { AppRoutes } from "@/constants/routes";
+import { isString } from "@/@types";
 
 export const AuthPage: FC<AuthPageProps> = ({ title, children }) => {
-	const [previousPath] = useLocalStorage(PREVIOUS_PATHNAME_KEY, AppRoutes.HOME);
-	const { replace } = useRouter();
+	const { replace, query } = useRouter();
 	const authStatus = useAppSelector(getAuthStatus);
 	const { checkAuth } = useAuth();
 
@@ -21,7 +21,9 @@ export const AuthPage: FC<AuthPageProps> = ({ title, children }) => {
 
 	useEffect(() => {
 		if (authStatus === AuthStatus.AUTH) {
-			replace(previousPath);
+			query?.returnUrl && isString(query?.returnUrl) ?
+				replace(query.returnUrl) :
+				replace(AppRoutes.HOME);
 		}
 	}, [authStatus]);
 
