@@ -9,6 +9,7 @@ import { AppRoutes } from "@/constants/routes";
 import { AuthStatus } from "@/store/reducers/auth/types";
 import { Spinner } from "@/components/ui";
 import { authService } from "@/services/authService";
+import { getFilmsByIdList } from "@/api/filmApi";
 
 const Favorites = () => {
 	const { pathname, push } = useRouter();
@@ -35,6 +36,13 @@ const Favorites = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
 	await authService.serverSideAuthCheck(store, ctx);
+	const user = store.getState().auth.user;
+
+	if (user) {
+		const favoriteList = user.favorites;
+		await store.dispatch(getFilmsByIdList.initiate(favoriteList));
+	}
+
 
 	return { props: { initialReduxState: store.getState() } };
 });

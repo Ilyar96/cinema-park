@@ -1,6 +1,8 @@
 import { ISelectOption } from "@/components/ui/select/Select.type";
 import { formatBytes } from "../helpers/formatBytes";
 import { AppRoutes } from "./routes";
+import { getCurrentYear } from "../helpers/getCurrentYear";
+import { Filter } from "@/@types/query";
 
 // Meta
 export const SITE_NAME = "Cinema Park";
@@ -48,6 +50,7 @@ export const errorMessages = {
 // Api routes
 export const enum ApiRoute {
 	MOVIE = "movie",
+	IMAGE = "image",
 }
 
 // Breadcrumb links
@@ -55,11 +58,33 @@ export const breadcrumbLinks = {
 	films: { href: AppRoutes.FILMS, title: "Фильмы" },
 };
 
+//Homepage initial filters
+export const filmFilters: Filter = {
+	limit: 12,
+	year: `${getCurrentYear() - 1}-${getCurrentYear()}`,
+	type: "movie",
+};
+
+export const cartoonsFilters: Filter = {
+	limit: 12,
+	year: `${getCurrentYear() - 1}-${getCurrentYear()}`,
+	type: "cartoon",
+};
+
+export const animeFilters: Filter = {
+	limit: 12,
+	year: `${getCurrentYear() - 1}-${getCurrentYear()}`,
+	type: "anime",
+};
+
 //Comments
 export const COMMENTS_PER_PAGE = 10;
 
 //Cookie keys
 export const COOKIE_USER_ID_KEY = "user_id";
+
+// Film gallery
+export const GALLERY_LENGTH = 20;
 
 // Select options
 export const genreOptions: ISelectOption[] = [

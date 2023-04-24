@@ -6,7 +6,7 @@ import { authService } from "@/services/authService";
 import { changeFilter } from "@/store/actions";
 import { wrapper } from "@/store/store";
 
-const breadcrumbLinks = [{ href: AppRoutes.FILMS, title: "Фильмы" }];
+const breadcrumbLinks = [{ title: "Фильмы" }];
 
 
 const Films = () => {

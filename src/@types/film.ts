@@ -36,7 +36,6 @@ export interface Film {
 	technology: Technology;
 	ticketsOnSale: boolean;
 	imagesInfo: ImagesInfo;
-	//TODO Change any type
 	sequelsAndPrequels: any[];
 	similarMovies: SimilarMovie[];
 	ageRating: number;

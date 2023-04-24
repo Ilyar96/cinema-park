@@ -1,19 +1,21 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Film } from "@/@types/film";
-import { FilmResponse } from "@/@types/filmResponse";
-import { ApiRoute } from "@/constants";
-import { FilterState } from "@/store/reducers/filter/types";
-import { convertIdsToSearchParams, setUrlParams } from "@/helpers";
 import { HYDRATE } from "next-redux-wrapper";
 
+import { Film } from "@/@types/film";
+import { FilmResponse } from "@/@types/filmResponse";
+import { ApiRoute, GALLERY_LENGTH } from "@/constants";
+import { FilterState } from "@/store/reducers/filter/types";
+import { stringifyIds, setUrlParams } from "@/helpers";
+import { ImageResponse } from "@/@types/imageResponse";
+
 const baseQueryOptions = {
-	baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+	baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "",
 	headers: {
 		"X-API-KEY": process.env.NEXT_PUBLIC_KEY || "",
 	},
 };
 
-export const movieApi = createApi({
+export const filmApi = createApi({
 	reducerPath: "filmApi",
 	baseQuery: fetchBaseQuery(baseQueryOptions),
 	extractRehydrationInfo(action, { reducerPath }) {
@@ -26,20 +28,25 @@ export const movieApi = createApi({
 			query: (filters) =>
 				`${ApiRoute.MOVIE}${setUrlParams(filters as Record<string, string>)}`,
 		}),
-		getFilmsById: builder.query<Film, number | string>({
+		getFilmById: builder.query<Film, number | string>({
 			query: (id) => `${ApiRoute.MOVIE}/${id}`,
 		}),
 		getFilmsByIdList: builder.query<FilmResponse, number[] | undefined>({
-			query: (idList) =>
-				`${ApiRoute.MOVIE}?${convertIdsToSearchParams(idList)}`,
+			query: (idList) => `${ApiRoute.MOVIE}?${stringifyIds(idList)}`,
+		}),
+		getImagesByFilmId: builder.query<ImageResponse, number | string>({
+			query: (filmId) =>
+				`${ApiRoute.IMAGE}?movieId=${filmId}&limit=${GALLERY_LENGTH}&type=frame`,
 		}),
 	}),
 });
 
 export const {
 	useGetFilmsQuery,
-	useGetFilmsByIdQuery,
+	useGetFilmByIdQuery,
 	useGetFilmsByIdListQuery,
-} = movieApi;
+	useGetImagesByFilmIdQuery,
+} = filmApi;
 
-export const { getFilms, getFilmsById } = movieApi.endpoints;
+export const { getFilms, getFilmById, getFilmsByIdList, getImagesByFilmId } =
+	filmApi.endpoints;

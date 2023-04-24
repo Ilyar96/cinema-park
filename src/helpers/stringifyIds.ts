@@ -1,6 +1,4 @@
-export const convertIdsToSearchParams = (
-	idList: number[] | undefined
-): string => {
+export const stringifyIds = (idList: number[] | undefined): string => {
 	if (!idList) {
 		return "";
 	}

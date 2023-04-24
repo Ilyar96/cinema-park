@@ -6,6 +6,6 @@ export const stringifyUrlParams = (params: Record<string, string>) => {
 			return res;
 		}
 
-		return res + `${i !== 0 ? "&" : ""}${key}=${value}`;
+		return res + `${res === "" ? "" : "&"}${key}=${value}`;
 	}, "");
 };

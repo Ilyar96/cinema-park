@@ -1,0 +1,13 @@
+@import "@/assets/styles";
+
+.link {
+	@include ui-space("top", 12);
+
+	&:first-child {
+		@include ui-space("top", 8);
+	}
+}
+
+.filmList {
+	@include ui-space("top", 8);
+}

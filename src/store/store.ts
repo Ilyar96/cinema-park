@@ -7,16 +7,16 @@ import {
 } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { authReducer as auth } from "./reducers/auth/authSlice";
-import { filterReducer as filter } from "./reducers/filter/filterSlice";
-import { movieApi } from "@/api/filmApi";
+import { authSlice } from "./reducers/auth/authSlice";
+import { filterSlice } from "./reducers/filter/filterSlice";
+import { filmApi } from "@/api/filmApi";
 
 let store: AppStore;
 
 const rootReducer = {
-	auth,
-	filter,
-	[movieApi.reducerPath]: movieApi.reducer,
+	[authSlice.name]: authSlice.reducer,
+	[filterSlice.name]: filterSlice.reducer,
+	[filmApi.reducerPath]: filmApi.reducer,
 };
 
 export const makeStore = (preloadedState = {}) => {
@@ -24,7 +24,7 @@ export const makeStore = (preloadedState = {}) => {
 		reducer: rootReducer,
 		preloadedState,
 		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware().concat(movieApi.middleware),
+			getDefaultMiddleware().concat(filmApi.middleware),
 	});
 };
 

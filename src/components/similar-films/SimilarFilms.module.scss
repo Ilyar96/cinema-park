@@ -8,6 +8,7 @@
 
 .similarFilms {
 	@include ui-space("top", 10);
+	user-select: none;
 
 	:global {
 		.swiper {

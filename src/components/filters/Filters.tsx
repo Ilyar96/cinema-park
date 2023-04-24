@@ -13,12 +13,12 @@ import { ISelectOption } from "../ui/select/Select.type";
 import { isMultiValue, isString } from "@/@types";
 import { SortType } from "@/@types/query";
 import { countryOptions, genreOptions, sortOptions } from "@/constants";
-import { setUrlParams } from "@/helpers";
+import { getCurrentYear, setUrlParams } from "@/helpers";
 
 import styles from "./Filter.module.scss";
 
 const yearMin = 1900;
-const yearMax = new Date().getFullYear();
+const yearMax = getCurrentYear();
 const ratingMin = 0;
 const ratingMax = 10;
 

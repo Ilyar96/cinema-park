@@ -1,12 +1,14 @@
+import { HYDRATE } from "next-redux-wrapper";
+
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { FilterState } from "./types";
 import { Query } from "@/@types/query";
-import { HYDRATE } from "next-redux-wrapper";
+import { getCurrentYear } from "@/helpers";
 
 const initialState: FilterState = {
 	"names.name": "",
 	type: "",
-	year: `2020-${new Date().getFullYear()}`,
+	year: `2020-${getCurrentYear()}`,
 	"rating.kp": "7-10",
 	"rating.imdb": "7-10",
 	"genres.name": "",
@@ -18,7 +20,7 @@ const initialState: FilterState = {
 	limit: 24,
 };
 
-const filterSlice = createSlice({
+export const filterSlice = createSlice({
 	name: "filter",
 	initialState,
 	reducers: {
@@ -29,13 +31,11 @@ const filterSlice = createSlice({
 			state.page = action.payload;
 		},
 	},
-	extraReducers: {
-		[HYDRATE]: (state, action) => {
-			return {
-				...state,
-				...action.payload.filter,
-			};
-		},
+	extraReducers: (builder) => {
+		builder.addCase(HYDRATE, (state, action: any) => ({
+			...state,
+			...action.payload[filterSlice.name],
+		}));
 	},
 });
 

@@ -6,6 +6,7 @@ const nextConfig = {
 			"firebasestorage.googleapis.com",
 			"st.kp.yandex.net",
 			"avatars.mds.yandex.net",
+			"www.themoviedb.org",
 		],
 	},
 	reactStrictMode: true,

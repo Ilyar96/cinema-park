@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import cn from "classnames";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Mousewheel, Autoplay, Pagination } from 'swiper';
+import { Mousewheel, Pagination } from 'swiper';
+
 import { FilmCard } from "../";
 import { Container, Htag } from "../ui";
 import { SimilarFilmsProps } from "./SimilarFilms.type";
+
 import 'swiper/scss';
 import "swiper/scss/pagination";
 import styles from "./SimilarFilms.module.scss";
@@ -16,7 +18,7 @@ export const SimilarFilms: FC<SimilarFilmsProps> = ({ films, title, className })
 				{title && <Htag tag="h2">{title}</Htag>}
 
 				<Swiper
-					modules={[Mousewheel, Autoplay, Pagination]}
+					modules={[Mousewheel, Pagination]}
 					spaceBetween={12}
 					slidesPerView={2}
 					mousewheel={true}

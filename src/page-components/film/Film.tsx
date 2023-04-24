@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-import { useGetFilmsByIdQuery } from "@/api/filmApi";
+import { useGetFilmByIdQuery } from "@/api/filmApi";
 import { Breadcrumbs, Comments, ErrorBlock, FilmInfo, SimilarFilms } from '../../components';
+import { Gallery } from '../../components/gallery/Gallery';
 import { capitalize, convertFilmType } from "@/helpers";
 import { Htag, Spinner } from "@/components/ui";
 import { breadcrumbLinks } from "@/constants";
@@ -14,7 +15,7 @@ import { BreadcrumbsItem } from "@/components/breadcrumbs/Breadcrumbs.type";
 
 export const FilmPage: FC = () => {
 	const { query } = useRouter();
-	const { data: film, isError, isFetching } = useGetFilmsByIdQuery(String(query.id));
+	const { data: film, isError, isFetching } = useGetFilmByIdQuery(String(query.id));
 	const breadcrumbFilmItem: BreadcrumbsItem = {
 		title: breadcrumbLinks.films.title,
 		href: query?.returnUrl && isString(query?.returnUrl) ? query.returnUrl : breadcrumbLinks.films.href
@@ -33,7 +34,7 @@ export const FilmPage: FC = () => {
 		</>;
 	}
 
-	const { name, year, description, poster, type, similarMovies, alternativeName } = film;
+	const { name, year, description, poster, type, similarMovies, alternativeName, id } = film;
 	const similarFilmList = (similarMovies as Array<Film>);
 	const title = convertFilmType(type);
 
