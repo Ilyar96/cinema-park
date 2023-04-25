@@ -11,4 +11,9 @@
 	> * + * {
 		@include ui-space("left", 3);
 	}
+
+	a {
+		color: $text-gray;
+		font-weight: 600;
+	}
 }

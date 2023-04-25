@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 import { useGetFilmByIdQuery } from "@/api/filmApi";
-import { Breadcrumbs, Comments, ErrorBlock, FilmInfo, SimilarFilms } from '../../components';
+import { Breadcrumbs, Comments, ErrorBlock, FilmInfo, KinoBDPlayer, SimilarFilms } from '../../components';
 import { Gallery } from '../../components/gallery/Gallery';
 import { capitalize, convertFilmType } from "@/helpers";
 import { Htag, Spinner } from "@/components/ui";
@@ -34,7 +34,7 @@ export const FilmPage: FC = () => {
 		</>;
 	}
 
-	const { name, year, description, poster, type, similarMovies, alternativeName, id } = film;
+	const { name, year, description, poster, type, similarMovies, alternativeName } = film;
 	const similarFilmList = (similarMovies as Array<Film>);
 	const title = convertFilmType(type);
 
@@ -51,9 +51,9 @@ export const FilmPage: FC = () => {
 			</Head>
 			<Breadcrumbs entities={[breadcrumbFilmItem, { title: name ? name : alternativeName }]} />
 			<FilmInfo film={film} />
+			<KinoBDPlayer film={film} />
 			<Comments />
 			{similarFilmList.length > 0 && <SimilarFilms films={similarFilmList} title={"Смотрите также"} />}
-			{/* <KinoBDPlayer film={film} /> */}
 		</>
 	);
 };

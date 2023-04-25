@@ -72,6 +72,11 @@
 	li {
 		padding: $ui-step 0;
 	}
+
+	a {
+		color: $text-gray;
+		font-weight: 600;
+	}
 }
 
 .userCard {

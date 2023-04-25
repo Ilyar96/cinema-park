@@ -16,6 +16,12 @@ export const COMMENTS_COLLECTION_PATH = "comments";
 export const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 export const FILE_SIZE = 2100000;
 
+//Filter
+export const YEAR_MIN_VALUE = 1900;
+export const YEAR_MAX_VALUE = getCurrentYear();
+export const RATING_MIN_VALUE = 0;
+export const RATING_MAX_VALUE = 10;
+
 // Error messages
 const REQUIRED_MESSAGE = "Заполните обязательное поле";
 
@@ -85,6 +91,14 @@ export const COOKIE_USER_ID_KEY = "user_id";
 
 // Film gallery
 export const GALLERY_LENGTH = 20;
+
+//Navigation
+export const navList = [
+	{ href: AppRoutes.HOME, title: "Главная" },
+	{ href: AppRoutes.FILMS, title: "Фильмы" },
+	{ href: AppRoutes.CARTOONS, title: "Мультфильмы" },
+	{ href: AppRoutes.ANIME, title: "Аниме" },
+];
 
 // Select options
 export const genreOptions: ISelectOption[] = [

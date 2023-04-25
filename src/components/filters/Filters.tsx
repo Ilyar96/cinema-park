@@ -11,16 +11,20 @@ import { useGetFilmsQuery } from "@/api/filmApi";
 import { getFilters } from "@/store/reducers/filter/selectors";
 import { ISelectOption } from "../ui/select/Select.type";
 import { isMultiValue, isString } from "@/@types";
-import { SortType } from "@/@types/query";
-import { countryOptions, genreOptions, sortOptions } from "@/constants";
-import { getCurrentYear, setUrlParams } from "@/helpers";
+import { Filter, SortType } from "@/@types/query";
+import { countryOptions, genreOptions, RATING_MAX_VALUE, RATING_MIN_VALUE, sortOptions, YEAR_MAX_VALUE, YEAR_MIN_VALUE } from "@/constants";
+import { setUrlParams } from "@/helpers";
 
 import styles from "./Filter.module.scss";
 
-const yearMin = 1900;
-const yearMax = getCurrentYear();
-const ratingMin = 0;
-const ratingMax = 10;
+const setInitialGenreState = (filters: Filter) => {
+	if (filters["genres.name"]) {
+		const genreOption = genreOptions.find((option) => (option.value.toLowerCase() === filters["genres.name"]?.toLowerCase()));
+		return genreOption ? genreOption : null;
+	}
+
+	return null;
+};
 
 export const Filters = () => {
 	const { pathname, replace, query } = useRouter();
@@ -28,13 +32,13 @@ export const Filters = () => {
 	const { isFetching } = useGetFilmsQuery(filters);
 	const [isOpen, setIsOpen] = useState(false);
 	const [sort, setSort] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(null);
-	const [genre, setGenre] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(null);
+	const [genre, setGenre] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(() => setInitialGenreState(filters));
 	const [country, setCountry] = useState<SingleValue<ISelectOption> | MultiValue<ISelectOption>>(null);
 	const [person, setPerson] = useState('');
 	const [title, setTitle] = useState('');
-	const [kp, setKp] = useState([ratingMin, ratingMax]);
-	const [imdb, setImdb] = useState([ratingMin, ratingMax]);
-	const [year, setYear] = useState([yearMin, yearMax]);
+	const [kp, setKp] = useState([RATING_MIN_VALUE, RATING_MAX_VALUE]);
+	const [imdb, setImdb] = useState([RATING_MIN_VALUE, RATING_MAX_VALUE]);
+	const [year, setYear] = useState([YEAR_MIN_VALUE, YEAR_MAX_VALUE]);
 	const { changeFilter } = useActions();
 
 
@@ -206,8 +210,8 @@ export const Filters = () => {
 				<div className={styles.row}>
 					<div className={styles.col}>
 						<RangeSlider
-							min={ratingMin}
-							max={ratingMax}
+							min={RATING_MIN_VALUE}
+							max={RATING_MAX_VALUE}
 							values={kp}
 							setValues={setKp}
 							title="KP"
@@ -215,8 +219,8 @@ export const Filters = () => {
 					</div>
 					<div className={styles.col}>
 						<RangeSlider
-							min={ratingMin}
-							max={ratingMax}
+							min={RATING_MIN_VALUE}
+							max={RATING_MAX_VALUE}
 							values={imdb}
 							setValues={setImdb}
 							title="IMDB"
@@ -227,8 +231,8 @@ export const Filters = () => {
 				<div className={styles.row}>
 					<div className={styles.col}>
 						<RangeSlider
-							min={yearMin}
-							max={yearMax}
+							min={YEAR_MIN_VALUE}
+							max={YEAR_MAX_VALUE}
 							values={year}
 							setValues={setYear}
 							title="Годы"

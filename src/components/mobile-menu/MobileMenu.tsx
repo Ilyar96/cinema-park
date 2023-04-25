@@ -2,15 +2,18 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import Link from "next/link";
 import cn from "classnames";
 import { useOnClickOutside } from "usehooks-ts";
+
 import { Portal, UserDetailsCard } from "../";
 import { AppRoutes } from "@/constants/routes";
 import { Button } from "../ui";
 import { MobileMenuProps } from "./MobileMenu.type";
 import { toggleBodyLockClass } from "@/helpers";
-import MenuSvg from '@/assets/images/menu.svg';
-import styles from "./MobileMenu.module.scss";
 import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";
+import { navList } from "@/constants";
+
+import styles from "./MobileMenu.module.scss";
+import MenuSvg from '@/assets/images/menu.svg';
 
 export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +39,18 @@ export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
 		}
 	}, [isOpen]);
 
+	const navListLayout = navList.map(({ href, title }, i) => {
+		return (<li>
+			<Link
+				href={href}
+				ref={i === 0 ? firstLinkRef : null}
+				onClick={menuCloseHandler}
+			>
+				{title}
+			</Link>
+		</li>);
+	});
+
 	return (
 		<div className={className}>
 			<Button className={styles.menuBtn} onClick={handleMenuToggle} withoutWrapper>
@@ -49,8 +64,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
 							<Button className={styles.login} href={AppRoutes.LOGIN}>Войти</Button>}
 						<nav>
 							<ul className={styles.linksList}>
-								<li><Link href={AppRoutes.HOME} ref={firstLinkRef} onClick={menuCloseHandler}>Главная</Link></li>
-								<li><Link href={AppRoutes.FILMS} onClick={menuCloseHandler}>Фильмы</Link></li>
+								{navListLayout}
 							</ul>
 						</nav>
 					</div>

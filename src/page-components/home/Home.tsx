@@ -13,17 +13,16 @@ export const HomePage: FC = () => {
 	const { data: animeData } = useGetFilmsQuery(animeFilters);
 	const { data: cartoonsData } = useGetFilmsQuery(cartoonsFilters);
 
-	//TODO поменять ссылки 
 	return (
 		<Container>
 			<Button className={styles.link} href={AppRoutes.FILMS}>Фильмы</Button>
 			{filmsData && <FilmList className={styles.filmList} films={filmsData.docs} />}
 
-			<Button className={styles.link} href={AppRoutes.FILMS}>Аниме</Button>
-			{animeData && <FilmList className={styles.filmList} films={animeData.docs} />}
-
-			<Button className={styles.link} href={AppRoutes.FILMS}>Мультфильмы</Button>
+			<Button className={styles.link} href={AppRoutes.CARTOONS}>Мультфильмы</Button>
 			{cartoonsData && <FilmList className={styles.filmList} films={cartoonsData.docs} />}
+
+			<Button className={styles.link} href={AppRoutes.ANIME}>Аниме</Button>
+			{animeData && <FilmList className={styles.filmList} films={animeData.docs} />}
 		</Container>
 	);
 };

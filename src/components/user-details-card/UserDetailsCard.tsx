@@ -16,6 +16,8 @@ export const UserDetailsCard = forwardRef<HTMLDivElement, UserDetailsCardProps>(
 		return null;
 	}
 
+	//TODO решить проблему с паддингом
+
 	return (
 		<div className={
 			cn(styles.wrapper, className, {
@@ -34,10 +36,18 @@ export const UserDetailsCard = forwardRef<HTMLDivElement, UserDetailsCardProps>(
 			</div>
 
 			<div className={styles.options}>
-				<Button appearance="text" href={AppRoutes.FAVORITES}>
+				<Button
+					appearance="text"
+					href={AppRoutes.FAVORITES}
+					fullWidth
+				>
 					Избранное
 				</Button>
-				<Button appearance="text" onClick={logoutHandler}>
+				<Button
+					appearance="text"
+					onClick={logoutHandler}
+					fullWidth
+				>
 					Выйти из аккаунта
 				</Button>
 			</div>

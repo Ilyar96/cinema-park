@@ -9,6 +9,7 @@ import styles from "./Logo.module.scss";
 
 export const Logo: FC<LogoProps> = ({ className }) => {
 	const { pathname } = useRouter();
+	//TODO поменять лого
 
 	if (pathname === AppRoutes.HOME) {
 		return <div className={cn(styles.logo, className)}>

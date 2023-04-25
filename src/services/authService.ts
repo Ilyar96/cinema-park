@@ -36,6 +36,7 @@ export const authService = {
 		ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 	) {
 		const { user_id: uid } = nookies.get(ctx);
+		//TODO переделать при помощи Firebase Admin SDK
 
 		if (uid) {
 			const userData = await authService.getUser(uid);

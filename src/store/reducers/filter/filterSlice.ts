@@ -3,14 +3,14 @@ import { HYDRATE } from "next-redux-wrapper";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { FilterState } from "./types";
 import { Query } from "@/@types/query";
-import { getCurrentYear } from "@/helpers";
+import { YEAR_MIN_VALUE, YEAR_MAX_VALUE } from "@/constants";
 
 const initialState: FilterState = {
 	"names.name": "",
 	type: "",
-	year: `2020-${getCurrentYear()}`,
-	"rating.kp": "7-10",
-	"rating.imdb": "7-10",
+	year: `${YEAR_MIN_VALUE}-${YEAR_MAX_VALUE}`,
+	"rating.kp": "0-10",
+	"rating.imdb": "0-10",
 	"genres.name": "",
 	"countries.name": "",
 	"persons.name": "",
