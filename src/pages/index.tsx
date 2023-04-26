@@ -1,5 +1,5 @@
 import { getFilms } from "@/api/filmApi";
-import { animeFilters, cartoonsFilters, filmFilters } from "@/constants";
+import { animeFilters, cartoonsFilters, filmFilters } from "@/components/constants";
 import { withLayout } from "@/hok";
 import { HomePage } from "@/page-components";
 import { authService } from "@/services/authService";

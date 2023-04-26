@@ -2,8 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
 
 import { Film } from "@/@types/film";
+import { Person } from "@/@types/person";
 import { FilmResponse } from "@/@types/filmResponse";
-import { ApiRoute, GALLERY_LENGTH } from "@/constants";
+import { ApiRoute, GALLERY_LENGTH } from "@/components/constants";
 import { FilterState } from "@/store/reducers/filter/types";
 import { stringifyIds, setUrlParams } from "@/helpers";
 import { ImageResponse } from "@/@types/imageResponse";
@@ -32,11 +33,14 @@ export const filmApi = createApi({
 			query: (id) => `${ApiRoute.MOVIE}/${id}`,
 		}),
 		getFilmsByIdList: builder.query<FilmResponse, number[] | undefined>({
-			query: (idList) => `${ApiRoute.MOVIE}?${stringifyIds(idList)}`,
+			query: (idList) => `${ApiRoute.MOVIE}?${stringifyIds(idList)}&limit=0`,
 		}),
 		getImagesByFilmId: builder.query<ImageResponse, number | string>({
 			query: (filmId) =>
 				`${ApiRoute.IMAGE}?movieId=${filmId}&limit=${GALLERY_LENGTH}&type=frame`,
+		}),
+		getPersonByFilmId: builder.query<Person, number | string>({
+			query: (id) => `${ApiRoute.PERSON}/${id}`,
 		}),
 	}),
 });
@@ -46,7 +50,13 @@ export const {
 	useGetFilmByIdQuery,
 	useGetFilmsByIdListQuery,
 	useGetImagesByFilmIdQuery,
+	useGetPersonByFilmIdQuery,
 } = filmApi;
 
-export const { getFilms, getFilmById, getFilmsByIdList, getImagesByFilmId } =
-	filmApi.endpoints;
+export const {
+	getFilms,
+	getFilmById,
+	getFilmsByIdList,
+	getImagesByFilmId,
+	getPersonByFilmId,
+} = filmApi.endpoints;

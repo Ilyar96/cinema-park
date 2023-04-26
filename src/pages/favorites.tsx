@@ -5,7 +5,7 @@ import { withLayout } from "@/hok";
 import { FavoriteFilms } from "@/page-components";
 import { useAppSelector, wrapper } from "@/store/store";
 import { getAuthStatus, getUser } from "@/store/reducers/auth/selectors";
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 import { AuthStatus } from "@/store/reducers/auth/types";
 import { Spinner } from "@/components/ui";
 import { authService } from "@/services/authService";

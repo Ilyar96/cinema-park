@@ -1,4 +1,4 @@
-import { errorMessages } from "@/constants";
+import { errorMessages } from "@/components/constants";
 import * as yup from "yup";
 
 export const schema = yup

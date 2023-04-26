@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { db } from "@/api/firebase";
-import { COMMENTS_COLLECTION_PATH } from "@/constants";
+import { COMMENTS_COLLECTION_PATH } from "@/components/constants";
 import {
 	deleteField,
 	doc,

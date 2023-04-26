@@ -11,8 +11,10 @@
 	user-select: none;
 
 	:global {
-		.swiper {
-			padding-bottom: $ui-step * 7;
+		.swiper-pagination {
+			position: static;
+
+			@include ui-space("top", 2);
 		}
 	}
 }

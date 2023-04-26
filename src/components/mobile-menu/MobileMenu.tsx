@@ -4,13 +4,13 @@ import cn from "classnames";
 import { useOnClickOutside } from "usehooks-ts";
 
 import { Portal, UserDetailsCard } from "../";
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 import { Button } from "../ui";
 import { MobileMenuProps } from "./MobileMenu.type";
 import { toggleBodyLockClass } from "@/helpers";
 import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";
-import { navList } from "@/constants";
+import { navList } from "@/components/constants";
 
 import styles from "./MobileMenu.module.scss";
 import MenuSvg from '@/assets/images/menu.svg';

@@ -1,7 +1,7 @@
 import { ISelectOption } from "@/components/ui/select/Select.type";
-import { formatBytes } from "../helpers/formatBytes";
+import { formatBytes } from "../../helpers/formatBytes";
 import { AppRoutes } from "./routes";
-import { getCurrentYear } from "../helpers/getCurrentYear";
+import { getCurrentYear } from "../../helpers/getCurrentYear";
 import { Filter } from "@/@types/query";
 
 // Meta
@@ -57,11 +57,14 @@ export const errorMessages = {
 export const enum ApiRoute {
 	MOVIE = "movie",
 	IMAGE = "image",
+	PERSON = "person",
 }
 
 // Breadcrumb links
 export const breadcrumbLinks = {
 	films: { href: AppRoutes.FILMS, title: "Фильмы" },
+	cartoons: { href: AppRoutes.CARTOONS, title: "Мультфильмы" },
+	anime: { href: AppRoutes.ANIME, title: "Аниме" },
 };
 
 //Homepage initial filters
@@ -99,6 +102,13 @@ export const navList = [
 	{ href: AppRoutes.CARTOONS, title: "Мультфильмы" },
 	{ href: AppRoutes.ANIME, title: "Аниме" },
 ];
+
+// Date
+export const dateOptions: Intl.DateTimeFormatOptions = {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+};
 
 // Select options
 export const genreOptions: ISelectOption[] = [

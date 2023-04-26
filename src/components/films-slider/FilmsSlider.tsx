@@ -3,15 +3,15 @@ import cn from "classnames";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Pagination } from 'swiper';
 
-import { FilmCard } from "../";
+import { FilmCard } from "..";
 import { Container, Htag } from "../ui";
-import { SimilarFilmsProps } from "./SimilarFilms.type";
+import { FilmsSliderProps } from "./FilmsSlider.type";
 
 import 'swiper/scss';
 import "swiper/scss/pagination";
-import styles from "./SimilarFilms.module.scss";
+import styles from "./FilmsSlider.module.scss";
 
-export const SimilarFilms: FC<SimilarFilmsProps> = ({ films, title, className }) => {
+export const FilmsSlider: FC<FilmsSliderProps> = ({ films, title, className }) => {
 	return (
 		<section className={cn(styles.similarFilms, className)}>
 			<Container className={styles.container}>
@@ -49,6 +49,8 @@ export const SimilarFilms: FC<SimilarFilmsProps> = ({ films, title, className })
 						</SwiperSlide>
 					))}
 				</Swiper>
+
+				<div className="swiper-pagination"></div>
 			</Container>
 		</section>
 	);

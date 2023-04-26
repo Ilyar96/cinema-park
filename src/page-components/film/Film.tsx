@@ -3,23 +3,16 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 import { useGetFilmByIdQuery } from "@/api/filmApi";
-import { Breadcrumbs, Comments, ErrorBlock, FilmInfo, KinoBDPlayer, SimilarFilms } from '../../components';
-import { Gallery } from '../../components/gallery/Gallery';
-import { capitalize, convertFilmType } from "@/helpers";
+import { Breadcrumbs, Comments, ErrorBlock, FilmInfo, KinoBDPlayer, FilmsSlider } from '../../components';
+import { capitalize, convertFilmType, getBreadcumbsItemByPathanme } from "@/helpers";
 import { Htag, Spinner } from "@/components/ui";
-import { breadcrumbLinks } from "@/constants";
 import { Film } from "@/@types/film";
-import { isString } from "@/@types";
-import { BreadcrumbsItem } from "@/components/breadcrumbs/Breadcrumbs.type";
 
 
 export const FilmPage: FC = () => {
-	const { query } = useRouter();
+	const { query, pathname } = useRouter();
 	const { data: film, isError, isFetching } = useGetFilmByIdQuery(String(query.id));
-	const breadcrumbFilmItem: BreadcrumbsItem = {
-		title: breadcrumbLinks.films.title,
-		href: query?.returnUrl && isString(query?.returnUrl) ? query.returnUrl : breadcrumbLinks.films.href
-	};
+	const breadcrumbsItem = getBreadcumbsItemByPathanme(pathname);
 
 	if (isFetching) {
 		return <Spinner />;
@@ -27,7 +20,7 @@ export const FilmPage: FC = () => {
 
 	if (isError || !film) {
 		return <>
-			<Breadcrumbs entities={[breadcrumbFilmItem]} />
+			<Breadcrumbs entities={[]} />
 			<ErrorBlock>
 				<Htag tag="h1" center>Ошибка загрузки фильма. Попробуйте перезагрузить страницу.</Htag>
 			</ErrorBlock>
@@ -49,11 +42,11 @@ export const FilmPage: FC = () => {
 				<meta property="og:description" content={description} />
 				<meta property="og:image" content={poster?.url} />
 			</Head>
-			<Breadcrumbs entities={[breadcrumbFilmItem, { title: name ? name : alternativeName }]} />
+			<Breadcrumbs entities={[breadcrumbsItem, { title: name ? name : alternativeName }]} />
 			<FilmInfo film={film} />
 			<KinoBDPlayer film={film} />
 			<Comments />
-			{similarFilmList.length > 0 && <SimilarFilms films={similarFilmList} title={"Смотрите также"} />}
+			{similarFilmList.length > 0 && <FilmsSlider films={similarFilmList} title={"Смотрите также:"} />}
 		</>
 	);
 };

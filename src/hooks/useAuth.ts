@@ -13,7 +13,10 @@ import {
 import { auth, db, storage } from "@/api/firebase";
 import { isFirebaseError } from "@/@types";
 import { errorHandler } from "@/helpers";
-import { COOKIE_USER_ID_KEY, USERS_COLLECTION_PATH } from "@/constants";
+import {
+	COOKIE_USER_ID_KEY,
+	USERS_COLLECTION_PATH,
+} from "@/components/constants";
 import {
 	UploadTaskSnapshot,
 	getDownloadURL,

@@ -6,4 +6,5 @@ export enum AppRoutes {
 	CARTOONS = "/cartoons/",
 	ANIME = "/anime/",
 	FAVORITES = "/favorites/",
+	PERSON = "/person/",
 }

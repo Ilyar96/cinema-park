@@ -3,8 +3,8 @@ import React, { FC } from 'react';
 import { FilmList } from '../../components';
 import { useGetFilmsQuery } from "@/api/filmApi";
 import { Button, Container } from "@/components/ui";
-import { AppRoutes } from "@/constants/routes";
-import { filmFilters, animeFilters, cartoonsFilters } from "@/constants";
+import { AppRoutes } from "@/components/constants/routes";
+import { filmFilters, animeFilters, cartoonsFilters } from "@/components/constants";
 
 import styles from "./Home.module.scss";
 

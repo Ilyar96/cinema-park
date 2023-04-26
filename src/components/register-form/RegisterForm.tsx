@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState, useRef, KeyboardEvent } from '
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 import { Input, Button, P, FileInput } from '../ui';
 import { useAuth } from "@/hooks";
 import styles from "./RegisterForm.module.scss";
@@ -27,7 +27,6 @@ export const RegisterForm = () => {
 		setFocus("name");
 	}, []);
 
-	// TODO add redirect
 	const onSubmit = (data: RegisterData) => registerHandler(data);
 
 	const onAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {

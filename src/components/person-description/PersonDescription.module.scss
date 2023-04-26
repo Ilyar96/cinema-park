@@ -1,0 +1,19 @@
+@import "@/assets/styles";
+
+.subtitle {
+	color: $text-gray;
+	font-weight: 400;
+
+	span {
+		vertical-align: middle;
+		font-size: 1rem;
+	}
+}
+
+.details {
+	@include ui-space("top", 8);
+
+	> * + * {
+		@include ui-space("top", 2);
+	}
+}

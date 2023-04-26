@@ -5,12 +5,12 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/api/firebase";
 import { Button, Container, Htag, P, Spinner } from "../ui";
 import { CommentForm, CommentItem } from "../";
-import { COMMENTS_COLLECTION_PATH, COMMENTS_PER_PAGE } from "@/constants";
+import { COMMENTS_COLLECTION_PATH, COMMENTS_PER_PAGE } from "@/components/constants";
 import { errorHandler } from "@/helpers";
 import { IComment } from "@/@types/comment";
 import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 
 import styles from "./Comments.module.scss";
 

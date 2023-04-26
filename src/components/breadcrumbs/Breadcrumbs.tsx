@@ -3,7 +3,7 @@ import { Container } from "../ui";
 import styles from "./Breadcrumbs.module.scss";
 import Link from "next/link";
 import { BreadcrumbsProps } from './Breadcrumbs.type';
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 import { BreadcrumbsItem } from "./breadcrums-item/BreadcrumbsItem";
 
 export const Breadcrumbs: FC<BreadcrumbsProps> = ({ entities, separator = "»" }) => {

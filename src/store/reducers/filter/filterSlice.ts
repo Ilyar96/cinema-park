@@ -3,7 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { FilterState } from "./types";
 import { Query } from "@/@types/query";
-import { YEAR_MIN_VALUE, YEAR_MAX_VALUE } from "@/constants";
+import { YEAR_MIN_VALUE, YEAR_MAX_VALUE } from "@/components/constants";
 
 const initialState: FilterState = {
 	"names.name": "",

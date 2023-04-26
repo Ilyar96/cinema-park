@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Input, Button, P } from '../ui';
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 import { LoginData, schema } from "./schema";
 import styles from "./LoginForm.module.scss";
 import { useAuth } from "@/hooks";

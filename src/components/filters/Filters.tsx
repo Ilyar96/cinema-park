@@ -12,7 +12,7 @@ import { getFilters } from "@/store/reducers/filter/selectors";
 import { ISelectOption } from "../ui/select/Select.type";
 import { isMultiValue, isString } from "@/@types";
 import { Filter, SortType } from "@/@types/query";
-import { countryOptions, genreOptions, RATING_MAX_VALUE, RATING_MIN_VALUE, sortOptions, YEAR_MAX_VALUE, YEAR_MIN_VALUE } from "@/constants";
+import { countryOptions, genreOptions, RATING_MAX_VALUE, RATING_MIN_VALUE, sortOptions, YEAR_MAX_VALUE, YEAR_MIN_VALUE } from "@/components/constants";
 import { setUrlParams } from "@/helpers";
 
 import styles from "./Filter.module.scss";

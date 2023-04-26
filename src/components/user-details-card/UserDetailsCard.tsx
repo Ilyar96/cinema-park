@@ -6,7 +6,7 @@ import { getUser } from "@/store/reducers/auth/selectors";
 import { useAppSelector } from "@/store/store";
 import { UserDetailsCardProps } from "./UserDetailsCard.type";
 import styles from "./UserDetailsCard.module.scss";
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 
 export const UserDetailsCard = forwardRef<HTMLDivElement, UserDetailsCardProps>(({ isOpen, className, isDropdown }, ref) => {
 	const { logoutHandler } = useAuth();
@@ -15,8 +15,6 @@ export const UserDetailsCard = forwardRef<HTMLDivElement, UserDetailsCardProps>(
 	if (!user) {
 		return null;
 	}
-
-	//TODO решить проблему с паддингом
 
 	return (
 		<div className={
@@ -37,16 +35,20 @@ export const UserDetailsCard = forwardRef<HTMLDivElement, UserDetailsCardProps>(
 
 			<div className={styles.options}>
 				<Button
+					className={styles.option}
 					appearance="text"
 					href={AppRoutes.FAVORITES}
 					fullWidth
+					withoutWrapper
 				>
 					Избранное
 				</Button>
 				<Button
+					className={styles.option}
 					appearance="text"
 					onClick={logoutHandler}
 					fullWidth
+					withoutWrapper
 				>
 					Выйти из аккаунта
 				</Button>

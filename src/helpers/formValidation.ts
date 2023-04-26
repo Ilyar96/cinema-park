@@ -1,4 +1,4 @@
-import { FILE_SIZE, SUPPORTED_FORMATS } from "@/constants";
+import { FILE_SIZE, SUPPORTED_FORMATS } from "@/components/constants";
 
 export const sizeValidate = (value: FileList | undefined) => {
 	const file = value?.[0];

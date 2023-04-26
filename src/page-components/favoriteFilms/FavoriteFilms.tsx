@@ -5,7 +5,7 @@ import { Container, Pagination } from "@/components/ui";
 import { useAppSelector } from "@/store/store";
 import { getFilters } from "@/store/reducers/filter/selectors";
 import { getFavoriteFilms } from "@/store/reducers/auth/selectors";
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 import { stringifyIds, setTitle } from "@/helpers";
 import styles from "./FavoriteFilms.module.scss";
 import Head from "next/head";

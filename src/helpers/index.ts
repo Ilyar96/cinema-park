@@ -15,3 +15,4 @@ export * from "./toggleBodyLockClass";
 export * from "./throttle";
 export * from "./stringifyIds";
 export * from "./getCurrentYear";
+export * from "./getBreadcumbsItemByPathanme";

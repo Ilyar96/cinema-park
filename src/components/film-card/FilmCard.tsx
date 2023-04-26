@@ -3,21 +3,23 @@ import cn from "classnames";
 import Link from "next/link";
 import Image from "next/image";
 import { FilmCardProps } from "./FilmCard.type";
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 import styles from "./FilmCard.module.scss";
 import PlaySvg from '@/assets/images/play.svg';
 import { useRouter } from "next/router";
 import { stringifyUrlParams } from "@/helpers/stringifyUrlParams";
+import { getBreadcumbsItemByPathanme } from "@/helpers";
 
 export const FilmCard: FC<FilmCardProps> = ({ film, as: Component = "li", className }) => {
-	const { query, asPath } = useRouter();
+	const { asPath, pathname } = useRouter();
 	const { id, year, rating, name, poster, alternativeName } = film;
+	const href = getBreadcumbsItemByPathanme(pathname).href;
 
 	return (
 		<Component className={styles.item}>
 			<Link
 				href={{
-					pathname: AppRoutes.FILMS + id,
+					pathname: href + id,
 					query: { returnUrl: asPath }
 				}}
 				className={cn(styles.card, className)}

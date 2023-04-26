@@ -3,7 +3,7 @@ import React from 'react';
 import { FilmPage } from '../../page-components/film/Film';
 import { withLayout } from "@/hok";
 import { wrapper } from "@/store/store";
-import { getFilmById, getImagesByFilmId } from "@/api/filmApi";
+import { getFilmById } from "@/api/filmApi";
 import { authService } from "@/services/authService";
 import { isString } from "@/@types";
 
@@ -19,10 +19,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx
 	await authService.serverSideAuthCheck(store, ctx);
 
 	if (id && isString(id)) {
-		await Promise.allSettled([
-			store.dispatch(getFilmById.initiate(id)),
-			// store.dispatch(getImagesByFilmId.initiate(id))
-		]);
+		await store.dispatch(getFilmById.initiate(id));
 	}
 
 	return { props: { initialReduxState: store.getState() } };

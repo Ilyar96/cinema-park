@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import { LoginForm } from "@/components";
 import { AuthPage } from "@/page-components";
-import { SITE_NAME } from "@/constants";
+import { SITE_NAME } from "@/components/constants";
 import { setTitle } from "@/helpers";
 import { wrapper } from "@/store/store";
 import { authService } from "@/services/authService";

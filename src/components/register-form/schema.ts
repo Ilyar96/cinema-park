@@ -1,4 +1,4 @@
-import { errorMessages } from "@/constants";
+import { errorMessages } from "@/components/constants";
 import * as yup from "yup";
 import YupPassword from "yup-password";
 import { spaceValidate, sizeValidate, formatValidate } from "@/helpers";

@@ -57,10 +57,13 @@
 .link,
 .link:hover,
 .link:active {
-	padding: 0;
-
 	background-color: transparent;
 	border: none;
+}
+
+.text,
+.link {
+	padding: 0;
 }
 
 .link {

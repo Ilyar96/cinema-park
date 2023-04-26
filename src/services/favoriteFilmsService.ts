@@ -1,5 +1,5 @@
 import { db } from "@/api/firebase";
-import { USERS_COLLECTION_PATH } from "@/constants";
+import { USERS_COLLECTION_PATH } from "@/components/constants";
 import { errorHandler } from "@/helpers";
 import {
 	arrayRemove,

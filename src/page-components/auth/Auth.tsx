@@ -1,23 +1,19 @@
 import { FC, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { useAuth } from "@/hooks";
-import { Logo, Htag } from "@/components/ui";
+import { Logo, Htag, Spinner } from "@/components/ui";
 import { AuthPageProps } from "./Auth.type";
 import { useAppSelector } from "@/store/store";
 import { getAuthStatus } from "@/store/reducers/auth/selectors";
 import { AuthStatus } from "@/store/reducers/auth/types";
+import { AppRoutes } from "@/components/constants/routes";
+import { isString } from "@/@types";
 
 import styles from "./Auth.module.scss";
-import { AppRoutes } from "@/constants/routes";
-import { isString } from "@/@types";
 
 export const AuthPage: FC<AuthPageProps> = ({ title, children }) => {
 	const { replace, query } = useRouter();
 	const authStatus = useAppSelector(getAuthStatus);
-	const { checkAuth } = useAuth();
-
-	useEffect(checkAuth, []);
 
 	useEffect(() => {
 		if (authStatus === AuthStatus.AUTH) {
@@ -26,6 +22,14 @@ export const AuthPage: FC<AuthPageProps> = ({ title, children }) => {
 				replace(AppRoutes.HOME);
 		}
 	}, [authStatus]);
+
+	if (authStatus === AuthStatus.UNKNOWN) {
+		return <Spinner />;
+	}
+
+	if (authStatus === AuthStatus.AUTH) {
+		return null;
+	}
 
 
 	return (

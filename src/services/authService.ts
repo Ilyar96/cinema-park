@@ -3,7 +3,7 @@ import nookies from "nookies";
 
 import { IUser } from "@/@types/user";
 import { auth, db } from "@/api/firebase";
-import { USERS_COLLECTION_PATH } from "@/constants";
+import { USERS_COLLECTION_PATH } from "@/components/constants";
 import { errorHandler } from "@/helpers";
 import { AppStore } from "@/store/store";
 import { onAuthStateChanged } from "firebase/auth";

@@ -1,21 +1,11 @@
 @import "@/assets/styles";
 
-.wrapper {
-	@include ui-space("top", 8);
-}
-.container {
-	@media (min-width: 575.98px) {
-		display: flex;
-	}
-}
-
 $previewWidth: 12.5rem;
 
 .preview {
 	width: $previewWidth;
 	flex: 0 0 $previewWidth;
 	height: 100%;
-	@include ui-space("right", 5);
 
 	@media (max-width: 575.98px) {
 		margin-inline-start: auto;

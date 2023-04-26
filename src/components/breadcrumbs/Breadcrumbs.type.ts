@@ -1,4 +1,4 @@
-import { AppRoutes } from "@/constants/routes";
+import { AppRoutes } from "@/components/constants/routes";
 
 export interface BreadcrumbsItem {
 	href?: AppRoutes | string;

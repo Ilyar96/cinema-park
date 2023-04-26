@@ -10,12 +10,16 @@ import { FavoriteFilmsService } from "@/services/favoriteFilmsService";
 import HeartSolidSvg from "@/assets/images/heart-solid.svg";
 import HeartOutlinedSvg from "@/assets/images/heart-regular.svg";
 import styles from "./FilmDescription.module.scss";
+import { Person } from "@/@types/film";
+import Link from "next/link";
+import { AppRoutes } from "@/components/constants/routes";
+//TODO отступы между импортами
 
 export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) => {
 	const user = useAppSelector(getUser);
 	const favoriteFilms = useAppSelector(getFavoriteFilms);
-	const { name, description, alternativeName, year, countries, genres, persons, videos, ageRating } = film;
-	const actorList = persons.filter((person) => person.enProfession === "actor");
+	const { name, description, alternativeName, year, countries, genres, persons, ageRating } = film;
+	const actorList = persons.filter((person) => person.enProfession === "actor").slice(0, 15);
 	const directorList = persons.filter((person) => person.enProfession === "director");
 	const isFavorite = favoriteFilms?.find((id) => id === film.id);
 	const { addFavoriteFilm, removeFavoriteFilm } = useActions();
@@ -34,7 +38,6 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 		}
 	};
 
-	// TODO Отрефакторить
 	const countryListLayout = countries.length > 0 &&
 		<FilmDetailItem title={declinationOfNum(countries.length, ["Страна", "Страны", "Страны"])}		>
 			{countries.slice(0, 10).map(
@@ -45,27 +48,20 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 			)}
 		</FilmDetailItem>;
 
-	const actorDetailsLayout = actorList.length > 0 &&
-		<FilmDetailItem title="Актеры"		>
-			{actorList.slice(0, 10).map(
-				(actor, i) => (<Fragment key={actor.id}>
-					{setCommaToListItem(i)}
-					<span>{actor.name ? actor.name : actor.enName}</span>
-				</Fragment>)
-			)}
-		</FilmDetailItem>;
-
-	const directorDetailsLayout = directorList.length > 0 &&
+	const getPersonDetailLayout = (personList: Person[], titleList: [string, string, string]) => (
 		<FilmDetailItem
-			title={declinationOfNum(directorList.length, ["Режисер", "Режисеры", "Режисеры"])}
+			title={declinationOfNum(personList.length, titleList)}
 		>
-			{directorList.map(
-				(director, i) => (<Fragment key={director.id}>
-					{setCommaToListItem(i)}
-					<span>{director.name ? director.name : director.enName}</span>
-				</Fragment>)
+			{personList.map(
+				(person, i) => (
+					<Fragment key={person.id}>
+						{setCommaToListItem(i)}
+						<Link href={AppRoutes.PERSON + person.id}>{person.name ? person.name : person.enName}</Link>
+					</Fragment>
+				)
 			)}
-		</FilmDetailItem>;
+		</FilmDetailItem>
+	);
 
 	const genreDetailsLayout = genres.length > 0 &&
 		<FilmDetailItem
@@ -104,8 +100,8 @@ export const FilmDescription: FC<FilmDescriptionProps> = ({ film, className }) =
 			<div className={styles.details}>
 				{year && <FilmDetailItem title="Год выхода" children={year} />}
 				{countryListLayout}
-				{actorDetailsLayout}
-				{directorDetailsLayout}
+				{getPersonDetailLayout(actorList, ["Актер", "Актера", "Актеры"])}
+				{getPersonDetailLayout(directorList, ["Режисер", "Режисеры", "Режисеры"])}
 				{genreDetailsLayout}
 			</div>
 		</div>

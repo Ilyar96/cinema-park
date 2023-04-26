@@ -48,15 +48,14 @@ $dropdown-padding: $ui-step * 4;
 	font-size: 0.8125rem;
 }
 
-.options {
-	> * {
-		padding: $ui-step * 2 $dropdown-padding;
-		transition: background-color $transition;
+.option {
+	padding: $ui-step * 2 $dropdown-padding;
+	transition: background-color $transition;
+	border-radius: 0;
 
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: rgba($color: $primary-color-hover, $alpha: 0.3);
-			}
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: rgba($color: $primary-color-hover, $alpha: 0.3);
 		}
 	}
 }

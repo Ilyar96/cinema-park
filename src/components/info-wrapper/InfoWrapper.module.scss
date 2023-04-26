@@ -1,0 +1,18 @@
+@import "@/assets/styles";
+
+.wrapper {
+	@include ui-space("top", 8);
+}
+.container {
+	@media (min-width: 575.98px) {
+		display: flex;
+
+		> *:not(:first-child) {
+			flex: 1 1;
+		}
+
+		> :first-child {
+			@include ui-space("right", 5);
+		}
+	}
+}
