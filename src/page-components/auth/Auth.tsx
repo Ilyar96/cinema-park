@@ -24,10 +24,6 @@ export const AuthPage: FC<AuthPageProps> = ({ title, children }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [authStatus]);
 
-	if (authStatus === AuthStatus.UNKNOWN) {
-		return <Spinner />;
-	}
-
 	if (authStatus === AuthStatus.AUTH) {
 		return null;
 	}
