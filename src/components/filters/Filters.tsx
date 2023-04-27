@@ -2,7 +2,6 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { SingleValue, MultiValue } from "react-select";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import queryString from 'query-string';
 
 import { Button, Input, RangeSlider, Select } from "../ui";
 import { useAppSelector } from '../../store/store';

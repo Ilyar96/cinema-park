@@ -7,6 +7,8 @@
 	padding-bottom: 56.25%;
 	@include ui-space("top", 5);
 
+	background-color: $bg-color-dark;
+
 	:global {
 		iframe {
 			position: absolute;
