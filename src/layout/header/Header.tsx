@@ -15,7 +15,7 @@ export const Header = () => {
 		<header className={styles.header}>
 			<Container className={styles.container}>
 				<Logo className={styles.logo} />
-				{/* <MobileMenu className={styles.mobileMenu} /> */}
+				<MobileMenu className={styles.mobileMenu} />
 				<Nav className={styles.desktopMenu} />
 				<div className={styles.menuRight}>
 					{user ?

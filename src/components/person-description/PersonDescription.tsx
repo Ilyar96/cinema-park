@@ -1,13 +1,13 @@
 import React, { FC, Fragment } from 'react';
 import { PersonDescriptionProps } from './PersonDescription.type';
-import { Htag, P } from "../ui";
+import { Htag } from "../ui";
 import styles from "./PersonDescription.module.scss";
 import { FilmDetailItem } from "../";
 import { declinationOfNum, setCommaToListItem } from "@/helpers";
 import { dateOptions } from "@/components/constants";
 
 export const PersonDescription: FC<PersonDescriptionProps> = ({ person, className }) => {
-	const { name, enName, profession, age, birthday, sex, growth, birthPlace, movies, facts } = person;
+	const { name, enName, profession, age, birthday, growth, birthPlace, movies } = person;
 	const birthdayDate = new Date(birthday).toLocaleDateString("ru", dateOptions);
 
 	const careerLayout = <FilmDetailItem title="Карьера" >

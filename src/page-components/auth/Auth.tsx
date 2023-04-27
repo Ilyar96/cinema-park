@@ -21,6 +21,7 @@ export const AuthPage: FC<AuthPageProps> = ({ title, children }) => {
 				replace(query.returnUrl) :
 				replace(AppRoutes.HOME);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [authStatus]);
 
 	if (authStatus === AuthStatus.UNKNOWN) {

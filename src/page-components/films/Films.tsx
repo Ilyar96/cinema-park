@@ -19,6 +19,7 @@ export const FilmsPage: FC<FilmsPageProps> = ({ breadcrumbLinks }) => {
 
 	useEffect(() => {
 		changeFilter(query);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]);
 
 	return (

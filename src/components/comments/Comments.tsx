@@ -65,6 +65,7 @@ export const Comments = () => {
 
 	useEffect(() => {
 		getComments();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query.id]);
 
 	const loadMore = () => {

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { setUrlParams } from "@/helpers";
 import { useAppSelector } from "@/store/store";
 import { getFilters } from "@/store/reducers/filter/selectors";
+import cn from "classnames";
 
 export const Pagination: FC<PaginationProps> = ({ data, className }) => {
 	const { pathname, replace } = useRouter();
@@ -22,7 +23,7 @@ export const Pagination: FC<PaginationProps> = ({ data, className }) => {
 	return (
 		<div className={styles.wrapper}>
 			<ResponsivePagination
-				className={styles.pagination}
+				className={cn(styles.pagination, className)}
 				previousClassName={styles.prev}
 				nextClassName={styles.next}
 				pageItemClassName={styles.pageItem}

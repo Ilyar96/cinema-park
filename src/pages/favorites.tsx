@@ -23,6 +23,7 @@ const Favorites = () => {
 				query: { returnUrl: pathname }
 			});
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [authStatus]);
 
 	if (!user) {

@@ -1,17 +1,9 @@
-import { useMemo } from "react";
-import {
-	Action,
-	configureStore,
-	PreloadedState,
-	ThunkAction,
-} from "@reduxjs/toolkit";
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authSlice } from "./reducers/auth/authSlice";
 import { filterSlice } from "./reducers/filter/filterSlice";
 import { filmApi } from "@/api/filmApi";
-
-let store: AppStore;
 
 const rootReducer = {
 	[authSlice.name]: authSlice.reducer,

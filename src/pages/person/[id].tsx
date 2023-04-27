@@ -2,7 +2,7 @@ import React from 'react';
 
 import { withLayout } from "@/hok";
 import { wrapper } from "@/store/store";
-import { getFilmById, getFilmsByIdList, getImagesByFilmId, getPersonByFilmId } from "@/api/filmApi";
+import { getFilmsByIdList, getPersonByFilmId } from "@/api/filmApi";
 import { authService } from "@/services/authService";
 import { isString } from "@/@types";
 import { PersonPage } from "@/page-components/person/Person";

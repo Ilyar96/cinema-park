@@ -76,7 +76,7 @@ export const Filters = () => {
 			"rating.kp": `${kp[0]}-${kp[1]}`,
 			"rating.imdb": `${imdb[0]}-${imdb[1]}`,
 			sortField,
-			sortType
+			sortType: String(sortType)
 		};
 
 		changeFilter(filter);
@@ -157,6 +157,7 @@ export const Filters = () => {
 		if (title && isString(title)) {
 			setTitle(title);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

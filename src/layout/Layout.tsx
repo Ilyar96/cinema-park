@@ -6,7 +6,10 @@ import { useAuth } from '../hooks/useAuth';
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
 	const { checkAuth } = useAuth();
 
-	useEffect(checkAuth, []);
+	useEffect(() => {
+		checkAuth();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className={styles.wrapper}>

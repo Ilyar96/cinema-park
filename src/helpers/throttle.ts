@@ -1,4 +1,4 @@
-export const throttle = (func: Function, delay: number) => {
+export const throttle = (func: (...args: any[]) => void, delay: number) => {
 	let inProgress = false;
 	return (...args: any[]) => {
 		if (inProgress) {

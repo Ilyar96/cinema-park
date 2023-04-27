@@ -1,4 +1,3 @@
-import { Person } from "@/@types/film";
 import { ReactNode } from "react";
 
 export interface FilmDetailItemProps {

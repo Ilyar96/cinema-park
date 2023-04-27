@@ -3,11 +3,9 @@ import cn from "classnames";
 import Link from "next/link";
 import Image from "next/image";
 import { FilmCardProps } from "./FilmCard.type";
-import { AppRoutes } from "@/components/constants/routes";
 import styles from "./FilmCard.module.scss";
 import PlaySvg from '@/assets/images/play.svg';
 import { useRouter } from "next/router";
-import { stringifyUrlParams } from "@/helpers/stringifyUrlParams";
 import { getBreadcumbsItemByPathanme } from "@/helpers";
 
 export const FilmCard: FC<FilmCardProps> = ({ film, as: Component = "li", className }) => {

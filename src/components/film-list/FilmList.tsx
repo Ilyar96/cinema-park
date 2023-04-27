@@ -3,7 +3,7 @@ import cn from "classnames";
 import { FilmListProps } from "./FilmList.type";
 import { FilmCard } from '../film-card/FilmCard';
 import { ErrorBlock, FilmCardSkeleton } from "../";
-import { Htag, Spinner } from "../ui";
+import { Htag } from "../ui";
 import styles from "./FilmList.module.scss";
 
 
@@ -13,29 +13,29 @@ export const FilmList: FC<FilmListProps> = ({
 	isLoading,
 	isFetching,
 	className,
-	limit = 24
-	, ...props
+	limit = 24,
+	...props
 }) => {
 	const emptyArr = Array.from(new Array(limit));
 
 	if (isFetching || isLoading) {
-		return <ul className={cn(styles.moviesList, className)} {...props}>
+		return (<ul className={cn(styles.moviesList, className)} {...props}>
 			{emptyArr.map((_, i) => (
 				<FilmCardSkeleton key={i} />
 			))}
-		</ul>;
+		</ul>);
 	};
 
 	if (isError) {
-		return <ErrorBlock>
+		return (<ErrorBlock>
 			<Htag tag="h1" center>Ошибка загрузки фильмов. Попробуйте перезагрузить страницу.</Htag>
-		</ErrorBlock>;
+		</ErrorBlock>);
 	}
 
 	if (films?.length === 0) {
-		return <ErrorBlock>
+		return (<ErrorBlock>
 			<Htag tag="h1" center>Не удалось найти фильмы по заданным параметрам</Htag>
-		</ErrorBlock>;
+		</ErrorBlock>);
 	}
 
 

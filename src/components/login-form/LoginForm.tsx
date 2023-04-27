@@ -19,6 +19,7 @@ export const LoginForm = () => {
 
 	useEffect(() => {
 		setFocus("email");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

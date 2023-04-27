@@ -35,7 +35,9 @@ export const CommentForm: FC<CommentFormProps> = ({
 					await CommentService.add(query.id, data.comment, user);
 				}
 				reset();
-			} catch (error) { }
+			} catch (error) {
+				console.log(error);
+			}
 		}
 	};
 

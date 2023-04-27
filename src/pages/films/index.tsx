@@ -1,5 +1,4 @@
 import { getFilms } from "@/api/filmApi";
-import { AppRoutes } from "@/components/constants/routes";
 import { withLayout } from "@/hok";
 import { FilmsPage } from "@/page-components";
 import { authService } from "@/services/authService";

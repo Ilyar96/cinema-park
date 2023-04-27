@@ -1,4 +1,3 @@
-import { Film } from "@/@types/film";
 import { Person } from "@/@types/person";
 
 export interface PersonDescriptionProps

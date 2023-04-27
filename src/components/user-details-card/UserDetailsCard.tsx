@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import cn from "classnames";
 import { Button, UserAvatar } from "../ui";
 import { useAuth } from "@/hooks";

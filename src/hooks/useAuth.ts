@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { setCookie, destroyCookie } from "nookies";
 
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import {
 	User,
 	createUserWithEmailAndPassword,
@@ -36,7 +36,6 @@ export const useAuth = () => {
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const authStatus = useAppSelector(getAuthStatus);
-	//TODO Переделать под сервис
 
 	const { login, logout } = useActions();
 
@@ -60,6 +59,7 @@ export const useAuth = () => {
 			await updateProfile(user, { photoURL });
 			login(userData);
 		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[]
 	);
 
@@ -109,6 +109,7 @@ export const useAuth = () => {
 			setIsSubmitting(false);
 			setUploadProgress(0);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const loginHandler = useCallback(async ({ email, password }: LoginData) => {
@@ -137,6 +138,7 @@ export const useAuth = () => {
 
 			setIsSubmitting(false);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const logoutHandler = useCallback(() => {
@@ -147,6 +149,7 @@ export const useAuth = () => {
 		} catch (error) {
 			errorHandler(error);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const checkAuth = useCallback(() => {
@@ -154,7 +157,6 @@ export const useAuth = () => {
 			return;
 		}
 
-		//TODO Доделать авторизацию
 		const unsub = onAuthStateChanged(auth, async (user) => {
 			if (!user) {
 				logout();
@@ -173,6 +175,7 @@ export const useAuth = () => {
 		return () => {
 			unsub();
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return {

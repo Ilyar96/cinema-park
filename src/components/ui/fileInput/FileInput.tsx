@@ -5,7 +5,7 @@ import styles from "./FileInput.module.scss";
 
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
 	(
-		{ errorMessage, className, type = "text", children, onLabelKeyDown, ...props }, ref
+		{ errorMessage, className, children, onLabelKeyDown, ...props }, ref
 	) => {
 		return (
 			<div className={cn(styles.wrapper, className)}>

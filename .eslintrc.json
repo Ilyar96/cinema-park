@@ -3,8 +3,8 @@
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["@typescript-eslint"],
 	"rules": {
-		"semi": "off",
-		"@typescript-eslint/semi": ["warn"],
+		"semicolon": [true, "always"],
+		"@typescript-eslint/no-explicit-any": ["off"],
 		"@typescript-eslint/no-empty-interface": [
 			"error",
 			{

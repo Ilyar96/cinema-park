@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";
-import { useAuth } from "@/hooks";
 import { MenuUserBtn, UserDetailsCard } from "../";
 import styles from "./MenuUserDetails.module.scss";
 

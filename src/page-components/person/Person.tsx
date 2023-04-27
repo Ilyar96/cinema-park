@@ -11,7 +11,6 @@ import styles from "./Person.module.scss";
 import Head from "next/head";
 import { setTitle } from "@/helpers";
 import { SITE_NAME } from "@/components/constants";
-import { Movie } from "@/@types/person";
 import { getMostRateFilmList } from "@/helpers/getMostRateFilmList";
 
 export const PersonPage: FC = () => {

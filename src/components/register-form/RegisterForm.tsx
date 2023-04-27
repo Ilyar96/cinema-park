@@ -25,6 +25,7 @@ export const RegisterForm = () => {
 
 	useEffect(() => {
 		setFocus("name");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const onSubmit = (data: RegisterData) => registerHandler(data);

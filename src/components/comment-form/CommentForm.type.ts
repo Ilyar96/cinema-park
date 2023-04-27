@@ -6,5 +6,5 @@ export interface CommentFormProps {
 	textareaPlaceholder?: string;
 	initialValue?: string;
 	comment?: IComment;
-	callback?: Function;
+	callback?: (...args: any[]) => void;
 }

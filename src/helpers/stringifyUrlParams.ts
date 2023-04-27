@@ -1,7 +1,7 @@
 export const stringifyUrlParams = (params: Record<string, string>) => {
 	const paramsList = Object.entries(params);
 
-	return paramsList.reduce((res: string, [key, value], i) => {
+	return paramsList.reduce((res: string, [key, value]) => {
 		if (!value) {
 			return res;
 		}
