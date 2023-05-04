@@ -44,7 +44,7 @@ export const LoginForm = () => {
 			<P>
 				Еще нет учетной записи?{" "}
 				<Link href={{
-					href: AppRoutes.REGISTER,
+					pathname: AppRoutes.REGISTER,
 					query
 				}}>
 					Регистрация

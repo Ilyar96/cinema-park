@@ -109,7 +109,7 @@ export const RegisterForm = () => {
 			<P>
 				Уже зарегистрированы?{" "}
 				<Link href={{
-					href: AppRoutes.LOGIN,
+					pathname: AppRoutes.LOGIN,
 					query
 				}}>Войти</Link>
 			</P>
