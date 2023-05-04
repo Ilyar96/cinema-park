@@ -17,19 +17,21 @@ export const Button: FC<ButtonProps> = (
 			withoutWrapper,
 			href,
 			onClick,
-			returnUrl = "",
+			returnUrl,
 			...props
 		}
 	) => {
-		const { push, asPath } = useRouter();
+		const { push } = useRouter();
 
 		const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
 			onClick && onClick(e);
 
 			if (href) {
+				const query = returnUrl ? { returnUrl: returnUrl } : null;
+
 				push({
 					pathname: href,
-					query: { returnUrl: returnUrl ? returnUrl : asPath }
+					query
 				});
 			}
 		};

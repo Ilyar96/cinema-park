@@ -68,7 +68,6 @@ export const useAuth = () => {
 		const { email, name: displayName, avatar, password } = data;
 
 		try {
-			const image = avatar?.[0];
 			const userCredential = await createUserWithEmailAndPassword(
 				auth,
 				email,
@@ -82,9 +81,9 @@ export const useAuth = () => {
 				path: "/",
 			});
 
-			if (image) {
+			if (avatar) {
 				const storageRef = ref(storage, displayName);
-				const uploadTask = uploadBytesResumable(storageRef, image);
+				const uploadTask = uploadBytesResumable(storageRef, avatar);
 
 				await uploadTask.on(
 					"state_changed",

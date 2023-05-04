@@ -1,21 +1,26 @@
 import React, { ChangeEvent, useEffect, useState, useRef, KeyboardEvent } from 'react';
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import cn from "classnames";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from "next/router";
+
 import { AppRoutes } from "@/components/constants/routes";
 import { Input, Button, P, FileInput } from '../ui';
 import { useAuth } from "@/hooks";
-import styles from "./RegisterForm.module.scss";
-import AddAvatarSvg from '@/assets/images/add-avatar.svg';
 import { RegisterData, registerSchema } from "./schema";
 import { FillingCircle } from '../filling-circle/FillingCircle';
 import { formatBytes, setFileName } from "@/helpers";
 
+import styles from "./RegisterForm.module.scss";
+import AddAvatarSvg from '@/assets/images/add-avatar.svg';
+
 export const RegisterForm = () => {
+	const { query } = useRouter();
 	const [avatar, setAvatar] = useState<File | null>(null);
 	const avatarRef = useRef<HTMLInputElement | null>(null);
 
-	const { register, handleSubmit, setFocus, formState: { errors } } = useForm<RegisterData>({
+	const { register, handleSubmit, setFocus, setValue, formState: { errors }, getValues } = useForm<RegisterData>({
 		resolver: yupResolver(registerSchema),
 		mode: "onChange",
 	});
@@ -30,11 +35,15 @@ export const RegisterForm = () => {
 
 	const onSubmit = (data: RegisterData) => registerHandler(data);
 
-	const onAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const onAvatarChange = (file: File) => {
+		setAvatar(file);
+		setValue("avatar", file, { shouldValidate: true });
+	};
+
+	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
 
-		file && setAvatar(file);
-		register("avatar").onChange(e);
+		file && onAvatarChange(file);
 	};
 
 	const onLabelKeyDown = (e: KeyboardEvent) => {
@@ -46,7 +55,7 @@ export const RegisterForm = () => {
 
 	return (
 		<form
-			className={styles.root}
+			className={cn(styles.root,)}
 			onSubmit={handleSubmit(onSubmit)}
 		>
 			<Input
@@ -66,16 +75,17 @@ export const RegisterForm = () => {
 			/>
 
 			<FileInput
-				type="file"
 				errorMessage={errors.avatar && errors.avatar.message}
+				onLabelKeyDown={onLabelKeyDown}
 				disabled={isSubmitting}
+				onFileChange={onAvatarChange}
+				isDraggable
 				{...register("avatar")}
+				onChange={onChange}
 				ref={(e) => {
 					register("avatar").ref(e);
 					avatarRef.current = e;
 				}}
-				onChange={(e) => onAvatarChange(e)}
-				onLabelKeyDown={onLabelKeyDown}
 			>
 				<div className={styles.label}>
 					{
@@ -98,7 +108,10 @@ export const RegisterForm = () => {
 
 			<P>
 				Уже зарегистрированы?{" "}
-				<Link href={AppRoutes.LOGIN}>Войти</Link>
+				<Link href={{
+					href: AppRoutes.LOGIN,
+					query
+				}}>Войти</Link>
 			</P>
 		</form>
 	);

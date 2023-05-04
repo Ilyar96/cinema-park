@@ -6,6 +6,10 @@
 	width: 100%;
 }
 
+.dropArea {
+	outline: 3px $primary-color dashed;
+}
+
 .error {
 	@extend %error-message;
 }

@@ -14,8 +14,10 @@ import { navList } from "@/components/constants";
 
 import styles from "./MobileMenu.module.scss";
 import MenuSvg from '@/assets/images/menu.svg';
+import { useRouter } from "next/router";
 
 export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
+	const { asPath } = useRouter();
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -40,7 +42,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
 	}, [isOpen]);
 
 	const navListLayout = navList.map(({ href, title }, i) => {
-		return (<li>
+		return (<li key={title}>
 			<Link
 				href={href}
 				ref={i === 0 ? firstLinkRef : null}
@@ -61,7 +63,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ className }) => {
 					<div className={styles.menuWrapper} ref={menuRef}>
 						{user ?
 							<UserDetailsCard className={styles.userCard} isOpen={true} /> :
-							<Button className={styles.login} href={AppRoutes.LOGIN}>Войти</Button>}
+							<Button className={styles.login} href={AppRoutes.LOGIN} returnUrl={asPath}>Войти</Button>}
 						<nav>
 							<ul className={styles.linksList}>
 								{navListLayout}

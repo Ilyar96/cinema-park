@@ -6,5 +6,7 @@ export interface FileInputProps
 		HTMLInputElement
 	> {
 	errorMessage?: string | undefined;
+	isDraggable?: boolean;
 	onLabelKeyDown?: (e: KeyboardEvent) => void;
+	onFileChange?: (file: File) => void;
 }

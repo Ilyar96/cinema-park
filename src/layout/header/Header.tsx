@@ -7,8 +7,10 @@ import { useAppSelector } from "@/store/store";
 import { getUser } from "@/store/reducers/auth/selectors";
 
 import styles from "./Header.module.scss";
+import { useRouter } from "next/router";
 
 export const Header = () => {
+	const { asPath } = useRouter();
 	const user = useAppSelector(getUser);
 
 	return (
@@ -20,7 +22,7 @@ export const Header = () => {
 				<div className={styles.menuRight}>
 					{user ?
 						<MenuUserDetails /> :
-						<Button href={AppRoutes.LOGIN}>Войти</Button>}
+						<Button href={AppRoutes.LOGIN} returnUrl={asPath}>Войти</Button>}
 				</div>
 			</Container>
 		</header >

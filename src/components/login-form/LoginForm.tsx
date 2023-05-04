@@ -7,8 +7,10 @@ import { AppRoutes } from "@/components/constants/routes";
 import { LoginData, schema } from "./schema";
 import styles from "./LoginForm.module.scss";
 import { useAuth } from "@/hooks";
+import { useRouter } from "next/router";
 
 export const LoginForm = () => {
+	const { query } = useRouter();
 	const { register, handleSubmit, setFocus, formState: { errors } } = useForm<LoginData>({
 		resolver: yupResolver(schema)
 	});
@@ -35,11 +37,18 @@ export const LoginForm = () => {
 				{...register("password")}
 			/>
 
-			<Button fullWidth type="submit" disabled={isSubmitting}>{isSubmitting ? "Авторизация..." : "Войти"}</Button>
+			<Button fullWidth type="submit" disabled={isSubmitting}>
+				{isSubmitting ? "Авторизация..." : "Войти"}
+			</Button>
 
 			<P>
 				Еще нет учетной записи?{" "}
-				<Link href={AppRoutes.REGISTER}>Регистрация</Link>
+				<Link href={{
+					href: AppRoutes.REGISTER,
+					query
+				}}>
+					Регистрация
+				</Link>
 			</P>
 		</form>
 	);

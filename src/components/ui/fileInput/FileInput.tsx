@@ -1,14 +1,53 @@
-import React, { forwardRef } from "react";
+import React, { DragEvent, MouseEvent, forwardRef, useState } from "react";
 import cn from "classnames";
 import { FileInputProps } from "./FileInput.type";
 import styles from "./FileInput.module.scss";
 
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
 	(
-		{ errorMessage, className, children, onLabelKeyDown, ...props }, ref
+		{
+			errorMessage,
+			className,
+			children,
+			onLabelKeyDown,
+			onFileChange,
+			isDraggable = false,
+			...props
+		}, ref
 	) => {
+		const [drag, setDrag] = useState(false);
+
+		const dragStartHandler = (e: DragEvent<HTMLDivElement>) => {
+			e.preventDefault();
+			isDraggable && setDrag(true);
+		};
+
+		const dragLeaveHandler = (e: DragEvent<HTMLDivElement>) => {
+			e.preventDefault();
+			isDraggable && setDrag(false);
+		};
+
+		const dropLeaveHandler = (e: DragEvent<HTMLDivElement>) => {
+			e.preventDefault();
+
+			if (!isDraggable) {
+				return;
+			}
+
+			setDrag(false);
+
+			const file = e.dataTransfer.files[0];
+			onFileChange && onFileChange(file);
+		};
+
 		return (
-			<div className={cn(styles.wrapper, className)}>
+			<div
+				className={cn(styles.wrapper, className, { [styles.dropArea]: drag })}
+				onDragStart={dragStartHandler}
+				onDragLeave={dragLeaveHandler}
+				onDragOver={dragStartHandler}
+				onDrop={dropLeaveHandler}
+			>
 				<label
 					className={styles.label}
 					tabIndex={0}

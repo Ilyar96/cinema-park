@@ -1,7 +1,6 @@
 import { FILE_SIZE, SUPPORTED_FORMATS } from "@/components/constants";
 
-export const sizeValidate = (value: FileList | undefined) => {
-	const file = value?.[0];
+export const sizeValidate = (file: File | undefined) => {
 	if (file) {
 		return file.size <= FILE_SIZE;
 	}
@@ -9,8 +8,7 @@ export const sizeValidate = (value: FileList | undefined) => {
 	return true;
 };
 
-export const formatValidate = (value: FileList | undefined) => {
-	const file = value?.[0];
+export const formatValidate = (file: File | undefined) => {
 	if (file) {
 		return SUPPORTED_FORMATS.includes(file.type);
 	}

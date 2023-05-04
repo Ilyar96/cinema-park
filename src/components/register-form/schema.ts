@@ -34,12 +34,10 @@ export const registerSchema = yup
 			.required(errorMessages.required),
 
 		avatar: yup
-			.mixed<FileList>()
-			.test("fileSize", errorMessages.avatar.size, (files) =>
-				sizeValidate(files)
-			)
-			.test("fileType", errorMessages.avatar.format, (files) =>
-				formatValidate(files)
+			.mixed<File>()
+			.test("fileSize", errorMessages.avatar.size, (file) => sizeValidate(file))
+			.test("fileType", errorMessages.avatar.format, (file) =>
+				formatValidate(file)
 			),
 	})
 	.required();
