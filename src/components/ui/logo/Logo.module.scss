@@ -1,10 +1,6 @@
 @import "@/assets/styles/index";
 
 .logo {
-	font-family: "Rubik Pixels", cursive;
-	font-size: 1.875rem;
-	font-weight: 700;
-
 	color: $primary-color;
 
 	@media (min-width: 767.98px) {
@@ -14,6 +10,15 @@
 	@media (any-hover: hover) {
 		&:hover {
 			text-decoration: none;
+		}
+	}
+
+	.image {
+		width: 12.875rem;
+		height: auto;
+
+		@media (min-width: 575.98px) {
+			width: 16.875rem;
 		}
 	}
 }
