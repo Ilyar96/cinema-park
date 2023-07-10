@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import NextNProgress from "nextjs-progressbar";
 
 import { getScrollbarWidth, setCssVariable, throttle } from "@/helpers";
 import { wrapper } from "@/store/store";
@@ -29,6 +30,11 @@ const App = ({ Component, ...rest }: AppProps) => {
 
 	return (
 		<>
+			<NextNProgress
+				color="#79c142"
+				height={4}
+				options={{ showSpinner: false }}
+			/>
 			<Provider store={store}>
 				<Head>
 					<title>
